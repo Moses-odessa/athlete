@@ -403,6 +403,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Standard for'**
   String get cohortStandardPrefix;
+
+  /// No description provided for @catalogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Test catalog'**
+  String get catalogTitle;
+
+  /// No description provided for @currentScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Current score'**
+  String get currentScore;
+
+  /// No description provided for @notTested.
+  ///
+  /// In en, this message translates to:
+  /// **'Not tested'**
+  String get notTested;
+
+  /// No description provided for @recordResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Record result'**
+  String get recordResult;
+
+  /// No description provided for @howToPerform.
+  ///
+  /// In en, this message translates to:
+  /// **'How to perform'**
+  String get howToPerform;
+
+  /// No description provided for @requiredEquipment.
+  ///
+  /// In en, this message translates to:
+  /// **'Equipment'**
+  String get requiredEquipment;
+
+  /// No description provided for @fieldResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Result'**
+  String get fieldResult;
+
+  /// No description provided for @fieldNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get fieldNote;
+
+  /// No description provided for @fieldDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get fieldDate;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @unitSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'s'**
+  String get unitSeconds;
+
+  /// No description provided for @unitMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get unitMinutes;
+
+  /// No description provided for @unitMeters.
+  ///
+  /// In en, this message translates to:
+  /// **'m'**
+  String get unitMeters;
+
+  /// No description provided for @unitCentimeters.
+  ///
+  /// In en, this message translates to:
+  /// **'cm'**
+  String get unitCentimeters;
+
+  /// No description provided for @unitKilograms.
+  ///
+  /// In en, this message translates to:
+  /// **'kg'**
+  String get unitKilograms;
+
+  /// No description provided for @unitReps.
+  ///
+  /// In en, this message translates to:
+  /// **'reps'**
+  String get unitReps;
+
+  /// No description provided for @ratingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating 1–5'**
+  String get ratingLabel;
+
+  /// No description provided for @scoreLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Score'**
+  String get scoreLabel;
+
+  /// No description provided for @previewNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Now'**
+  String get previewNow;
+
+  /// No description provided for @previewAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'After saving'**
+  String get previewAfter;
+
+  /// No description provided for @indexLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Index'**
+  String get indexLabel;
+
+  /// No description provided for @infoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About the test'**
+  String get infoTitle;
+
+  /// No description provided for @infoCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get infoCategory;
+
+  /// No description provided for @infoStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard (min → max)'**
+  String get infoStandard;
+
+  /// No description provided for @infoDirectionHigher.
+  ///
+  /// In en, this message translates to:
+  /// **'Higher is better'**
+  String get infoDirectionHigher;
+
+  /// No description provided for @infoDirectionLower.
+  ///
+  /// In en, this message translates to:
+  /// **'Lower is better'**
+  String get infoDirectionLower;
+
+  /// No description provided for @infoDetailsSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed guidance (how to perform, common mistakes, safety) is coming.'**
+  String get infoDetailsSoon;
+
+  /// No description provided for @savedSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Result saved'**
+  String get savedSnack;
 }
 
 class _AppLocalizationsDelegate

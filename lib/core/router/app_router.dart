@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../../features/dashboard/presentation/dashboard_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
+import '../../features/tests/presentation/catalog_screen.dart';
+import '../../features/tests/presentation/entry_screen.dart';
 
 /// Роутер приложения. Пока профиль не заполнен — онбординг, иначе — дашборд
 /// (ТЗ разд. 3, 4.1).
@@ -27,6 +29,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/onboarding',
         builder: (_, _) => const OnboardingScreen(),
+      ),
+      GoRoute(path: '/catalog', builder: (_, _) => const CatalogScreen()),
+      GoRoute(
+        path: '/entry/:id',
+        builder: (_, state) =>
+            EntryScreen(exerciseId: state.pathParameters['id']!),
       ),
     ],
   );

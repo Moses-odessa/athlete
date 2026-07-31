@@ -162,4 +162,89 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cohortStandardPrefix => 'Standard for';
+
+  @override
+  String get catalogTitle => 'Test catalog';
+
+  @override
+  String get currentScore => 'Current score';
+
+  @override
+  String get notTested => 'Not tested';
+
+  @override
+  String get recordResult => 'Record result';
+
+  @override
+  String get howToPerform => 'How to perform';
+
+  @override
+  String get requiredEquipment => 'Equipment';
+
+  @override
+  String get fieldResult => 'Result';
+
+  @override
+  String get fieldNote => 'Note (optional)';
+
+  @override
+  String get fieldDate => 'Date';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get unitSeconds => 's';
+
+  @override
+  String get unitMinutes => 'min';
+
+  @override
+  String get unitMeters => 'm';
+
+  @override
+  String get unitCentimeters => 'cm';
+
+  @override
+  String get unitKilograms => 'kg';
+
+  @override
+  String get unitReps => 'reps';
+
+  @override
+  String get ratingLabel => 'Rating 1–5';
+
+  @override
+  String get scoreLabel => 'Score';
+
+  @override
+  String get previewNow => 'Now';
+
+  @override
+  String get previewAfter => 'After saving';
+
+  @override
+  String get indexLabel => 'Index';
+
+  @override
+  String get infoTitle => 'About the test';
+
+  @override
+  String get infoCategory => 'Category';
+
+  @override
+  String get infoStandard => 'Standard (min → max)';
+
+  @override
+  String get infoDirectionHigher => 'Higher is better';
+
+  @override
+  String get infoDirectionLower => 'Lower is better';
+
+  @override
+  String get infoDetailsSoon =>
+      'Detailed guidance (how to perform, common mistakes, safety) is coming.';
+
+  @override
+  String get savedSnack => 'Result saved';
 }

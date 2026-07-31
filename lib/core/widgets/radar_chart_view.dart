@@ -1,9 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/l10n/localized_text_ext.dart';
-import '../../../data/models/catalog_seed.dart';
-import '../../../domain/entities/category_score.dart';
+import '../../data/models/catalog_seed.dart';
+import '../../domain/entities/category_score.dart';
+import '../l10n/localized_text_ext.dart';
 
 /// Радарная диаграмма 8 качеств (ТЗ разд. 2.2, 4.2). Оси — в порядке radarOrder;
 /// значение оси = балл категории (0 — если не оценена). Шкала зафиксирована 0–100
@@ -42,7 +42,8 @@ class RadarChartView extends StatelessWidget {
             entryRadius: 0,
             borderWidth: 0,
             dataEntries: [
-              for (var i = 0; i < ordered.length; i++) const RadarEntry(value: 100),
+              for (var i = 0; i < ordered.length; i++)
+                const RadarEntry(value: 100),
             ],
           ),
           RadarDataSet(

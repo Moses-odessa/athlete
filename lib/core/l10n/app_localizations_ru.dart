@@ -165,4 +165,89 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get cohortStandardPrefix => 'Стандарт для';
+
+  @override
+  String get catalogTitle => 'Каталог тестов';
+
+  @override
+  String get currentScore => 'Текущий балл';
+
+  @override
+  String get notTested => 'Нет данных';
+
+  @override
+  String get recordResult => 'Записать результат';
+
+  @override
+  String get howToPerform => 'Как выполнять';
+
+  @override
+  String get requiredEquipment => 'Оборудование';
+
+  @override
+  String get fieldResult => 'Результат';
+
+  @override
+  String get fieldNote => 'Заметка (необязательно)';
+
+  @override
+  String get fieldDate => 'Дата';
+
+  @override
+  String get save => 'Сохранить';
+
+  @override
+  String get unitSeconds => 'с';
+
+  @override
+  String get unitMinutes => 'мин';
+
+  @override
+  String get unitMeters => 'м';
+
+  @override
+  String get unitCentimeters => 'см';
+
+  @override
+  String get unitKilograms => 'кг';
+
+  @override
+  String get unitReps => 'повт.';
+
+  @override
+  String get ratingLabel => 'Оценка 1–5';
+
+  @override
+  String get scoreLabel => 'Балл';
+
+  @override
+  String get previewNow => 'Сейчас';
+
+  @override
+  String get previewAfter => 'После сохранения';
+
+  @override
+  String get indexLabel => 'Индекс';
+
+  @override
+  String get infoTitle => 'О тесте';
+
+  @override
+  String get infoCategory => 'Категория';
+
+  @override
+  String get infoStandard => 'Норматив (мин → эталон)';
+
+  @override
+  String get infoDirectionHigher => 'Больше — лучше';
+
+  @override
+  String get infoDirectionLower => 'Меньше — лучше';
+
+  @override
+  String get infoDetailsSoon =>
+      'Подробная инструкция (как выполнять, типичные ошибки, безопасность) появится позже.';
+
+  @override
+  String get savedSnack => 'Результат сохранён';
 }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:go_router/go_router.dart';
+
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
+import '../../../core/widgets/radar_chart_view.dart';
 import '../../../data/models/catalog_seed.dart';
-import '../../../data/repositories/results_repository.dart';
 import '../../../domain/entities/gender.dart';
 import '../application/dashboard_controller.dart';
-import '../application/demo_results.dart';
-import 'radar_chart_view.dart';
 
 /// Главный экран: Индекс атлета, радар 8 качеств, слабое звено (ТЗ разд. 4.2).
 class DashboardScreen extends ConsumerWidget {
@@ -40,10 +40,10 @@ class DashboardScreen extends ConsumerWidget {
           Row(
             children: [
               Expanded(
-                child: OutlinedButton.icon(
+                child: FilledButton.icon(
                   icon: const Icon(Icons.list_alt),
                   label: Text(l10n.allTests),
-                  onPressed: () => _comingSoon(context, l10n),
+                  onPressed: () => context.push('/catalog'),
                 ),
               ),
               const SizedBox(width: 12),
@@ -51,40 +51,15 @@ class DashboardScreen extends ConsumerWidget {
                 child: OutlinedButton.icon(
                   icon: const Icon(Icons.history),
                   label: Text(l10n.history),
-                  onPressed: () => _comingSoon(context, l10n),
-                ),
-              ),
-            ],
-          ),
-          const Divider(height: 40),
-          // Временные демо-контролы (до экрана ввода результатов).
-          Row(
-            children: [
-              Expanded(
-                child: TextButton(
-                  onPressed: () => ref
-                      .read(resultsControllerProvider.notifier)
-                      .setAll(buildDemoResults(DateTime.now())),
-                  child: Text(l10n.loadDemoData),
-                ),
-              ),
-              Expanded(
-                child: TextButton(
-                  onPressed: () =>
-                      ref.read(resultsControllerProvider.notifier).clear(),
-                  child: Text(l10n.clearData),
+                  onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(l10n.comingSoon)),
+                  ),
                 ),
               ),
             ],
           ),
         ],
       ),
-    );
-  }
-
-  void _comingSoon(BuildContext context, AppLocalizations l10n) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(l10n.comingSoon)),
     );
   }
 }
