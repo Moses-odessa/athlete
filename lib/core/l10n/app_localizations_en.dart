@@ -366,4 +366,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exportPdf => 'Export PDF';
+
+  @override
+  String get scienceTitle => 'Science base';
+
+  @override
+  String get scienceRationale => 'Why these tests';
+
+  @override
+  String get scienceFormula => 'How the score is calculated';
+
+  @override
+  String get scienceNorms => 'Choosing the norms';
+
+  @override
+  String get scienceReferences => 'Sources';
+
+  @override
+  String get scienceDisclaimerTitle => 'Disclaimer';
 }

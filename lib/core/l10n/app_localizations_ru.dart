@@ -369,4 +369,22 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get exportPdf => 'Экспорт в PDF';
+
+  @override
+  String get scienceTitle => 'Научная база';
+
+  @override
+  String get scienceRationale => 'Почему эти тесты';
+
+  @override
+  String get scienceFormula => 'Как считается балл';
+
+  @override
+  String get scienceNorms => 'Выбор нормативов';
+
+  @override
+  String get scienceReferences => 'Источники';
+
+  @override
+  String get scienceDisclaimerTitle => 'Дисклеймер';
 }

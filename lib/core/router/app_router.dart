@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../data/repositories/profile_repository.dart';
 import '../../features/dashboard/presentation/dashboard_screen.dart';
+import '../../features/education/presentation/science_screen.dart';
 import '../../features/history/presentation/history_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
@@ -35,6 +36,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/catalog', builder: (_, _) => const CatalogScreen()),
       GoRoute(path: '/history', builder: (_, _) => const HistoryScreen()),
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
+      GoRoute(path: '/science', builder: (_, _) => const ScienceScreen()),
       GoRoute(
         path: '/entry/:id',
         builder: (_, state) =>

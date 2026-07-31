@@ -117,5 +117,11 @@
   "deleteConfirmBody": "Профиль и все результаты будут безвозвратно удалены с этого устройства.",
   "cancel": "Отмена",
   "delete": "Удалить",
-  "exportPdf": "Экспорт в PDF"
+  "exportPdf": "Экспорт в PDF",
+  "scienceTitle": "Научная база",
+  "scienceRationale": "Почему эти тесты",
+  "scienceFormula": "Как считается балл",
+  "scienceNorms": "Выбор нормативов",
+  "scienceReferences": "Источники",
+  "scienceDisclaimerTitle": "Дисклеймер"
 }

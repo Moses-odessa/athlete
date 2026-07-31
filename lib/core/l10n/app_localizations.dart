@@ -805,6 +805,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Export PDF'**
   String get exportPdf;
+
+  /// No description provided for @scienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Science base'**
+  String get scienceTitle;
+
+  /// No description provided for @scienceRationale.
+  ///
+  /// In en, this message translates to:
+  /// **'Why these tests'**
+  String get scienceRationale;
+
+  /// No description provided for @scienceFormula.
+  ///
+  /// In en, this message translates to:
+  /// **'How the score is calculated'**
+  String get scienceFormula;
+
+  /// No description provided for @scienceNorms.
+  ///
+  /// In en, this message translates to:
+  /// **'Choosing the norms'**
+  String get scienceNorms;
+
+  /// No description provided for @scienceReferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources'**
+  String get scienceReferences;
+
+  /// No description provided for @scienceDisclaimerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Disclaimer'**
+  String get scienceDisclaimerTitle;
 }
 
 class _AppLocalizationsDelegate
