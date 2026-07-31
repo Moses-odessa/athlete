@@ -1,6 +1,8 @@
 import '../../domain/entities/category.dart';
 import '../../domain/entities/exercise.dart';
+import '../../domain/entities/exercise_info.dart';
 import 'categories_seed.dart';
+import 'exercise_info_seed.dart';
 import 'exercises_seed.dart';
 
 export 'categories_seed.dart';
@@ -33,4 +35,7 @@ class Catalog {
     }
     return null;
   }
+
+  /// Инфо-контент теста (ТЗ разд. 4.4) или null.
+  static ExerciseInfo? infoFor(String exerciseId) => kExerciseInfo[exerciseId];
 }

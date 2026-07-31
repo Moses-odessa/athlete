@@ -601,6 +601,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No results yet. Record your first test.'**
   String get historyEmpty;
+
+  /// No description provided for @infoWhatMeasures.
+  ///
+  /// In en, this message translates to:
+  /// **'What it measures'**
+  String get infoWhatMeasures;
+
+  /// No description provided for @infoWhyNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Why it matters'**
+  String get infoWhyNeeded;
+
+  /// No description provided for @infoHowToPerform.
+  ///
+  /// In en, this message translates to:
+  /// **'How to perform'**
+  String get infoHowToPerform;
+
+  /// No description provided for @infoHowToEnter.
+  ///
+  /// In en, this message translates to:
+  /// **'How to enter the result'**
+  String get infoHowToEnter;
+
+  /// No description provided for @infoCommonMistakes.
+  ///
+  /// In en, this message translates to:
+  /// **'Common mistakes'**
+  String get infoCommonMistakes;
+
+  /// No description provided for @infoSafety.
+  ///
+  /// In en, this message translates to:
+  /// **'Contraindications & safety'**
+  String get infoSafety;
+
+  /// No description provided for @infoRadarImpact.
+  ///
+  /// In en, this message translates to:
+  /// **'Radar impact'**
+  String get infoRadarImpact;
 }
 
 class _AppLocalizationsDelegate

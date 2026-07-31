@@ -9,14 +9,13 @@ import '../../../core/widgets/radar_chart_view.dart';
 import '../../../data/models/catalog_seed.dart';
 import '../../../data/repositories/profile_repository.dart';
 import '../../../data/repositories/results_repository.dart';
-import '../../../domain/entities/cohort.dart';
 import '../../../domain/entities/exercise.dart';
 import '../../../domain/entities/measurement.dart';
 import '../../../domain/entities/test_result.dart';
 import '../../../domain/scoring/level.dart';
-import '../../../domain/scoring/resolve_standards.dart';
 import '../../../domain/scoring/score_test.dart';
 import '../../dashboard/application/athlete_summary.dart';
+import 'exercise_info_sheet.dart';
 
 /// Ввод результата теста с расчётом балла в реальном времени и превью изменения
 /// индекса и радара до сохранения (ТЗ разд. 4.5).
@@ -152,7 +151,7 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline),
-            onPressed: () => _showInfo(context, exercise, cohort, profile.weightKg),
+            onPressed: () => showExerciseInfo(context, exercise.id),
           ),
         ],
       ),
@@ -228,51 +227,6 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
     );
   }
 
-  void _showInfo(
-    BuildContext context,
-    Exercise exercise,
-    Cohort cohort,
-    double weightKg,
-  ) {
-    final l10n = AppLocalizations.of(context);
-    final category = Catalog.categoryBySlug(exercise.categorySlug);
-    final std = exercise.isQualitative
-        ? null
-        : resolveStandards(exercise, cohort, bodyweightKg: weightKg);
-
-    showDialog<void>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.infoTitle),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('${l10n.infoCategory}: '
-                '${category == null ? '' : context.tr(category.name)}'),
-            const SizedBox(height: 8),
-            Text(exercise.higherIsBetter
-                ? l10n.infoDirectionHigher
-                : l10n.infoDirectionLower),
-            if (std != null) ...[
-              const SizedBox(height: 8),
-              Text('${l10n.infoStandard}: '
-                  '${std.min.toStringAsFixed(1)} → ${std.max.toStringAsFixed(1)}'),
-            ],
-            const SizedBox(height: 12),
-            Text(l10n.infoDetailsSoon,
-                style: Theme.of(context).textTheme.bodySmall),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _InputArea extends StatelessWidget {

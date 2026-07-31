@@ -265,4 +265,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get historyEmpty => 'Пока нет результатов. Запишите первый тест.';
+
+  @override
+  String get infoWhatMeasures => 'Что измеряет';
+
+  @override
+  String get infoWhyNeeded => 'Зачем нужен';
+
+  @override
+  String get infoHowToPerform => 'Как выполнять';
+
+  @override
+  String get infoHowToEnter => 'Как ввести результат';
+
+  @override
+  String get infoCommonMistakes => 'Типичные ошибки';
+
+  @override
+  String get infoSafety => 'Противопоказания и безопасность';
+
+  @override
+  String get infoRadarImpact => 'Влияние на радар';
 }

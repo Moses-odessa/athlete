@@ -6,6 +6,7 @@ import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
 import '../../../data/models/catalog_seed.dart';
 import '../application/catalog_controller.dart';
+import 'exercise_info_sheet.dart';
 
 /// Каталог тестов: категория → тест (ТЗ разд. 4.3).
 class CatalogScreen extends ConsumerWidget {
@@ -72,7 +73,17 @@ class _CategorySection extends StatelessWidget {
                   ? '${l10n.currentScore}: ${scores[exercise.id]!.round()}'
                   : l10n.notTested,
             ),
-            trailing: const Icon(Icons.chevron_right),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.info_outline),
+                  tooltip: l10n.infoTitle,
+                  onPressed: () => showExerciseInfo(context, exercise.id),
+                ),
+                const Icon(Icons.chevron_right),
+              ],
+            ),
             onTap: () => context.push('/entry/${exercise.id}'),
           ),
       ],

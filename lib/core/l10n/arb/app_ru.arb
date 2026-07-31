@@ -83,5 +83,12 @@
   "personalRecords": "Личные рекорды",
   "notEnoughData": "Сдайте больше тестов, чтобы увидеть график",
   "lastChange": "Изменение с прошлого замера",
-  "historyEmpty": "Пока нет результатов. Запишите первый тест."
+  "historyEmpty": "Пока нет результатов. Запишите первый тест.",
+  "infoWhatMeasures": "Что измеряет",
+  "infoWhyNeeded": "Зачем нужен",
+  "infoHowToPerform": "Как выполнять",
+  "infoHowToEnter": "Как ввести результат",
+  "infoCommonMistakes": "Типичные ошибки",
+  "infoSafety": "Противопоказания и безопасность",
+  "infoRadarImpact": "Влияние на радар"
 }

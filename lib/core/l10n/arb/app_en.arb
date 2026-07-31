@@ -89,5 +89,12 @@
   "personalRecords": "Personal records",
   "notEnoughData": "Take more tests to see the chart",
   "lastChange": "Change since previous test",
-  "historyEmpty": "No results yet. Record your first test."
+  "historyEmpty": "No results yet. Record your first test.",
+  "infoWhatMeasures": "What it measures",
+  "infoWhyNeeded": "Why it matters",
+  "infoHowToPerform": "How to perform",
+  "infoHowToEnter": "How to enter the result",
+  "infoCommonMistakes": "Common mistakes",
+  "infoSafety": "Contraindications & safety",
+  "infoRadarImpact": "Radar impact"
 }

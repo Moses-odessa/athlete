@@ -262,4 +262,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get historyEmpty => 'No results yet. Record your first test.';
+
+  @override
+  String get infoWhatMeasures => 'What it measures';
+
+  @override
+  String get infoWhyNeeded => 'Why it matters';
+
+  @override
+  String get infoHowToPerform => 'How to perform';
+
+  @override
+  String get infoHowToEnter => 'How to enter the result';
+
+  @override
+  String get infoCommonMistakes => 'Common mistakes';
+
+  @override
+  String get infoSafety => 'Contraindications & safety';
+
+  @override
+  String get infoRadarImpact => 'Radar impact';
 }
