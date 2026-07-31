@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../data/repositories/profile_repository.dart';
 import '../../features/dashboard/presentation/dashboard_screen.dart';
+import '../../features/history/presentation/history_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/tests/presentation/catalog_screen.dart';
 import '../../features/tests/presentation/entry_screen.dart';
@@ -31,6 +32,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, _) => const OnboardingScreen(),
       ),
       GoRoute(path: '/catalog', builder: (_, _) => const CatalogScreen()),
+      GoRoute(path: '/history', builder: (_, _) => const HistoryScreen()),
       GoRoute(
         path: '/entry/:id',
         builder: (_, state) =>

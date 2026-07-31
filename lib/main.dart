@@ -3,9 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
+import 'data/repositories/persistence.dart';
 
-void main() {
-  runApp(const ProviderScope(child: AthleteApp()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final container = ProviderContainer();
+  // Загрузка сохранённых данных до первого кадра (без мигания онбординга).
+  await bootstrapPersistence(container);
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: const AthleteApp(),
+    ),
+  );
 }
 
 /// Корневой виджет приложения (ТЗ разд. 8.4, 8.5).

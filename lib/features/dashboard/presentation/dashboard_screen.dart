@@ -51,9 +51,7 @@ class DashboardScreen extends ConsumerWidget {
                 child: OutlinedButton.icon(
                   icon: const Icon(Icons.history),
                   label: Text(l10n.history),
-                  onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(l10n.comingSoon)),
-                  ),
+                  onPressed: () => context.push('/history'),
                 ),
               ),
             ],

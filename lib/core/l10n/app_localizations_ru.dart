@@ -250,4 +250,19 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get savedSnack => 'Результат сохранён';
+
+  @override
+  String get indexOverTime => 'Индекс по времени';
+
+  @override
+  String get personalRecords => 'Личные рекорды';
+
+  @override
+  String get notEnoughData => 'Сдайте больше тестов, чтобы увидеть график';
+
+  @override
+  String get lastChange => 'Изменение с прошлого замера';
+
+  @override
+  String get historyEmpty => 'Пока нет результатов. Запишите первый тест.';
 }

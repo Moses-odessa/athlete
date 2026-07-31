@@ -247,4 +247,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get savedSnack => 'Result saved';
+
+  @override
+  String get indexOverTime => 'Index over time';
+
+  @override
+  String get personalRecords => 'Personal records';
+
+  @override
+  String get notEnoughData => 'Take more tests to see the chart';
+
+  @override
+  String get lastChange => 'Change since previous test';
+
+  @override
+  String get historyEmpty => 'No results yet. Record your first test.';
 }

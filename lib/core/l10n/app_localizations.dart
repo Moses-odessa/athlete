@@ -571,6 +571,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Result saved'**
   String get savedSnack;
+
+  /// No description provided for @indexOverTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Index over time'**
+  String get indexOverTime;
+
+  /// No description provided for @personalRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal records'**
+  String get personalRecords;
+
+  /// No description provided for @notEnoughData.
+  ///
+  /// In en, this message translates to:
+  /// **'Take more tests to see the chart'**
+  String get notEnoughData;
+
+  /// No description provided for @lastChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change since previous test'**
+  String get lastChange;
+
+  /// No description provided for @historyEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No results yet. Record your first test.'**
+  String get historyEmpty;
 }
 
 class _AppLocalizationsDelegate

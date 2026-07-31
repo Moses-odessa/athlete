@@ -84,5 +84,10 @@
   "infoDirectionHigher": "Higher is better",
   "infoDirectionLower": "Lower is better",
   "infoDetailsSoon": "Detailed guidance (how to perform, common mistakes, safety) is coming.",
-  "savedSnack": "Result saved"
+  "savedSnack": "Result saved",
+  "indexOverTime": "Index over time",
+  "personalRecords": "Personal records",
+  "notEnoughData": "Take more tests to see the chart",
+  "lastChange": "Change since previous test",
+  "historyEmpty": "No results yet. Record your first test."
 }
