@@ -2,6 +2,7 @@
 library;
 
 export 'age_bracket.dart';
+export 'app_settings.dart';
 export 'athlete_index_result.dart';
 export 'athlete_level.dart';
 export 'category.dart';

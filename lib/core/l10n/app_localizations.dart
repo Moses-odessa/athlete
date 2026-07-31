@@ -500,6 +500,24 @@ abstract class AppLocalizations {
   /// **'reps'**
   String get unitReps;
 
+  /// No description provided for @unitPounds.
+  ///
+  /// In en, this message translates to:
+  /// **'lb'**
+  String get unitPounds;
+
+  /// No description provided for @unitInches.
+  ///
+  /// In en, this message translates to:
+  /// **'in'**
+  String get unitInches;
+
+  /// No description provided for @unitFeet.
+  ///
+  /// In en, this message translates to:
+  /// **'ft'**
+  String get unitFeet;
+
   /// No description provided for @ratingLabel.
   ///
   /// In en, this message translates to:
@@ -643,6 +661,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Radar impact'**
   String get infoRadarImpact;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Units'**
+  String get settingsUnits;
+
+  /// No description provided for @unitsMetric.
+  ///
+  /// In en, this message translates to:
+  /// **'Metric'**
+  String get unitsMetric;
+
+  /// No description provided for @unitsImperial.
+  ///
+  /// In en, this message translates to:
+  /// **'Imperial'**
+  String get unitsImperial;
+
+  /// No description provided for @settingsTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get settingsTheme;
+
+  /// No description provided for @themeSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeSystem;
+
+  /// No description provided for @themeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeLight;
+
+  /// No description provided for @themeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
+  /// No description provided for @settingsLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settingsLanguage;
+
+  /// No description provided for @languageSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get languageSystem;
+
+  /// No description provided for @settingsScale.
+  ///
+  /// In en, this message translates to:
+  /// **'Score scale'**
+  String get settingsScale;
+
+  /// No description provided for @scaleLinear.
+  ///
+  /// In en, this message translates to:
+  /// **'Linear'**
+  String get scaleLinear;
+
+  /// No description provided for @scaleNonlinear.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-linear'**
+  String get scaleNonlinear;
+
+  /// No description provided for @scaleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-linear scale grows faster at the start and plateaus near 100.'**
+  String get scaleHint;
+
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get settingsNotifications;
+
+  /// No description provided for @settingsData.
+  ///
+  /// In en, this message translates to:
+  /// **'Data'**
+  String get settingsData;
+
+  /// No description provided for @exportData.
+  ///
+  /// In en, this message translates to:
+  /// **'Export my data'**
+  String get exportData;
+
+  /// No description provided for @exportDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Export ready'**
+  String get exportDone;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete my data'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete all data?'**
+  String get deleteConfirmTitle;
+
+  /// No description provided for @deleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your profile and all results will be permanently removed from this device.'**
+  String get deleteConfirmBody;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
 }
 
 class _AppLocalizationsDelegate

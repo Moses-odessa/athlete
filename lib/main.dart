@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
 import 'data/repositories/persistence.dart';
+import 'data/repositories/settings_repository.dart';
+import 'domain/entities/app_settings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +27,7 @@ class AthleteApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
+    final settings = ref.watch(settingsControllerProvider);
     const seed = Color(0xFF1565C0);
 
     return MaterialApp.router(
@@ -41,10 +44,19 @@ class AthleteApp extends ConsumerWidget {
         useMaterial3: true,
       ),
       // Тёмная тема по умолчанию для использования в зале (ТЗ разд. 8.4).
-      themeMode: ThemeMode.dark,
+      themeMode: _themeMode(settings.themeMode),
+      locale: settings.languageCode == null
+          ? null
+          : Locale(settings.languageCode!),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: router,
     );
   }
+
+  ThemeMode _themeMode(AppThemeMode mode) => switch (mode) {
+        AppThemeMode.system => ThemeMode.system,
+        AppThemeMode.light => ThemeMode.light,
+        AppThemeMode.dark => ThemeMode.dark,
+      };
 }

@@ -1,8 +1,10 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 
+import '../../domain/entities/app_settings.dart';
 import '../../domain/entities/equipment.dart';
 import '../../domain/entities/gender.dart';
+import '../../domain/entities/scale_type.dart';
 import '../../domain/entities/test_result.dart';
 import '../../domain/entities/training_experience.dart';
 import '../../domain/entities/training_goal.dart';
@@ -41,15 +43,36 @@ class Results extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Настройки приложения — одна строка (id = 1, ТЗ разд. 4.17).
+class SettingsRows extends Table {
+  IntColumn get id => integer().withDefault(const Constant(1))();
+  TextColumn get units => text()();
+  TextColumn get themeMode => text()();
+  TextColumn get languageCode => text().nullable()();
+  TextColumn get scaleType => text()();
+  BoolColumn get notificationsEnabled => boolean()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
 /// Локальная БД (offline-first, ТЗ разд. 8.2). На web без wasm-ассетов запросы
 /// бросают исключение — вызывающая сторона откатывается в режим без сохранения.
-@DriftDatabase(tables: [Profiles, Results])
+@DriftDatabase(tables: [Profiles, Results, SettingsRows])
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor])
       : super(executor ?? driftDatabase(name: 'athlete_db'));
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onCreate: (m) => m.createAll(),
+        onUpgrade: (m, from, to) async {
+          if (from < 2) await m.createTable(settingsRows);
+        },
+      );
 
   Future<UserProfile?> loadProfile() async {
     final row =
@@ -73,6 +96,15 @@ class AppDatabase extends _$AppDatabase {
         b.deleteWhere(results, (_) => const Constant(true));
         b.insertAll(results, items.map(_toResultRow).toList());
       });
+
+  Future<AppSettings?> loadSettings() async {
+    final row = await (select(settingsRows)..where((t) => t.id.equals(1)))
+        .getSingleOrNull();
+    return row == null ? null : _toSettings(row);
+  }
+
+  Future<void> saveSettings(AppSettings s) =>
+      into(settingsRows).insertOnConflictUpdate(_toSettingsRow(s));
 
   // ── Мапперы ────────────────────────────────────────────────────────────
   UserProfile _toProfile(Profile row) => UserProfile(
@@ -122,5 +154,22 @@ class AppDatabase extends _$AppDatabase {
         date: r.date,
         note: Value(r.note),
         videoPath: Value(r.videoPath),
+      );
+
+  AppSettings _toSettings(SettingsRow row) => AppSettings(
+        units: UnitSystem.values.byName(row.units),
+        themeMode: AppThemeMode.values.byName(row.themeMode),
+        languageCode: row.languageCode,
+        scaleType: ScaleType.values.byName(row.scaleType),
+        notificationsEnabled: row.notificationsEnabled,
+      );
+
+  SettingsRowsCompanion _toSettingsRow(AppSettings s) => SettingsRowsCompanion(
+        id: const Value(1),
+        units: Value(s.units.name),
+        themeMode: Value(s.themeMode.name),
+        languageCode: Value(s.languageCode),
+        scaleType: Value(s.scaleType.name),
+        notificationsEnabled: Value(s.notificationsEnabled),
       );
 }

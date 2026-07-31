@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../local/database_provider.dart';
 import 'profile_repository.dart';
 import 'results_repository.dart';
+import 'settings_repository.dart';
 
 /// Загружает сохранённые профиль и результаты в контроллеры при старте и
 /// настраивает запись изменений в БД (ТЗ разд. 8.2).
@@ -25,6 +26,10 @@ Future<void> bootstrapPersistence(ProviderContainer container) async {
     if (results.isNotEmpty) {
       container.read(resultsControllerProvider.notifier).setAll(results);
     }
+    final settings = await db.loadSettings();
+    if (settings != null) {
+      container.read(settingsControllerProvider.notifier).replace(settings);
+    }
 
     // Write-through: любые изменения контроллеров пишутся в БД.
     container.listen(profileControllerProvider, (_, next) {
@@ -34,6 +39,9 @@ Future<void> bootstrapPersistence(ProviderContainer container) async {
     });
     container.listen(resultsControllerProvider, (_, next) {
       db.replaceResults(next).catchError((_) {});
+    });
+    container.listen(settingsControllerProvider, (_, next) {
+      db.saveSettings(next).catchError((_) {});
     });
   } catch (_) {
     // БД недоступна — работаем без персистентности.

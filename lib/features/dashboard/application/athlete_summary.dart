@@ -3,6 +3,7 @@ import '../../../domain/entities/athlete_index_result.dart';
 import '../../../domain/entities/athlete_level.dart';
 import '../../../domain/entities/category_score.dart';
 import '../../../domain/entities/cohort.dart';
+import '../../../domain/entities/scale_type.dart';
 import '../../../domain/entities/score.dart';
 import '../../../domain/entities/test_result.dart';
 import '../../../domain/scoring/scoring.dart';
@@ -45,6 +46,7 @@ AthleteSummary summarizeResults({
   required double weightKg,
   required List<TestResult> results,
   int totalCategories = 8,
+  ScaleType scale = ScaleType.linear,
 }) {
   // Последний результат по каждому упражнению.
   final latest = <String, TestResult>{};
@@ -64,6 +66,7 @@ AthleteSummary summarizeResults({
       result.value,
       cohort,
       bodyweightKg: weightKg,
+      scaleOverride: scale,
     );
     byCategory.putIfAbsent(exercise.categorySlug, () => []).add(score);
   }

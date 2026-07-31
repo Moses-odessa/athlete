@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/repositories/profile_repository.dart';
 import '../../../data/repositories/results_repository.dart';
+import '../../../data/repositories/settings_repository.dart';
 import '../../../domain/entities/athlete_index_result.dart';
 import '../../../domain/entities/category_score.dart';
 import '../../../domain/entities/cohort.dart';
@@ -46,6 +47,7 @@ final dashboardProvider = Provider<DashboardState>((ref) {
     cohort: cohort,
     weightKg: profile.weightKg,
     results: results,
+    scale: ref.watch(settingsControllerProvider).scaleType,
   );
 
   return DashboardState(

@@ -67,4 +67,25 @@ void main() {
     await db.replaceResults([]);
     expect(await db.loadResults(), isEmpty);
   });
+
+  test('настройки: сохранение и загрузка (round-trip)', () async {
+    expect(await db.loadSettings(), isNull);
+
+    const settings = AppSettings(
+      units: UnitSystem.imperial,
+      themeMode: AppThemeMode.light,
+      languageCode: 'en',
+      scaleType: ScaleType.nonlinear,
+      notificationsEnabled: true,
+    );
+    await db.saveSettings(settings);
+
+    final loaded = await db.loadSettings();
+    expect(loaded, isNotNull);
+    expect(loaded!.units, UnitSystem.imperial);
+    expect(loaded.themeMode, AppThemeMode.light);
+    expect(loaded.languageCode, 'en');
+    expect(loaded.scaleType, ScaleType.nonlinear);
+    expect(loaded.notificationsEnabled, isTrue);
+  });
 }

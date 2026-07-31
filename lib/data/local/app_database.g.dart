@@ -1017,16 +1017,438 @@ class ResultsCompanion extends UpdateCompanion<Result> {
   }
 }
 
+class $SettingsRowsTable extends SettingsRows
+    with TableInfo<$SettingsRowsTable, SettingsRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SettingsRowsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _unitsMeta = const VerificationMeta('units');
+  @override
+  late final GeneratedColumn<String> units = GeneratedColumn<String>(
+    'units',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _themeModeMeta = const VerificationMeta(
+    'themeMode',
+  );
+  @override
+  late final GeneratedColumn<String> themeMode = GeneratedColumn<String>(
+    'theme_mode',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _languageCodeMeta = const VerificationMeta(
+    'languageCode',
+  );
+  @override
+  late final GeneratedColumn<String> languageCode = GeneratedColumn<String>(
+    'language_code',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _scaleTypeMeta = const VerificationMeta(
+    'scaleType',
+  );
+  @override
+  late final GeneratedColumn<String> scaleType = GeneratedColumn<String>(
+    'scale_type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _notificationsEnabledMeta =
+      const VerificationMeta('notificationsEnabled');
+  @override
+  late final GeneratedColumn<bool> notificationsEnabled = GeneratedColumn<bool>(
+    'notifications_enabled',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("notifications_enabled" IN (0, 1))',
+    ),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    units,
+    themeMode,
+    languageCode,
+    scaleType,
+    notificationsEnabled,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'settings_rows';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SettingsRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('units')) {
+      context.handle(
+        _unitsMeta,
+        units.isAcceptableOrUnknown(data['units']!, _unitsMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_unitsMeta);
+    }
+    if (data.containsKey('theme_mode')) {
+      context.handle(
+        _themeModeMeta,
+        themeMode.isAcceptableOrUnknown(data['theme_mode']!, _themeModeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_themeModeMeta);
+    }
+    if (data.containsKey('language_code')) {
+      context.handle(
+        _languageCodeMeta,
+        languageCode.isAcceptableOrUnknown(
+          data['language_code']!,
+          _languageCodeMeta,
+        ),
+      );
+    }
+    if (data.containsKey('scale_type')) {
+      context.handle(
+        _scaleTypeMeta,
+        scaleType.isAcceptableOrUnknown(data['scale_type']!, _scaleTypeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_scaleTypeMeta);
+    }
+    if (data.containsKey('notifications_enabled')) {
+      context.handle(
+        _notificationsEnabledMeta,
+        notificationsEnabled.isAcceptableOrUnknown(
+          data['notifications_enabled']!,
+          _notificationsEnabledMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_notificationsEnabledMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SettingsRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SettingsRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      units: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}units'],
+      )!,
+      themeMode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}theme_mode'],
+      )!,
+      languageCode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}language_code'],
+      ),
+      scaleType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}scale_type'],
+      )!,
+      notificationsEnabled: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}notifications_enabled'],
+      )!,
+    );
+  }
+
+  @override
+  $SettingsRowsTable createAlias(String alias) {
+    return $SettingsRowsTable(attachedDatabase, alias);
+  }
+}
+
+class SettingsRow extends DataClass implements Insertable<SettingsRow> {
+  final int id;
+  final String units;
+  final String themeMode;
+  final String? languageCode;
+  final String scaleType;
+  final bool notificationsEnabled;
+  const SettingsRow({
+    required this.id,
+    required this.units,
+    required this.themeMode,
+    this.languageCode,
+    required this.scaleType,
+    required this.notificationsEnabled,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['units'] = Variable<String>(units);
+    map['theme_mode'] = Variable<String>(themeMode);
+    if (!nullToAbsent || languageCode != null) {
+      map['language_code'] = Variable<String>(languageCode);
+    }
+    map['scale_type'] = Variable<String>(scaleType);
+    map['notifications_enabled'] = Variable<bool>(notificationsEnabled);
+    return map;
+  }
+
+  SettingsRowsCompanion toCompanion(bool nullToAbsent) {
+    return SettingsRowsCompanion(
+      id: Value(id),
+      units: Value(units),
+      themeMode: Value(themeMode),
+      languageCode: languageCode == null && nullToAbsent
+          ? const Value.absent()
+          : Value(languageCode),
+      scaleType: Value(scaleType),
+      notificationsEnabled: Value(notificationsEnabled),
+    );
+  }
+
+  factory SettingsRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SettingsRow(
+      id: serializer.fromJson<int>(json['id']),
+      units: serializer.fromJson<String>(json['units']),
+      themeMode: serializer.fromJson<String>(json['themeMode']),
+      languageCode: serializer.fromJson<String?>(json['languageCode']),
+      scaleType: serializer.fromJson<String>(json['scaleType']),
+      notificationsEnabled: serializer.fromJson<bool>(
+        json['notificationsEnabled'],
+      ),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'units': serializer.toJson<String>(units),
+      'themeMode': serializer.toJson<String>(themeMode),
+      'languageCode': serializer.toJson<String?>(languageCode),
+      'scaleType': serializer.toJson<String>(scaleType),
+      'notificationsEnabled': serializer.toJson<bool>(notificationsEnabled),
+    };
+  }
+
+  SettingsRow copyWith({
+    int? id,
+    String? units,
+    String? themeMode,
+    Value<String?> languageCode = const Value.absent(),
+    String? scaleType,
+    bool? notificationsEnabled,
+  }) => SettingsRow(
+    id: id ?? this.id,
+    units: units ?? this.units,
+    themeMode: themeMode ?? this.themeMode,
+    languageCode: languageCode.present ? languageCode.value : this.languageCode,
+    scaleType: scaleType ?? this.scaleType,
+    notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
+  );
+  SettingsRow copyWithCompanion(SettingsRowsCompanion data) {
+    return SettingsRow(
+      id: data.id.present ? data.id.value : this.id,
+      units: data.units.present ? data.units.value : this.units,
+      themeMode: data.themeMode.present ? data.themeMode.value : this.themeMode,
+      languageCode: data.languageCode.present
+          ? data.languageCode.value
+          : this.languageCode,
+      scaleType: data.scaleType.present ? data.scaleType.value : this.scaleType,
+      notificationsEnabled: data.notificationsEnabled.present
+          ? data.notificationsEnabled.value
+          : this.notificationsEnabled,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SettingsRow(')
+          ..write('id: $id, ')
+          ..write('units: $units, ')
+          ..write('themeMode: $themeMode, ')
+          ..write('languageCode: $languageCode, ')
+          ..write('scaleType: $scaleType, ')
+          ..write('notificationsEnabled: $notificationsEnabled')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    units,
+    themeMode,
+    languageCode,
+    scaleType,
+    notificationsEnabled,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SettingsRow &&
+          other.id == this.id &&
+          other.units == this.units &&
+          other.themeMode == this.themeMode &&
+          other.languageCode == this.languageCode &&
+          other.scaleType == this.scaleType &&
+          other.notificationsEnabled == this.notificationsEnabled);
+}
+
+class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
+  final Value<int> id;
+  final Value<String> units;
+  final Value<String> themeMode;
+  final Value<String?> languageCode;
+  final Value<String> scaleType;
+  final Value<bool> notificationsEnabled;
+  const SettingsRowsCompanion({
+    this.id = const Value.absent(),
+    this.units = const Value.absent(),
+    this.themeMode = const Value.absent(),
+    this.languageCode = const Value.absent(),
+    this.scaleType = const Value.absent(),
+    this.notificationsEnabled = const Value.absent(),
+  });
+  SettingsRowsCompanion.insert({
+    this.id = const Value.absent(),
+    required String units,
+    required String themeMode,
+    this.languageCode = const Value.absent(),
+    required String scaleType,
+    required bool notificationsEnabled,
+  }) : units = Value(units),
+       themeMode = Value(themeMode),
+       scaleType = Value(scaleType),
+       notificationsEnabled = Value(notificationsEnabled);
+  static Insertable<SettingsRow> custom({
+    Expression<int>? id,
+    Expression<String>? units,
+    Expression<String>? themeMode,
+    Expression<String>? languageCode,
+    Expression<String>? scaleType,
+    Expression<bool>? notificationsEnabled,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (units != null) 'units': units,
+      if (themeMode != null) 'theme_mode': themeMode,
+      if (languageCode != null) 'language_code': languageCode,
+      if (scaleType != null) 'scale_type': scaleType,
+      if (notificationsEnabled != null)
+        'notifications_enabled': notificationsEnabled,
+    });
+  }
+
+  SettingsRowsCompanion copyWith({
+    Value<int>? id,
+    Value<String>? units,
+    Value<String>? themeMode,
+    Value<String?>? languageCode,
+    Value<String>? scaleType,
+    Value<bool>? notificationsEnabled,
+  }) {
+    return SettingsRowsCompanion(
+      id: id ?? this.id,
+      units: units ?? this.units,
+      themeMode: themeMode ?? this.themeMode,
+      languageCode: languageCode ?? this.languageCode,
+      scaleType: scaleType ?? this.scaleType,
+      notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (units.present) {
+      map['units'] = Variable<String>(units.value);
+    }
+    if (themeMode.present) {
+      map['theme_mode'] = Variable<String>(themeMode.value);
+    }
+    if (languageCode.present) {
+      map['language_code'] = Variable<String>(languageCode.value);
+    }
+    if (scaleType.present) {
+      map['scale_type'] = Variable<String>(scaleType.value);
+    }
+    if (notificationsEnabled.present) {
+      map['notifications_enabled'] = Variable<bool>(notificationsEnabled.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SettingsRowsCompanion(')
+          ..write('id: $id, ')
+          ..write('units: $units, ')
+          ..write('themeMode: $themeMode, ')
+          ..write('languageCode: $languageCode, ')
+          ..write('scaleType: $scaleType, ')
+          ..write('notificationsEnabled: $notificationsEnabled')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $ProfilesTable profiles = $ProfilesTable(this);
   late final $ResultsTable results = $ResultsTable(this);
+  late final $SettingsRowsTable settingsRows = $SettingsRowsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [profiles, results];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [
+    profiles,
+    results,
+    settingsRows,
+  ];
 }
 
 typedef $$ProfilesTableCreateCompanionBuilder =
@@ -1535,6 +1957,223 @@ typedef $$ResultsTableProcessedTableManager =
       Result,
       PrefetchHooks Function()
     >;
+typedef $$SettingsRowsTableCreateCompanionBuilder =
+    SettingsRowsCompanion Function({
+      Value<int> id,
+      required String units,
+      required String themeMode,
+      Value<String?> languageCode,
+      required String scaleType,
+      required bool notificationsEnabled,
+    });
+typedef $$SettingsRowsTableUpdateCompanionBuilder =
+    SettingsRowsCompanion Function({
+      Value<int> id,
+      Value<String> units,
+      Value<String> themeMode,
+      Value<String?> languageCode,
+      Value<String> scaleType,
+      Value<bool> notificationsEnabled,
+    });
+
+class $$SettingsRowsTableFilterComposer
+    extends Composer<_$AppDatabase, $SettingsRowsTable> {
+  $$SettingsRowsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get units => $composableBuilder(
+    column: $table.units,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get themeMode => $composableBuilder(
+    column: $table.themeMode,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get languageCode => $composableBuilder(
+    column: $table.languageCode,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get scaleType => $composableBuilder(
+    column: $table.scaleType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get notificationsEnabled => $composableBuilder(
+    column: $table.notificationsEnabled,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$SettingsRowsTableOrderingComposer
+    extends Composer<_$AppDatabase, $SettingsRowsTable> {
+  $$SettingsRowsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get units => $composableBuilder(
+    column: $table.units,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get themeMode => $composableBuilder(
+    column: $table.themeMode,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get languageCode => $composableBuilder(
+    column: $table.languageCode,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get scaleType => $composableBuilder(
+    column: $table.scaleType,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get notificationsEnabled => $composableBuilder(
+    column: $table.notificationsEnabled,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SettingsRowsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SettingsRowsTable> {
+  $$SettingsRowsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get units =>
+      $composableBuilder(column: $table.units, builder: (column) => column);
+
+  GeneratedColumn<String> get themeMode =>
+      $composableBuilder(column: $table.themeMode, builder: (column) => column);
+
+  GeneratedColumn<String> get languageCode => $composableBuilder(
+    column: $table.languageCode,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get scaleType =>
+      $composableBuilder(column: $table.scaleType, builder: (column) => column);
+
+  GeneratedColumn<bool> get notificationsEnabled => $composableBuilder(
+    column: $table.notificationsEnabled,
+    builder: (column) => column,
+  );
+}
+
+class $$SettingsRowsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SettingsRowsTable,
+          SettingsRow,
+          $$SettingsRowsTableFilterComposer,
+          $$SettingsRowsTableOrderingComposer,
+          $$SettingsRowsTableAnnotationComposer,
+          $$SettingsRowsTableCreateCompanionBuilder,
+          $$SettingsRowsTableUpdateCompanionBuilder,
+          (
+            SettingsRow,
+            BaseReferences<_$AppDatabase, $SettingsRowsTable, SettingsRow>,
+          ),
+          SettingsRow,
+          PrefetchHooks Function()
+        > {
+  $$SettingsRowsTableTableManager(_$AppDatabase db, $SettingsRowsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SettingsRowsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SettingsRowsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SettingsRowsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> units = const Value.absent(),
+                Value<String> themeMode = const Value.absent(),
+                Value<String?> languageCode = const Value.absent(),
+                Value<String> scaleType = const Value.absent(),
+                Value<bool> notificationsEnabled = const Value.absent(),
+              }) => SettingsRowsCompanion(
+                id: id,
+                units: units,
+                themeMode: themeMode,
+                languageCode: languageCode,
+                scaleType: scaleType,
+                notificationsEnabled: notificationsEnabled,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String units,
+                required String themeMode,
+                Value<String?> languageCode = const Value.absent(),
+                required String scaleType,
+                required bool notificationsEnabled,
+              }) => SettingsRowsCompanion.insert(
+                id: id,
+                units: units,
+                themeMode: themeMode,
+                languageCode: languageCode,
+                scaleType: scaleType,
+                notificationsEnabled: notificationsEnabled,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$SettingsRowsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SettingsRowsTable,
+      SettingsRow,
+      $$SettingsRowsTableFilterComposer,
+      $$SettingsRowsTableOrderingComposer,
+      $$SettingsRowsTableAnnotationComposer,
+      $$SettingsRowsTableCreateCompanionBuilder,
+      $$SettingsRowsTableUpdateCompanionBuilder,
+      (
+        SettingsRow,
+        BaseReferences<_$AppDatabase, $SettingsRowsTable, SettingsRow>,
+      ),
+      SettingsRow,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -1543,4 +2182,6 @@ class $AppDatabaseManager {
       $$ProfilesTableTableManager(_db, _db.profiles);
   $$ResultsTableTableManager get results =>
       $$ResultsTableTableManager(_db, _db.results);
+  $$SettingsRowsTableTableManager get settingsRows =>
+      $$SettingsRowsTableTableManager(_db, _db.settingsRows);
 }

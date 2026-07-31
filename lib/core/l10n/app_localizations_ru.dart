@@ -215,6 +215,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get unitReps => 'повт.';
 
   @override
+  String get unitPounds => 'фунт';
+
+  @override
+  String get unitInches => 'дюйм';
+
+  @override
+  String get unitFeet => 'фут';
+
+  @override
   String get ratingLabel => 'Оценка 1–5';
 
   @override
@@ -286,4 +295,75 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get infoRadarImpact => 'Влияние на радар';
+
+  @override
+  String get settingsTitle => 'Настройки';
+
+  @override
+  String get settingsUnits => 'Единицы измерения';
+
+  @override
+  String get unitsMetric => 'Метрические';
+
+  @override
+  String get unitsImperial => 'Имперские';
+
+  @override
+  String get settingsTheme => 'Тема';
+
+  @override
+  String get themeSystem => 'Системная';
+
+  @override
+  String get themeLight => 'Светлая';
+
+  @override
+  String get themeDark => 'Тёмная';
+
+  @override
+  String get settingsLanguage => 'Язык';
+
+  @override
+  String get languageSystem => 'Системный';
+
+  @override
+  String get settingsScale => 'Шкала балла';
+
+  @override
+  String get scaleLinear => 'Линейная';
+
+  @override
+  String get scaleNonlinear => 'Нелинейная';
+
+  @override
+  String get scaleHint =>
+      'Нелинейная шкала быстрее растёт в начале и выходит на плато ближе к 100.';
+
+  @override
+  String get settingsNotifications => 'Напоминания';
+
+  @override
+  String get settingsData => 'Данные';
+
+  @override
+  String get exportData => 'Экспортировать мои данные';
+
+  @override
+  String get exportDone => 'Экспорт готов';
+
+  @override
+  String get deleteAccount => 'Удалить мои данные';
+
+  @override
+  String get deleteConfirmTitle => 'Удалить все данные?';
+
+  @override
+  String get deleteConfirmBody =>
+      'Профиль и все результаты будут безвозвратно удалены с этого устройства.';
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get delete => 'Удалить';
 }

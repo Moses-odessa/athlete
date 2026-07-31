@@ -212,6 +212,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unitReps => 'reps';
 
   @override
+  String get unitPounds => 'lb';
+
+  @override
+  String get unitInches => 'in';
+
+  @override
+  String get unitFeet => 'ft';
+
+  @override
   String get ratingLabel => 'Rating 1–5';
 
   @override
@@ -283,4 +292,75 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get infoRadarImpact => 'Radar impact';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsUnits => 'Units';
+
+  @override
+  String get unitsMetric => 'Metric';
+
+  @override
+  String get unitsImperial => 'Imperial';
+
+  @override
+  String get settingsTheme => 'Theme';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get settingsLanguage => 'Language';
+
+  @override
+  String get languageSystem => 'System';
+
+  @override
+  String get settingsScale => 'Score scale';
+
+  @override
+  String get scaleLinear => 'Linear';
+
+  @override
+  String get scaleNonlinear => 'Non-linear';
+
+  @override
+  String get scaleHint =>
+      'Non-linear scale grows faster at the start and plateaus near 100.';
+
+  @override
+  String get settingsNotifications => 'Reminders';
+
+  @override
+  String get settingsData => 'Data';
+
+  @override
+  String get exportData => 'Export my data';
+
+  @override
+  String get exportDone => 'Export ready';
+
+  @override
+  String get deleteAccount => 'Delete my data';
+
+  @override
+  String get deleteConfirmTitle => 'Delete all data?';
+
+  @override
+  String get deleteConfirmBody =>
+      'Your profile and all results will be permanently removed from this device.';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get delete => 'Delete';
 }

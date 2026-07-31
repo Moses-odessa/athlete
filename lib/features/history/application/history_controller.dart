@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/models/catalog_seed.dart';
 import '../../../data/repositories/profile_repository.dart';
 import '../../../data/repositories/results_repository.dart';
+import '../../../data/repositories/settings_repository.dart';
 import '../../../domain/entities/test_result.dart';
 import '../../../domain/scoring/scoring.dart';
 import '../../dashboard/application/athlete_summary.dart';
@@ -39,6 +40,7 @@ final indexHistoryProvider = Provider<List<IndexPoint>>((ref) {
   if (profile == null || results.isEmpty) return const [];
 
   final cohort = profile.cohortAsOf(DateTime.now());
+  final scale = ref.watch(settingsControllerProvider).scaleType;
   final sorted = [...results]..sort((a, b) => a.date.compareTo(b.date));
 
   final points = <IndexPoint>[];
@@ -52,6 +54,7 @@ final indexHistoryProvider = Provider<List<IndexPoint>>((ref) {
         cohort: cohort,
         weightKg: profile.weightKg,
         results: accumulated,
+        scale: scale,
       );
       points.add(IndexPoint(sorted[i].date, summary.index.value));
     }
@@ -66,6 +69,7 @@ final personalRecordsProvider = Provider<List<PersonalRecord>>((ref) {
   if (profile == null || results.isEmpty) return const [];
 
   final cohort = profile.cohortAsOf(DateTime.now());
+  final scale = ref.watch(settingsControllerProvider).scaleType;
   final best = <String, PersonalRecord>{};
   for (final r in results) {
     final exercise = Catalog.exerciseById(r.exerciseId);
@@ -75,6 +79,7 @@ final personalRecordsProvider = Provider<List<PersonalRecord>>((ref) {
       r.value,
       cohort,
       bodyweightKg: profile.weightKg,
+      scaleOverride: scale,
     ).normalizedScore;
     final current = best[r.exerciseId];
     if (current == null || score > current.score) {

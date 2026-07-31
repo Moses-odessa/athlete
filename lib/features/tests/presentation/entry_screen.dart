@@ -5,10 +5,13 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
+import '../../../core/units/units.dart';
 import '../../../core/widgets/radar_chart_view.dart';
 import '../../../data/models/catalog_seed.dart';
 import '../../../data/repositories/profile_repository.dart';
 import '../../../data/repositories/results_repository.dart';
+import '../../../data/repositories/settings_repository.dart';
+import '../../../domain/entities/app_settings.dart';
 import '../../../domain/entities/exercise.dart';
 import '../../../domain/entities/measurement.dart';
 import '../../../domain/entities/test_result.dart';
@@ -70,15 +73,16 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
     }
   }
 
-  String _unitSuffix(AppLocalizations l10n, MeasurementUnit unit) {
+  String _unitSuffix(AppLocalizations l10n, MeasurementUnit unit, UnitSystem s) {
+    final imperial = s == UnitSystem.imperial;
     switch (unit) {
       case MeasurementUnit.meters:
-        return l10n.unitMeters;
+        return imperial ? l10n.unitFeet : l10n.unitMeters;
       case MeasurementUnit.centimeters:
-        return l10n.unitCentimeters;
+        return imperial ? l10n.unitInches : l10n.unitCentimeters;
       case MeasurementUnit.kilograms:
       case MeasurementUnit.bodyweightMultiple:
-        return l10n.unitKilograms;
+        return imperial ? l10n.unitPounds : l10n.unitKilograms;
       case MeasurementUnit.reps:
         return l10n.unitReps;
       case MeasurementUnit.seconds:
@@ -117,23 +121,32 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
     final now = DateTime.now();
     final cohort = profile.cohortAsOf(now);
     final results = ref.watch(resultsControllerProvider);
-    final value = _enteredValue(exercise);
+    final settings = ref.watch(settingsControllerProvider);
+    final scale = settings.scaleType;
+
+    // Введённое значение переводится в метрическое (нормативы заданы в метрике).
+    final entered = _enteredValue(exercise);
+    final factor = toMetricFactor(exercise.unit, settings.units);
+    final value = entered == null ? null : entered * factor;
 
     final score = value == null
         ? null
-        : scoreTest(exercise, value, cohort, bodyweightKg: profile.weightKg)
+        : scoreTest(exercise, value, cohort,
+                bodyweightKg: profile.weightKg, scaleOverride: scale)
             .normalizedScore;
 
     final currentSummary = summarizeResults(
       cohort: cohort,
       weightKg: profile.weightKg,
       results: results,
+      scale: scale,
     );
     final afterSummary = value == null
         ? null
         : summarizeResults(
             cohort: cohort,
             weightKg: profile.weightKg,
+            scale: scale,
             results: [
               ...results,
               TestResult(
@@ -169,7 +182,7 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
             minController: _minController,
             secController: _secController,
             rating: _rating,
-            unitSuffix: _unitSuffix(l10n, exercise.unit),
+            unitSuffix: _unitSuffix(l10n, exercise.unit, settings.units),
             onChanged: () => setState(() {}),
             onRatingChanged: (v) => setState(() => _rating = v),
           ),

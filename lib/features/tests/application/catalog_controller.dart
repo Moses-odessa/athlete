@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/models/catalog_seed.dart';
 import '../../../data/repositories/profile_repository.dart';
 import '../../../data/repositories/results_repository.dart';
+import '../../../data/repositories/settings_repository.dart';
 import '../../../domain/entities/test_result.dart';
 import '../../../domain/scoring/scoring.dart';
 
@@ -13,6 +14,7 @@ final exerciseScoresProvider = Provider<Map<String, double>>((ref) {
   if (profile == null) return const {};
 
   final cohort = profile.cohortAsOf(DateTime.now());
+  final scale = ref.watch(settingsControllerProvider).scaleType;
 
   final latest = <String, TestResult>{};
   for (final r in results) {
@@ -31,6 +33,7 @@ final exerciseScoresProvider = Provider<Map<String, double>>((ref) {
         result.value,
         cohort,
         bodyweightKg: profile.weightKg,
+        scaleOverride: scale,
       ).normalizedScore;
     }
   });
