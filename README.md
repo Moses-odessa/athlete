@@ -1,17 +1,36 @@
-# athlete_index
+# Тренируйся как атлет (`athlete_index`)
 
-A new Flutter project.
+Flutter-приложение для объективной оценки разносторонней физической подготовки:
+Индекс атлета (0–100), радар 8 качеств, тесты с нормировкой по полу и возрасту.
+См. [техническое задание](ТЗ_Тренируйся_как_атлет_v2.md).
 
-## Getting Started
+## Статус
 
-This project is a starting point for a Flutter application.
+Итерация 1 — **ядро расчётов** (без UI). Реализовано:
 
-A few resources to get you started if this is your first Flutter project:
+- Каркас проекта (feature-first + clean layering, ТЗ разд. 10).
+- Чистый модуль `lib/domain/scoring` — формулы баллов, категорий и индекса
+  (ТЗ разд. 4.6–4.9). **Ноль зависимостей от Flutter/БД**, покрытие тестами 100%.
+- Доменные сущности `lib/domain/entities` (ТЗ разд. 11).
+- Сид-каталог 12 тестов MVP + 8 категорий с нормативами по когортам
+  (`lib/data/models`, ТЗ разд. 5, 12).
+- Локализация RU + EN (`lib/core/l10n`).
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Дальше: экраны (онбординг, дашборд с радаром, ввод результатов, история),
+персистентность (Drift), инфо-модалки тестов, PDF-экспорт, аналитика.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+> ⚠️ Все числовые нормативы помечены `TODO(calibration)` — предварительные,
+> требуют валидации со спортивным экспертом (ТЗ разд. 6, 16 п.1).
+
+## Команды
+
+```bash
+flutter pub get           # зависимости
+flutter gen-l10n          # генерация локализаций из ARB
+flutter analyze           # статический анализ
+flutter test --coverage   # тесты + покрытие (coverage/lcov.info)
+```
+
+## Требования
+
+Flutter 3.44+, Dart 3.12+. SDK установлен в `C:\src\flutter`.

@@ -223,6 +223,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coming soon'**
   String get comingSoon;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @finish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get finish;
+
+  /// No description provided for @onboardingStepGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Sex'**
+  String get onboardingStepGender;
+
+  /// No description provided for @onboardingStepBasics.
+  ///
+  /// In en, this message translates to:
+  /// **'About you'**
+  String get onboardingStepBasics;
+
+  /// No description provided for @onboardingStepExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience & goal'**
+  String get onboardingStepExperience;
+
+  /// No description provided for @onboardingStepEquipment.
+  ///
+  /// In en, this message translates to:
+  /// **'Equipment'**
+  String get onboardingStepEquipment;
+
+  /// No description provided for @onboardingStepHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health (PAR-Q)'**
+  String get onboardingStepHealth;
+
+  /// No description provided for @onboardingStepConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'Consent'**
+  String get onboardingStepConsent;
+
+  /// No description provided for @genderMale.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get genderMale;
+
+  /// No description provided for @genderFemale.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get genderFemale;
+
+  /// No description provided for @genderUnspecified.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefer not to say'**
+  String get genderUnspecified;
+
+  /// No description provided for @fieldDateOfBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get fieldDateOfBirth;
+
+  /// No description provided for @fieldWeightKg.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight, kg'**
+  String get fieldWeightKg;
+
+  /// No description provided for @fieldHeightCm.
+  ///
+  /// In en, this message translates to:
+  /// **'Height, cm'**
+  String get fieldHeightCm;
+
+  /// No description provided for @fieldExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Training experience'**
+  String get fieldExperience;
+
+  /// No description provided for @fieldGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Main goal'**
+  String get fieldGoal;
+
+  /// No description provided for @equipmentHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the equipment you have access to'**
+  String get equipmentHint;
+
+  /// No description provided for @parqIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Please answer 7 standard readiness questions.'**
+  String get parqIntro;
+
+  /// No description provided for @parqAnswerYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get parqAnswerYes;
+
+  /// No description provided for @parqAnswerNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get parqAnswerNo;
+
+  /// No description provided for @parqWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on your answers, consult a doctor before doing maximal tests. You can still use the app.'**
+  String get parqWarning;
+
+  /// No description provided for @consentText.
+  ///
+  /// In en, this message translates to:
+  /// **'I accept the Terms of Use and Privacy Policy.'**
+  String get consentText;
+
+  /// No description provided for @consentRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepting the terms is required to continue.'**
+  String get consentRequired;
+
+  /// No description provided for @medicalDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'The app does not replace medical advice.'**
+  String get medicalDisclaimer;
+
+  /// No description provided for @validationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill in this field'**
+  String get validationRequired;
+
+  /// No description provided for @loadDemoData.
+  ///
+  /// In en, this message translates to:
+  /// **'Load demo results'**
+  String get loadDemoData;
+
+  /// No description provided for @clearData.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear results'**
+  String get clearData;
+
+  /// No description provided for @takeTestsPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Take at least 2 tests in each category to see your index.'**
+  String get takeTestsPrompt;
+
+  /// No description provided for @cohortStandardPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard for'**
+  String get cohortStandardPrefix;
 }
 
 class _AppLocalizationsDelegate

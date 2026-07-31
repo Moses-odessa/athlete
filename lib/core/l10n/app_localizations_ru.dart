@@ -70,4 +70,99 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get comingSoon => 'Скоро';
+
+  @override
+  String get next => 'Далее';
+
+  @override
+  String get back => 'Назад';
+
+  @override
+  String get finish => 'Готово';
+
+  @override
+  String get onboardingStepGender => 'Пол';
+
+  @override
+  String get onboardingStepBasics => 'О себе';
+
+  @override
+  String get onboardingStepExperience => 'Опыт и цель';
+
+  @override
+  String get onboardingStepEquipment => 'Оборудование';
+
+  @override
+  String get onboardingStepHealth => 'Здоровье (PAR-Q)';
+
+  @override
+  String get onboardingStepConsent => 'Согласие';
+
+  @override
+  String get genderMale => 'Мужской';
+
+  @override
+  String get genderFemale => 'Женский';
+
+  @override
+  String get genderUnspecified => 'Не указывать';
+
+  @override
+  String get fieldDateOfBirth => 'Дата рождения';
+
+  @override
+  String get fieldWeightKg => 'Вес, кг';
+
+  @override
+  String get fieldHeightCm => 'Рост, см';
+
+  @override
+  String get fieldExperience => 'Опыт тренировок';
+
+  @override
+  String get fieldGoal => 'Основная цель';
+
+  @override
+  String get equipmentHint => 'Отметьте доступное оборудование';
+
+  @override
+  String get parqIntro =>
+      'Ответьте на 7 стандартных вопросов о готовности к нагрузкам.';
+
+  @override
+  String get parqAnswerYes => 'Да';
+
+  @override
+  String get parqAnswerNo => 'Нет';
+
+  @override
+  String get parqWarning =>
+      'По вашим ответам перед максимальными тестами стоит проконсультироваться с врачом. Приложением можно пользоваться.';
+
+  @override
+  String get consentText =>
+      'Я принимаю пользовательское соглашение и политику конфиденциальности.';
+
+  @override
+  String get consentRequired => 'Для продолжения необходимо принять условия.';
+
+  @override
+  String get medicalDisclaimer =>
+      'Приложение не заменяет медицинскую консультацию.';
+
+  @override
+  String get validationRequired => 'Заполните это поле';
+
+  @override
+  String get loadDemoData => 'Загрузить демо-результаты';
+
+  @override
+  String get clearData => 'Очистить результаты';
+
+  @override
+  String get takeTestsPrompt =>
+      'Сдайте минимум 2 теста в каждой категории, чтобы увидеть индекс.';
+
+  @override
+  String get cohortStandardPrefix => 'Стандарт для';
 }
