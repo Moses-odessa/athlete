@@ -1,0 +1,30 @@
+{
+  "@@locale": "en",
+  "appTitle": "Train like an athlete",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  "athleteIndexTitle": "Athlete Index",
+  "athleteIndexForecast": "Forecast",
+  "@athleteIndexForecast": {
+    "description": "Badge shown when the index is based on incomplete data"
+  },
+  "weakLinkTitle": "Weak link",
+  "allTests": "All tests",
+  "history": "History",
+  "levelNovice": "Novice",
+  "levelBeginner": "Beginner",
+  "levelIntermediate": "Intermediate",
+  "levelAdvanced": "Advanced",
+  "levelElite": "Elite",
+  "levelAthlete": "Athlete",
+  "categoryStrength": "Strength",
+  "categorySpeed": "Speed",
+  "categoryEndurance": "Endurance",
+  "categoryExplosive": "Explosive power",
+  "categoryCoordination": "Coordination",
+  "categoryFlexibility": "Flexibility",
+  "categoryBalance": "Balance",
+  "categoryMobility": "Mobility",
+  "comingSoon": "Coming soon"
+}
