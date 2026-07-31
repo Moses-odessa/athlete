@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../local/database_provider.dart';
@@ -7,13 +8,16 @@ import 'results_repository.dart';
 /// Загружает сохранённые профиль и результаты в контроллеры при старте и
 /// настраивает запись изменений в БД (ТЗ разд. 8.2).
 ///
-/// Best-effort: если БД недоступна (например, web-превью без wasm-ассетов),
-/// приложение продолжает работать в памяти без сохранения.
+/// Best-effort: если БД недоступна, приложение продолжает работать в памяти
+/// без сохранения. На web персистентность отключена (нужны wasm-ассеты sqlite),
+/// поэтому там сразу выходим, не блокируя старт приложения.
 Future<void> bootstrapPersistence(ProviderContainer container) async {
+  if (kIsWeb) return;
   try {
     final db = container.read(appDatabaseProvider);
 
-    final profile = await db.loadProfile();
+    final profile =
+        await db.loadProfile().timeout(const Duration(seconds: 5));
     if (profile != null) {
       container.read(profileControllerProvider.notifier).save(profile);
     }
