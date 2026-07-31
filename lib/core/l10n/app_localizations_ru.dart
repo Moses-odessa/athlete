@@ -366,4 +366,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get delete => 'Удалить';
+
+  @override
+  String get exportPdf => 'Экспорт в PDF';
 }

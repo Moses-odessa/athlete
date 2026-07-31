@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:printing/printing.dart';
 
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
 import '../../../core/widgets/radar_chart_view.dart';
 import '../../../data/models/catalog_seed.dart';
+import '../../../data/repositories/profile_repository.dart';
 import '../../../domain/entities/gender.dart';
+import '../../history/application/history_controller.dart';
+import '../../report/application/pdf_report.dart';
 import '../application/dashboard_controller.dart';
 
 /// Главный экран: Индекс атлета, радар 8 качеств, слабое звено (ТЗ разд. 4.2).
@@ -23,6 +27,12 @@ class DashboardScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.appTitle),
         actions: [
+          if (state.hasData)
+            IconButton(
+              icon: const Icon(Icons.picture_as_pdf),
+              tooltip: l10n.exportPdf,
+              onPressed: () => _exportPdf(context, ref),
+            ),
           IconButton(
             icon: const Icon(Icons.settings),
             tooltip: l10n.settingsTitle,
@@ -68,6 +78,24 @@ class DashboardScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _exportPdf(BuildContext context, WidgetRef ref) async {
+    final profile = ref.read(profileControllerProvider);
+    final state = ref.read(dashboardProvider);
+    if (profile == null || state.cohort == null) return;
+    final records = ref.read(personalRecordsProvider);
+    final lang = Localizations.localeOf(context).languageCode;
+    final bytes = await buildAthleteReportPdf(
+      languageCode: lang,
+      profile: profile,
+      cohort: state.cohort!,
+      index: state.index,
+      categoryScores: state.categoryScores,
+      records: records,
+      now: DateTime.now(),
+    );
+    await Printing.sharePdf(bytes: bytes, filename: 'athlete-report.pdf');
   }
 }
 

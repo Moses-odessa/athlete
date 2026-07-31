@@ -122,5 +122,6 @@
   "deleteConfirmTitle": "Delete all data?",
   "deleteConfirmBody": "Your profile and all results will be permanently removed from this device.",
   "cancel": "Cancel",
-  "delete": "Delete"
+  "delete": "Delete",
+  "exportPdf": "Export PDF"
 }
