@@ -30,7 +30,7 @@ jobs:
           flutter gen-l10n
 
       - name: Build iOS (release, no codesign)
-        run: flutter build ios --release --no-codesign
+        run: flutter build ios --release --no-codesign --dart-define=SENTRY_DSN=${{ secrets.SENTRY_DSN }}
 
       - name: Archive Runner.app
         run: |
