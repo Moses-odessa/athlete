@@ -19,9 +19,9 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "global.aspira.athlete_index"
     compileSdk = flutter.compileSdkVersion
-    // Явно фиксируем NDK: нативные плагины (sqlite3/drift) требуют новее,
-    // чем берётся по умолчанию (иначе APK-сборка падает на несовпадении NDK).
-    ndkVersion = "27.0.12077973"
+    // Явно фиксируем NDK: нативные плагины требуют новее, чем берётся по
+    // умолчанию (берём максимальную из требуемых — они обратно совместимы).
+    ndkVersion = "28.2.13676358"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
