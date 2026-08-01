@@ -502,4 +502,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get planEmpty => 'Take a few tests so we can find your weak links.';
+
+  @override
+  String get shareRadar => 'Share radar';
+
+  @override
+  String get shareAction => 'Share';
 }

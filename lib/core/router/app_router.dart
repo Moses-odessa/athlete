@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../data/repositories/profile_repository.dart';
 import '../../features/achievements/presentation/achievements_screen.dart';
 import '../../features/dashboard/presentation/dashboard_screen.dart';
+import '../../features/dashboard/presentation/share_radar_screen.dart';
 import '../../features/education/presentation/science_screen.dart';
 import '../../features/history/presentation/history_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
@@ -55,6 +56,8 @@ final routerProvider = Provider<GoRouter>((ref) {
             RecommendationsScreen(categorySlug: state.pathParameters['slug']!),
       ),
       GoRoute(path: '/plan', builder: (_, _) => const WeeklyPlanScreen()),
+      GoRoute(
+          path: '/share-radar', builder: (_, _) => const ShareRadarScreen()),
       GoRoute(path: '/batteries', builder: (_, _) => const BatteriesScreen()),
       GoRoute(
         path: '/battery/:id',

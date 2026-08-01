@@ -15,6 +15,7 @@ class AnalyticsEvents {
   static const infoOpened = 'info_opened';
   static const scienceOpened = 'science_opened';
   static const pdfExported = 'pdf_exported';
+  static const radarShared = 'radar_shared';
 }
 
 /// Фасад аналитики. Реальные бэкенды (PostHog, Sentry — ТЗ разд. 9) подключаются

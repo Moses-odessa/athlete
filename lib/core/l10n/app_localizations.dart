@@ -1069,6 +1069,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Take a few tests so we can find your weak links.'**
   String get planEmpty;
+
+  /// No description provided for @shareRadar.
+  ///
+  /// In en, this message translates to:
+  /// **'Share radar'**
+  String get shareRadar;
+
+  /// No description provided for @shareAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get shareAction;
 }
 
 class _AppLocalizationsDelegate

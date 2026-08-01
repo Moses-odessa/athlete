@@ -31,6 +31,12 @@ class DashboardScreen extends ConsumerWidget {
         actions: [
           if (state.hasData)
             IconButton(
+              icon: const Icon(Icons.share),
+              tooltip: l10n.shareRadar,
+              onPressed: () => context.push('/share-radar'),
+            ),
+          if (state.hasData)
+            IconButton(
               icon: const Icon(Icons.picture_as_pdf),
               tooltip: l10n.exportPdf,
               onPressed: () => _exportPdf(context, ref),

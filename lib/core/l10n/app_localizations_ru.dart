@@ -505,4 +505,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get planEmpty => 'Сдайте несколько тестов, чтобы найти слабые звенья.';
+
+  @override
+  String get shareRadar => 'Поделиться радаром';
+
+  @override
+  String get shareAction => 'Поделиться';
 }
