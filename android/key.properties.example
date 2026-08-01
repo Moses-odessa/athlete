@@ -1,0 +1,16 @@
+# Шаблон подписи релизного APK/AAB (ТЗ разд. 9, CI/CD).
+# Скопируйте в android/key.properties и заполните своими значениями.
+# Файл android/key.properties и сам keystore в git НЕ коммитятся.
+#
+# 1) Сгенерируйте keystore (один раз):
+#    keytool -genkey -v -keystore upload-keystore.jks -storetype JKS \
+#      -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+# 2) Положите upload-keystore.jks в папку android/app/.
+# 3) Соберите подписанный релиз:
+#    flutter build apk --release      (или: flutter build appbundle --release)
+
+storePassword=ВАШ_ПАРОЛЬ_ХРАНИЛИЩА
+keyPassword=ВАШ_ПАРОЛЬ_КЛЮЧА
+keyAlias=upload
+# Путь к keystore резолвится относительно android/app/ (или укажите абсолютный):
+storeFile=upload-keystore.jks

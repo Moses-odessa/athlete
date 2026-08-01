@@ -52,6 +52,24 @@ flutter test --coverage
 flutter run                   # выбрать устройство (Chrome/Android/iOS)
 ```
 
+## CI
+
+GitHub Actions (`.github/workflows/ci.yml`) на каждый push/PR: кодоген → `analyze`
+→ `test --coverage` → гейт покрытия scoring ≥ 90% → сборка web. Ручной workflow
+`release-apk.yml` собирает подписанный APK по секретам репозитория.
+
+## Сборка подписанного релиза (Android)
+
+1. Сгенерируйте keystore: `keytool -genkey -v -keystore upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload`, положите его в `android/app/`.
+2. Скопируйте `android/key.properties.example` → `android/key.properties`, впишите пароли/алиас.
+3. `flutter build apk --release` (или `flutter build appbundle --release`).
+
+`android/key.properties` и `*.jks` в git не коммитятся. Без `key.properties` релиз
+подписывается debug-ключом (для локального `flutter run --release`).
+
+Для CI-сборки APK добавьте секреты `ANDROID_KEYSTORE_BASE64`, `ANDROID_STORE_PASSWORD`,
+`ANDROID_KEY_PASSWORD`, `ANDROID_KEY_ALIAS` и запустите workflow **Release APK**.
+
 ## Требования
 
 Flutter 3.44+, Dart 3.12+. SDK установлен в `C:\src\flutter`.
