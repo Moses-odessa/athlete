@@ -29,22 +29,24 @@ class DashboardScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.appTitle),
         actions: [
-          if (state.hasData)
-            IconButton(
-              icon: const Icon(Icons.share),
-              tooltip: l10n.shareRadar,
-              onPressed: () => context.push('/share-radar'),
-            ),
-          if (state.hasData)
-            IconButton(
-              icon: const Icon(Icons.picture_as_pdf),
-              tooltip: l10n.exportPdf,
-              onPressed: () => _exportPdf(context, ref),
-            ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: l10n.settingsTitle,
-            onPressed: () => context.push('/settings'),
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              switch (value) {
+                case 'share':
+                  context.push('/share-radar');
+                case 'pdf':
+                  _exportPdf(context, ref);
+                case 'settings':
+                  context.push('/settings');
+              }
+            },
+            itemBuilder: (context) => [
+              if (state.hasData)
+                _menuItem('share', Icons.share, l10n.shareRadar),
+              if (state.hasData)
+                _menuItem('pdf', Icons.picture_as_pdf, l10n.exportPdf),
+              _menuItem('settings', Icons.settings, l10n.settingsTitle),
+            ],
           ),
         ],
       ),
@@ -95,6 +97,19 @@ class DashboardScreen extends ConsumerWidget {
             label: Text(l10n.batteriesTitle),
             onPressed: () => context.push('/batteries'),
           ),
+        ],
+      ),
+    );
+  }
+
+  PopupMenuItem<String> _menuItem(String value, IconData icon, String label) {
+    return PopupMenuItem<String>(
+      value: value,
+      child: Row(
+        children: [
+          Icon(icon),
+          const SizedBox(width: 12),
+          Text(label),
         ],
       ),
     );
