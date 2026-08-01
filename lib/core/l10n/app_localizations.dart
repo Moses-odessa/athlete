@@ -1081,6 +1081,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share'**
   String get shareAction;
+
+  /// No description provided for @cloudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud sync'**
+  String get cloudTitle;
+
+  /// No description provided for @cloudNotConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud sync is not configured in this build.'**
+  String get cloudNotConfigured;
+
+  /// No description provided for @fieldEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get fieldEmail;
+
+  /// No description provided for @fieldPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get fieldPassword;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @signUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get signUp;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get signOut;
+
+  /// No description provided for @cloudSignedInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as'**
+  String get cloudSignedInAs;
+
+  /// No description provided for @cloudSignInPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to back up and sync your data across devices.'**
+  String get cloudSignInPrompt;
+
+  /// No description provided for @cloudBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Back up to cloud'**
+  String get cloudBackup;
+
+  /// No description provided for @cloudRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from cloud'**
+  String get cloudRestore;
+
+  /// No description provided for @cloudBackupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your profile and results are stored privately (only you can access them).'**
+  String get cloudBackupHint;
+
+  /// No description provided for @cloudBackupDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Backed up to cloud'**
+  String get cloudBackupDone;
+
+  /// No description provided for @cloudRestoreDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Restored from cloud'**
+  String get cloudRestoreDone;
+
+  /// No description provided for @cloudSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in'**
+  String get cloudSignedIn;
+
+  /// No description provided for @cloudError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get cloudError;
 }
 
 class _AppLocalizationsDelegate

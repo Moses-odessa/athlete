@@ -169,5 +169,21 @@
   "planDay": "Day",
   "planEmpty": "Take a few tests so we can find your weak links.",
   "shareRadar": "Share radar",
-  "shareAction": "Share"
+  "shareAction": "Share",
+  "cloudTitle": "Cloud sync",
+  "cloudNotConfigured": "Cloud sync is not configured in this build.",
+  "fieldEmail": "Email",
+  "fieldPassword": "Password",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "signOut": "Sign out",
+  "cloudSignedInAs": "Signed in as",
+  "cloudSignInPrompt": "Sign in to back up and sync your data across devices.",
+  "cloudBackup": "Back up to cloud",
+  "cloudRestore": "Restore from cloud",
+  "cloudBackupHint": "Your profile and results are stored privately (only you can access them).",
+  "cloudBackupDone": "Backed up to cloud",
+  "cloudRestoreDone": "Restored from cloud",
+  "cloudSignedIn": "Signed in",
+  "cloudError": "Something went wrong"
 }

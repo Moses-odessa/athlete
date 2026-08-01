@@ -508,4 +508,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareAction => 'Share';
+
+  @override
+  String get cloudTitle => 'Cloud sync';
+
+  @override
+  String get cloudNotConfigured =>
+      'Cloud sync is not configured in this build.';
+
+  @override
+  String get fieldEmail => 'Email';
+
+  @override
+  String get fieldPassword => 'Password';
+
+  @override
+  String get signIn => 'Sign in';
+
+  @override
+  String get signUp => 'Sign up';
+
+  @override
+  String get signOut => 'Sign out';
+
+  @override
+  String get cloudSignedInAs => 'Signed in as';
+
+  @override
+  String get cloudSignInPrompt =>
+      'Sign in to back up and sync your data across devices.';
+
+  @override
+  String get cloudBackup => 'Back up to cloud';
+
+  @override
+  String get cloudRestore => 'Restore from cloud';
+
+  @override
+  String get cloudBackupHint =>
+      'Your profile and results are stored privately (only you can access them).';
+
+  @override
+  String get cloudBackupDone => 'Backed up to cloud';
+
+  @override
+  String get cloudRestoreDone => 'Restored from cloud';
+
+  @override
+  String get cloudSignedIn => 'Signed in';
+
+  @override
+  String get cloudError => 'Something went wrong';
 }

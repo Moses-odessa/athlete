@@ -511,4 +511,55 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get shareAction => 'Поделиться';
+
+  @override
+  String get cloudTitle => 'Облачная синхронизация';
+
+  @override
+  String get cloudNotConfigured =>
+      'Облачная синхронизация не настроена в этой сборке.';
+
+  @override
+  String get fieldEmail => 'Эл. почта';
+
+  @override
+  String get fieldPassword => 'Пароль';
+
+  @override
+  String get signIn => 'Войти';
+
+  @override
+  String get signUp => 'Регистрация';
+
+  @override
+  String get signOut => 'Выйти';
+
+  @override
+  String get cloudSignedInAs => 'Вы вошли как';
+
+  @override
+  String get cloudSignInPrompt =>
+      'Войдите, чтобы сохранять и синхронизировать данные между устройствами.';
+
+  @override
+  String get cloudBackup => 'Сохранить в облако';
+
+  @override
+  String get cloudRestore => 'Восстановить из облака';
+
+  @override
+  String get cloudBackupHint =>
+      'Профиль и результаты хранятся приватно — доступ только у вас.';
+
+  @override
+  String get cloudBackupDone => 'Сохранено в облако';
+
+  @override
+  String get cloudRestoreDone => 'Восстановлено из облака';
+
+  @override
+  String get cloudSignedIn => 'Вход выполнен';
+
+  @override
+  String get cloudError => 'Что-то пошло не так';
 }

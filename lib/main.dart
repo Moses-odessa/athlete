@@ -4,6 +4,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'core/l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
+import 'core/supabase/supabase_config.dart';
 import 'data/repositories/persistence.dart';
 import 'data/repositories/settings_repository.dart';
 import 'domain/entities/app_settings.dart';
@@ -14,6 +15,7 @@ const _sentryDsn = String.fromEnvironment('SENTRY_DSN');
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initSupabase();
   final container = ProviderContainer();
   // Загрузка сохранённых данных до первого кадра (без мигания онбординга).
   await bootstrapPersistence(container);

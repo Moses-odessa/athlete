@@ -99,6 +99,13 @@ class SettingsScreen extends ConsumerWidget {
           const Divider(height: 32),
           ListTile(
             contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.cloud_sync),
+            title: Text(l10n.cloudTitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/cloud'),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.emoji_events),
             title: Text(l10n.achievementsTitle),
             trailing: const Icon(Icons.chevron_right),

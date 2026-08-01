@@ -67,7 +67,11 @@ UserData decodeUserDataJson(String source) {
   if (root is! Map<String, Object?>) {
     throw const FormatException('Ожидался объект JSON');
   }
+  return decodeUserData(root);
+}
 
+/// Разбор структуры данных (напр. JSONB из облака) в [UserData].
+UserData decodeUserData(Map<String, Object?> root) {
   UserProfile? profile;
   final p = root['profile'];
   if (p is Map<String, Object?>) {
