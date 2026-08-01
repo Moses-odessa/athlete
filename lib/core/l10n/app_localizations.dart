@@ -1045,6 +1045,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This is your lowest-scoring quality. Focus here for the biggest gains.'**
   String get improveWhy;
+
+  /// No description provided for @planCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly plan'**
+  String get planCta;
+
+  /// No description provided for @planTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly plan'**
+  String get planTitle;
+
+  /// No description provided for @planDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get planDay;
+
+  /// No description provided for @planEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a few tests so we can find your weak links.'**
+  String get planEmpty;
 }
 
 class _AppLocalizationsDelegate

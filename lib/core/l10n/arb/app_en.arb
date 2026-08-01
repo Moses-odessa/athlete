@@ -163,5 +163,9 @@
   "saveShort": "Save",
   "improveCta": "Improve",
   "improveTitle": "How to improve",
-  "improveWhy": "This is your lowest-scoring quality. Focus here for the biggest gains."
+  "improveWhy": "This is your lowest-scoring quality. Focus here for the biggest gains.",
+  "planCta": "Weekly plan",
+  "planTitle": "Weekly plan",
+  "planDay": "Day",
+  "planEmpty": "Take a few tests so we can find your weak links."
 }

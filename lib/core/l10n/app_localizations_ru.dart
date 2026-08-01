@@ -493,4 +493,16 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get improveWhy =>
       'Это ваше самое отстающее качество. Здесь наибольший потенциал роста.';
+
+  @override
+  String get planCta => 'Недельный план';
+
+  @override
+  String get planTitle => 'Недельный план';
+
+  @override
+  String get planDay => 'День';
+
+  @override
+  String get planEmpty => 'Сдайте несколько тестов, чтобы найти слабые звенья.';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
@@ -41,6 +42,12 @@ class RecommendationsScreen extends StatelessWidget {
                 subtitle: Text(context.tr(r.description)),
               ),
             ),
+          const SizedBox(height: 12),
+          FilledButton.tonalIcon(
+            icon: const Icon(Icons.calendar_month),
+            label: Text(l10n.planCta),
+            onPressed: () => context.push('/plan'),
+          ),
         ],
       ),
     );

@@ -490,4 +490,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get improveWhy =>
       'This is your lowest-scoring quality. Focus here for the biggest gains.';
+
+  @override
+  String get planCta => 'Weekly plan';
+
+  @override
+  String get planTitle => 'Weekly plan';
+
+  @override
+  String get planDay => 'Day';
+
+  @override
+  String get planEmpty => 'Take a few tests so we can find your weak links.';
 }

@@ -10,6 +10,7 @@ import '../../features/history/presentation/history_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/peers/presentation/peers_screen.dart';
 import '../../features/recommendations/presentation/recommendations_screen.dart';
+import '../../features/recommendations/presentation/weekly_plan_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/tests/presentation/batteries_screen.dart';
 import '../../features/tests/presentation/battery_runner_screen.dart';
@@ -53,6 +54,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) =>
             RecommendationsScreen(categorySlug: state.pathParameters['slug']!),
       ),
+      GoRoute(path: '/plan', builder: (_, _) => const WeeklyPlanScreen()),
       GoRoute(path: '/batteries', builder: (_, _) => const BatteriesScreen()),
       GoRoute(
         path: '/battery/:id',
