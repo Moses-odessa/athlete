@@ -63,7 +63,7 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
         return _rating;
       case MeasurementUnit.seconds:
         final m = int.tryParse(_minController.text) ?? 0;
-        final s = int.tryParse(_secController.text) ?? 0;
+        final s = double.tryParse(_secController.text.replaceAll(',', '.')) ?? 0;
         if (_minController.text.isEmpty && _secController.text.isEmpty) {
           return null;
         }
@@ -303,8 +303,8 @@ class _InputArea extends StatelessWidget {
             Expanded(
               child: TextField(
                 controller: secController,
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
                   labelText: l10n.unitSeconds,
                   border: const OutlineInputBorder(),

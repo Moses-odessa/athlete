@@ -28,6 +28,7 @@ const List<Category> kCategories = [
     name: LocalizedText(ru: 'Скорость', en: 'Speed'),
     radarOrder: 1,
     iconKey: 'speed',
+    availableInMvp: true,
   ),
   Category(
     slug: CategorySlugs.endurance,
@@ -48,6 +49,7 @@ const List<Category> kCategories = [
     name: LocalizedText(ru: 'Координация', en: 'Coordination'),
     radarOrder: 4,
     iconKey: 'coordination',
+    availableInMvp: true,
   ),
   Category(
     slug: CategorySlugs.flexibility,
@@ -61,11 +63,13 @@ const List<Category> kCategories = [
     name: LocalizedText(ru: 'Баланс', en: 'Balance'),
     radarOrder: 6,
     iconKey: 'balance',
+    availableInMvp: true,
   ),
   Category(
     slug: CategorySlugs.mobility,
     name: LocalizedText(ru: 'Мобильность', en: 'Mobility'),
     radarOrder: 7,
     iconKey: 'mobility',
+    availableInMvp: true,
   ),
 ];

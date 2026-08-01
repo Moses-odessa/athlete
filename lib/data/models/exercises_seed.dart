@@ -182,4 +182,234 @@ const List<Exercise> kMvpExercises = [
       ageAdjusted: false,
     ),
   ),
+
+  // ── Скорость ──────────────────────────────────────────────────────────
+  Exercise(
+    id: 'sprint_30m',
+    categorySlug: CategorySlugs.speed,
+    name: LocalizedText(ru: 'Спринт 30 м', en: '30 m sprint'),
+    shortDescription: LocalizedText(
+      ru: 'Время на 30 м с высокого старта. Меньше — лучше.',
+      en: 'Time over 30 m from a standing start. Lower is better.',
+    ),
+    unit: MeasurementUnit.seconds,
+    higherIsBetter: false,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 7.0, baseMax: 3.9, femaleFactor: 0.90),
+  ),
+  Exercise(
+    id: 'sprint_60m',
+    categorySlug: CategorySlugs.speed,
+    name: LocalizedText(ru: 'Спринт 60 м', en: '60 m sprint'),
+    shortDescription: LocalizedText(
+      ru: 'Время на 60 м. Меньше — лучше.',
+      en: 'Time over 60 m. Lower is better.',
+    ),
+    unit: MeasurementUnit.seconds,
+    higherIsBetter: false,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 12.0, baseMax: 6.9, femaleFactor: 0.90),
+  ),
+  Exercise(
+    id: 'sprint_100m',
+    categorySlug: CategorySlugs.speed,
+    name: LocalizedText(ru: 'Спринт 100 м', en: '100 m sprint'),
+    shortDescription: LocalizedText(
+      ru: 'Время на 100 м. Меньше — лучше.',
+      en: 'Time over 100 m. Lower is better.',
+    ),
+    unit: MeasurementUnit.seconds,
+    higherIsBetter: false,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 18.0, baseMax: 10.8, femaleFactor: 0.90),
+  ),
+  Exercise(
+    id: 'shuttle_10x10',
+    categorySlug: CategorySlugs.speed,
+    name: LocalizedText(ru: 'Челночный бег 10×10 м', en: 'Shuttle run 10×10 m'),
+    shortDescription: LocalizedText(
+      ru: 'Суммарное время 10 отрезков по 10 м. Меньше — лучше.',
+      en: 'Total time for ten 10 m shuttles. Lower is better.',
+    ),
+    unit: MeasurementUnit.seconds,
+    higherIsBetter: false,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 40, baseMax: 23, femaleFactor: 0.90),
+  ),
+
+  // ── Координация ───────────────────────────────────────────────────────
+  Exercise(
+    id: 'illinois_agility',
+    categorySlug: CategorySlugs.coordination,
+    name: LocalizedText(ru: 'Illinois Agility Test', en: 'Illinois Agility Test'),
+    shortDescription: LocalizedText(
+      ru: 'Время прохождения стандартной трассы с конусами. Меньше — лучше.',
+      en: 'Time on the standard cone course. Lower is better.',
+    ),
+    unit: MeasurementUnit.seconds,
+    higherIsBetter: false,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 25, baseMax: 15, femaleFactor: 0.93),
+  ),
+  Exercise(
+    id: 'catch_ball',
+    categorySlug: CategorySlugs.coordination,
+    name: LocalizedText(ru: 'Ловля мяча одной рукой', en: 'One-hand ball catch'),
+    shortDescription: LocalizedText(
+      ru: 'Успешные ловли из 10 попыток. Больше — лучше.',
+      en: 'Successful catches out of 10. Higher is better.',
+    ),
+    unit: MeasurementUnit.reps,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 0, baseMax: 10, femaleFactor: 0.95),
+  ),
+  Exercise(
+    id: 'jump_rope_30s',
+    categorySlug: CategorySlugs.coordination,
+    name: LocalizedText(ru: 'Скакалка за 30 с', en: 'Jump rope in 30 s'),
+    shortDescription: LocalizedText(
+      ru: 'Количество прыжков за 30 секунд. Больше — лучше.',
+      en: 'Number of skips in 30 seconds. Higher is better.',
+    ),
+    unit: MeasurementUnit.reps,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 40, baseMax: 100, femaleFactor: 0.95),
+  ),
+  Exercise(
+    id: 'movement_precision',
+    categorySlug: CategorySlugs.coordination,
+    name: LocalizedText(
+        ru: 'Точность движений', en: 'Movement precision'),
+    shortDescription: LocalizedText(
+      ru: 'Качественная оценка точности координационного паттерна 1–5.',
+      en: 'Qualitative rating of coordination pattern accuracy 1–5.',
+    ),
+    unit: MeasurementUnit.qualitative1to5,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(
+        baseMin: 1, baseMax: 5, femaleFactor: 1.0, ageAdjusted: false),
+  ),
+
+  // ── Баланс ────────────────────────────────────────────────────────────
+  Exercise(
+    id: 'single_leg_stand',
+    categorySlug: CategorySlugs.balance,
+    name: LocalizedText(
+        ru: 'Стойка на одной ноге (глаза закрыты)',
+        en: 'Single-leg stand (eyes closed)'),
+    shortDescription: LocalizedText(
+      ru: 'Время удержания равновесия. Больше — лучше.',
+      en: 'Time holding balance. Higher is better.',
+    ),
+    unit: MeasurementUnit.seconds,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 5, baseMax: 60, femaleFactor: 1.0),
+  ),
+  Exercise(
+    id: 'y_balance',
+    categorySlug: CategorySlugs.balance,
+    name: LocalizedText(ru: 'Y-Balance Test', en: 'Y-Balance Test'),
+    shortDescription: LocalizedText(
+      ru: 'Качественная оценка нормированного результата 1–5.',
+      en: 'Qualitative rating of the normalised reach 1–5.',
+    ),
+    unit: MeasurementUnit.qualitative1to5,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(
+        baseMin: 1, baseMax: 5, femaleFactor: 1.0, ageAdjusted: false),
+  ),
+  Exercise(
+    id: 'star_excursion',
+    categorySlug: CategorySlugs.balance,
+    name: LocalizedText(
+        ru: 'Star Excursion Balance', en: 'Star Excursion Balance'),
+    shortDescription: LocalizedText(
+      ru: 'Качественная оценка дотягивания по направлениям 1–5.',
+      en: 'Qualitative rating of multi-direction reach 1–5.',
+    ),
+    unit: MeasurementUnit.qualitative1to5,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(
+        baseMin: 1, baseMax: 5, femaleFactor: 1.0, ageAdjusted: false),
+  ),
+  Exercise(
+    id: 'beam_walk',
+    categorySlug: CategorySlugs.balance,
+    name: LocalizedText(ru: 'Проход по бревну (10 м)', en: 'Balance beam walk (10 m)'),
+    shortDescription: LocalizedText(
+      ru: 'Качественная оценка прохода без ошибок 1–5.',
+      en: 'Qualitative rating of an error-free walk 1–5.',
+    ),
+    unit: MeasurementUnit.qualitative1to5,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(
+        baseMin: 1, baseMax: 5, femaleFactor: 1.0, ageAdjusted: false),
+  ),
+
+  // ── Мобильность ───────────────────────────────────────────────────────
+  Exercise(
+    id: 'fms_overhead_squat',
+    categorySlug: CategorySlugs.mobility,
+    name: LocalizedText(
+        ru: 'FMS: присед с руками вверх', en: 'FMS overhead squat'),
+    shortDescription: LocalizedText(
+      ru: 'Качественная оценка паттерна приседа 1–5.',
+      en: 'Qualitative rating of the overhead squat pattern 1–5.',
+    ),
+    unit: MeasurementUnit.qualitative1to5,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(
+        baseMin: 1, baseMax: 5, femaleFactor: 1.0, ageAdjusted: false),
+  ),
+  Exercise(
+    id: 'ankle_dorsiflexion',
+    categorySlug: CategorySlugs.mobility,
+    name: LocalizedText(
+        ru: 'Тыльное сгибание голеностопа', en: 'Ankle dorsiflexion'),
+    shortDescription: LocalizedText(
+      ru: 'Расстояние колена от стены (тест у стены), см. Больше — лучше.',
+      en: 'Knee-to-wall distance, cm. Higher is better.',
+    ),
+    unit: MeasurementUnit.centimeters,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 2, baseMax: 12, femaleFactor: 1.0),
+  ),
+  Exercise(
+    id: 'shoulder_flexion',
+    categorySlug: CategorySlugs.mobility,
+    name: LocalizedText(ru: 'Сгибание плеча (у стены)', en: 'Shoulder flexion (wall)'),
+    shortDescription: LocalizedText(
+      ru: 'Качественная оценка амплитуды у стены 1–5.',
+      en: 'Qualitative rating of wall shoulder flexion 1–5.',
+    ),
+    unit: MeasurementUnit.qualitative1to5,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(
+        baseMin: 1, baseMax: 5, femaleFactor: 1.0, ageAdjusted: false),
+  ),
+  Exercise(
+    id: 'hip_internal_rotation',
+    categorySlug: CategorySlugs.mobility,
+    name: LocalizedText(
+        ru: 'Внутренняя ротация бедра', en: 'Hip internal rotation'),
+    shortDescription: LocalizedText(
+      ru: 'Качественная оценка амплитуды ротации 1–5.',
+      en: 'Qualitative rating of hip internal rotation 1–5.',
+    ),
+    unit: MeasurementUnit.qualitative1to5,
+    higherIsBetter: true,
+    usesBodyweight: false,
+    standards: CohortStandards(
+        baseMin: 1, baseMax: 5, femaleFactor: 1.0, ageAdjusted: false),
+  ),
 ];
