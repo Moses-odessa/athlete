@@ -49,7 +49,8 @@ class DashboardScreen extends ConsumerWidget {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.fromLTRB(
+            16, 16, 16, 16 + MediaQuery.viewPaddingOf(context).bottom),
         children: [
           _IndexCard(state: state),
           const SizedBox(height: 16),

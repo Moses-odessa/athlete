@@ -33,7 +33,8 @@ class _ScienceScreenState extends ConsumerState<ScienceScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.scienceTitle)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.fromLTRB(
+            16, 16, 16, 16 + MediaQuery.viewPaddingOf(context).bottom),
         children: [
           Text(context.tr(kScienceIntro)),
           const SizedBox(height: 24),

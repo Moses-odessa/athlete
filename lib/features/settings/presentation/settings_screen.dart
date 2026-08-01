@@ -24,7 +24,8 @@ class SettingsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settingsTitle)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.fromLTRB(
+            16, 16, 16, 16 + MediaQuery.viewPaddingOf(context).bottom),
         children: [
           _Group(
             title: l10n.settingsUnits,

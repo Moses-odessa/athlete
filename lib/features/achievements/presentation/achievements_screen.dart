@@ -32,7 +32,8 @@ class AchievementsScreen extends ConsumerWidget {
           ),
           Expanded(
             child: ListView.separated(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.fromLTRB(
+                  16, 0, 16, MediaQuery.viewPaddingOf(context).bottom),
               itemCount: items.length,
               separatorBuilder: (_, _) => const SizedBox(height: 8),
               itemBuilder: (context, i) {

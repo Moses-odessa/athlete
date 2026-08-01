@@ -26,6 +26,7 @@ class CatalogScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.catalogTitle)),
       body: ListView(
+        padding: EdgeInsets.only(bottom: MediaQuery.viewPaddingOf(context).bottom),
         children: [
           ListTile(
             leading: const Icon(Icons.monitor_weight),

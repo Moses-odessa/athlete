@@ -15,7 +15,8 @@ class BatteriesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.batteriesTitle)),
       body: ListView(
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.fromLTRB(
+            8, 8, 8, 8 + MediaQuery.viewPaddingOf(context).bottom),
         children: [
           for (final b in kBatteries)
             Card(

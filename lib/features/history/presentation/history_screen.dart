@@ -23,7 +23,8 @@ class HistoryScreen extends ConsumerWidget {
       body: records.isEmpty
           ? Center(child: Text(l10n.historyEmpty))
           : ListView(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.fromLTRB(
+                  16, 16, 16, 16 + MediaQuery.viewPaddingOf(context).bottom),
               children: [
                 Text(l10n.indexOverTime,
                     style: Theme.of(context).textTheme.titleMedium),

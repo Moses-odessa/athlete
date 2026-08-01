@@ -84,6 +84,8 @@ class _BatteryRunnerScreenState extends ConsumerState<BatteryRunnerScreen> {
           ),
           Expanded(
             child: ListView(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.viewPaddingOf(context).bottom),
               children: [
                 for (final id in battery.exerciseIds)
                   _ExerciseRow(
