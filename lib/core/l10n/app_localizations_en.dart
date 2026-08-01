@@ -480,4 +480,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saveShort => 'Save';
+
+  @override
+  String get improveCta => 'Improve';
+
+  @override
+  String get improveTitle => 'How to improve';
+
+  @override
+  String get improveWhy =>
+      'This is your lowest-scoring quality. Focus here for the biggest gains.';
 }

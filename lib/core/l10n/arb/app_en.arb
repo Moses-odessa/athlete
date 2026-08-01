@@ -160,5 +160,8 @@
   "bodyMetricsHint": "Confirm or update your weight and height for this test",
   "updateWeight": "Update weight",
   "updateHeight": "Update height",
-  "saveShort": "Save"
+  "saveShort": "Save",
+  "improveCta": "Improve",
+  "improveTitle": "How to improve",
+  "improveWhy": "This is your lowest-scoring quality. Focus here for the biggest gains."
 }

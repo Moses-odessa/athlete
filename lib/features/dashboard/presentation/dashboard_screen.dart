@@ -214,6 +214,11 @@ class _WeakLinkCard extends StatelessWidget {
         leading: const Icon(Icons.flag),
         title: Text(l10n.weakLinkTitle),
         subtitle: category == null ? null : Text(context.tr(category.name)),
+        trailing: FilledButton(
+          onPressed: () => context.push('/improve/$slug'),
+          child: Text(l10n.improveCta),
+        ),
+        onTap: () => context.push('/improve/$slug'),
       ),
     );
   }

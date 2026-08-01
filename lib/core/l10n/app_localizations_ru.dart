@@ -483,4 +483,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get saveShort => 'Сохранить';
+
+  @override
+  String get improveCta => 'Улучшить';
+
+  @override
+  String get improveTitle => 'Как улучшить';
+
+  @override
+  String get improveWhy =>
+      'Это ваше самое отстающее качество. Здесь наибольший потенциал роста.';
 }

@@ -1027,6 +1027,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get saveShort;
+
+  /// No description provided for @improveCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Improve'**
+  String get improveCta;
+
+  /// No description provided for @improveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How to improve'**
+  String get improveTitle;
+
+  /// No description provided for @improveWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'This is your lowest-scoring quality. Focus here for the biggest gains.'**
+  String get improveWhy;
 }
 
 class _AppLocalizationsDelegate
