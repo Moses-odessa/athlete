@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/analytics/analytics.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
 import '../../../data/models/catalog_seed.dart';
 import '../../../data/models/science_content.dart';
 
 /// Раздел «Научная база» (ТЗ разд. 4.16).
-class ScienceScreen extends StatelessWidget {
+class ScienceScreen extends ConsumerStatefulWidget {
   const ScienceScreen({super.key});
+
+  @override
+  ConsumerState<ScienceScreen> createState() => _ScienceScreenState();
+}
+
+class _ScienceScreenState extends ConsumerState<ScienceScreen> {
+  @override
+  void initState() {
+    super.initState();
+    ref.read(analyticsProvider).log(AnalyticsEvents.scienceOpened);
+  }
 
   @override
   Widget build(BuildContext context) {

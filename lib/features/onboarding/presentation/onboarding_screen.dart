@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/analytics/analytics.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
 import '../../../data/repositories/profile_repository.dart';
@@ -84,6 +85,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (!controller.isComplete) return;
     final id = DateTime.now().microsecondsSinceEpoch.toString();
     ref.read(profileControllerProvider.notifier).save(controller.buildProfile(id));
+    final analytics = ref.read(analyticsProvider);
+    analytics.log(AnalyticsEvents.onboardingCompleted);
+    if (ref.read(onboardingControllerProvider).parq.hasPositiveAnswer) {
+      analytics.log(AnalyticsEvents.parqDeclined);
+    }
     context.go('/');
   }
 

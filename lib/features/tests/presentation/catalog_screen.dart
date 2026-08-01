@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/analytics/analytics.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
 import '../../../data/models/catalog_seed.dart';
@@ -76,10 +77,18 @@ class _CategorySection extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                IconButton(
-                  icon: const Icon(Icons.info_outline),
-                  tooltip: l10n.infoTitle,
-                  onPressed: () => showExerciseInfo(context, exercise.id),
+                Consumer(
+                  builder: (context, ref, _) => IconButton(
+                    icon: const Icon(Icons.info_outline),
+                    tooltip: l10n.infoTitle,
+                    onPressed: () {
+                      ref.read(analyticsProvider).log(
+                        AnalyticsEvents.infoOpened,
+                        {'exerciseId': exercise.id},
+                      );
+                      showExerciseInfo(context, exercise.id);
+                    },
+                  ),
                 ),
                 const Icon(Icons.chevron_right),
               ],

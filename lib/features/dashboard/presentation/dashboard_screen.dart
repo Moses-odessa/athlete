@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:printing/printing.dart';
 
+import '../../../core/analytics/analytics.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
 import '../../../core/widgets/radar_chart_view.dart';
@@ -107,6 +108,7 @@ class DashboardScreen extends ConsumerWidget {
       records: records,
       now: DateTime.now(),
     );
+    ref.read(analyticsProvider).log(AnalyticsEvents.pdfExported);
     await Printing.sharePdf(bytes: bytes, filename: 'athlete-report.pdf');
   }
 }

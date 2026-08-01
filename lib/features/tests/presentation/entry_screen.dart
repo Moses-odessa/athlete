@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/analytics/analytics.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
 import '../../../core/units/units.dart';
@@ -43,6 +44,10 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
   void initState() {
     super.initState();
     _date = DateTime.now();
+    ref.read(analyticsProvider).log(
+      AnalyticsEvents.testOpened,
+      {'exerciseId': widget.exerciseId},
+    );
   }
 
   @override
@@ -94,7 +99,12 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
     }
   }
 
-  void _save(Exercise exercise, num value) {
+  void _save(
+    Exercise exercise,
+    num value,
+    AthleteSummary before,
+    AthleteSummary after,
+  ) {
     ref.read(resultsControllerProvider.notifier).add(
           TestResult(
             id: DateTime.now().microsecondsSinceEpoch.toString(),
@@ -104,6 +114,15 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
             note: _noteController.text.isEmpty ? null : _noteController.text,
           ),
         );
+    final analytics = ref.read(analyticsProvider);
+    analytics.log(AnalyticsEvents.resultSaved, {'exerciseId': exercise.id});
+    final delta = after.index.value - before.index.value;
+    if (delta.abs() >= 5) {
+      analytics.log(AnalyticsEvents.indexChanged, {'delta': delta.round()});
+    }
+    if (before.index.isForecast && !after.index.isForecast) {
+      analytics.log(AnalyticsEvents.fullCycleCompleted);
+    }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(AppLocalizations.of(context).savedSnack)),
     );
@@ -166,7 +185,13 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline),
-            onPressed: () => showExerciseInfo(context, exercise.id),
+            onPressed: () {
+              ref.read(analyticsProvider).log(
+                AnalyticsEvents.infoOpened,
+                {'exerciseId': exercise.id},
+              );
+              showExerciseInfo(context, exercise.id);
+            },
           ),
         ],
       ),
@@ -234,8 +259,9 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
           FilledButton.icon(
             icon: const Icon(Icons.save),
             label: Text(l10n.save),
-            onPressed:
-                value == null ? null : () => _save(exercise, value),
+            onPressed: value == null || afterSummary == null
+                ? null
+                : () => _save(exercise, value, currentSummary, afterSummary),
           ),
         ],
       ),
