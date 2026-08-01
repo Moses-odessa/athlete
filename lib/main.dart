@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'core/l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
@@ -9,9 +8,10 @@ import 'data/repositories/persistence.dart';
 import 'data/repositories/settings_repository.dart';
 import 'domain/entities/app_settings.dart';
 
-/// DSN Sentry передаётся при сборке: `--dart-define=SENTRY_DSN=...`.
-/// Пусто → мониторинг ошибок выключен (dev/тесты работают как обычно).
-const _sentryDsn = String.fromEnvironment('SENTRY_DSN');
+// TODO(sentry): вернуть мониторинг крашей (ТЗ 9, критерий 17) после апгрейда
+// Flutter SDK — текущие совместимые версии sentry_flutter не собираются под
+// Kotlin-тулчейн Flutter 3.44 (language version 1.6). SENTRY_DSN в CI пока не
+// используется.
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,27 +19,11 @@ Future<void> main() async {
   final container = ProviderContainer();
   // Загрузка сохранённых данных до первого кадра (без мигания онбординга).
   await bootstrapPersistence(container);
-
-  final app = UncontrolledProviderScope(
-    container: container,
-    child: const AthleteApp(),
-  );
-
-  if (_sentryDsn.isEmpty) {
-    runApp(app);
-    return;
-  }
-
-  // Мониторинг крашей/исключений (ТЗ разд. 9, критерий приёмки 17).
-  await SentryFlutter.init(
-    (options) {
-      options.dsn = _sentryDsn;
-      // Приватность: не собираем PII/данные о здоровье (ТЗ разд. 8.3).
-      options.sendDefaultPii = false;
-      // Только ошибки/краши, без перформанс-трейсинга (беречь квоту).
-      options.tracesSampleRate = 0;
-    },
-    appRunner: () => runApp(app),
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: const AthleteApp(),
+    ),
   );
 }
 
