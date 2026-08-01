@@ -133,5 +133,10 @@
   "scienceReferences": "Источники",
   "scienceDisclaimerTitle": "Дисклеймер",
   "achievementsTitle": "Достижения",
-  "achievementsUnlocked": "Получено"
+  "achievementsUnlocked": "Получено",
+  "peerTitle": "Сравнение с когортой",
+  "peerHigherThan": "Выше, чем у",
+  "peerCohort": "вашей когорты",
+  "peerLocked": "Сдайте полный цикл тестов (все 8 категорий), чтобы сравниться с когортой.",
+  "peerModelNote": "Оценка по статистической модели когорты — до появления реальных данных."
 }

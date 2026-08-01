@@ -139,5 +139,10 @@
   "scienceReferences": "Sources",
   "scienceDisclaimerTitle": "Disclaimer",
   "achievementsTitle": "Achievements",
-  "achievementsUnlocked": "Unlocked"
+  "achievementsUnlocked": "Unlocked",
+  "peerTitle": "Cohort comparison",
+  "peerHigherThan": "Higher than",
+  "peerCohort": "of your cohort",
+  "peerLocked": "Complete a full test cycle (all 8 categories) to compare with your cohort.",
+  "peerModelNote": "Estimated from a statistical cohort model until real data is available."
 }

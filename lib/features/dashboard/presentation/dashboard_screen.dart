@@ -11,6 +11,7 @@ import '../../../data/models/catalog_seed.dart';
 import '../../../data/repositories/profile_repository.dart';
 import '../../../domain/entities/gender.dart';
 import '../../history/application/history_controller.dart';
+import '../../peers/application/peer_comparison.dart';
 import '../../report/application/pdf_report.dart';
 import '../application/dashboard_controller.dart';
 
@@ -55,6 +56,11 @@ class DashboardScreen extends ConsumerWidget {
           const SizedBox(height: 16),
           if (state.weakLinkSlug != null)
             _WeakLinkCard(slug: state.weakLinkSlug!),
+          if (ref.watch(peerComparisonProvider).available) ...[
+            const SizedBox(height: 16),
+            _PeerCard(percentile:
+                ref.watch(peerComparisonProvider).overallPercentile),
+          ],
           const SizedBox(height: 16),
           Row(
             children: [
@@ -200,6 +206,26 @@ class _WeakLinkCard extends StatelessWidget {
         leading: const Icon(Icons.flag),
         title: Text(l10n.weakLinkTitle),
         subtitle: category == null ? null : Text(context.tr(category.name)),
+      ),
+    );
+  }
+}
+
+class _PeerCard extends StatelessWidget {
+  const _PeerCard({required this.percentile});
+  final double percentile;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Card(
+      child: ListTile(
+        leading: const Icon(Icons.groups),
+        title: Text(l10n.peerTitle),
+        subtitle: Text(
+            '${l10n.peerHigherThan} ${percentile.round()}% ${l10n.peerCohort}'),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => context.push('/peers'),
       ),
     );
   }

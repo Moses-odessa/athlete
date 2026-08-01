@@ -901,6 +901,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unlocked'**
   String get achievementsUnlocked;
+
+  /// No description provided for @peerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cohort comparison'**
+  String get peerTitle;
+
+  /// No description provided for @peerHigherThan.
+  ///
+  /// In en, this message translates to:
+  /// **'Higher than'**
+  String get peerHigherThan;
+
+  /// No description provided for @peerCohort.
+  ///
+  /// In en, this message translates to:
+  /// **'of your cohort'**
+  String get peerCohort;
+
+  /// No description provided for @peerLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete a full test cycle (all 8 categories) to compare with your cohort.'**
+  String get peerLocked;
+
+  /// No description provided for @peerModelNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated from a statistical cohort model until real data is available.'**
+  String get peerModelNote;
 }
 
 class _AppLocalizationsDelegate

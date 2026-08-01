@@ -417,4 +417,21 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get achievementsUnlocked => 'Получено';
+
+  @override
+  String get peerTitle => 'Сравнение с когортой';
+
+  @override
+  String get peerHigherThan => 'Выше, чем у';
+
+  @override
+  String get peerCohort => 'вашей когорты';
+
+  @override
+  String get peerLocked =>
+      'Сдайте полный цикл тестов (все 8 категорий), чтобы сравниться с когортой.';
+
+  @override
+  String get peerModelNote =>
+      'Оценка по статистической модели когорты — до появления реальных данных.';
 }

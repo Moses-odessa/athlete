@@ -8,6 +8,7 @@ import '../../features/dashboard/presentation/dashboard_screen.dart';
 import '../../features/education/presentation/science_screen.dart';
 import '../../features/history/presentation/history_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
+import '../../features/peers/presentation/peers_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/tests/presentation/catalog_screen.dart';
 import '../../features/tests/presentation/entry_screen.dart';
@@ -43,6 +44,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
           path: '/achievements',
           builder: (_, _) => const AchievementsScreen()),
+      GoRoute(path: '/peers', builder: (_, _) => const PeersScreen()),
       GoRoute(
         path: '/entry/:id',
         builder: (_, state) =>

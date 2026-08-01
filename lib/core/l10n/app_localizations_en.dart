@@ -414,4 +414,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get achievementsUnlocked => 'Unlocked';
+
+  @override
+  String get peerTitle => 'Cohort comparison';
+
+  @override
+  String get peerHigherThan => 'Higher than';
+
+  @override
+  String get peerCohort => 'of your cohort';
+
+  @override
+  String get peerLocked =>
+      'Complete a full test cycle (all 8 categories) to compare with your cohort.';
+
+  @override
+  String get peerModelNote =>
+      'Estimated from a statistical cohort model until real data is available.';
 }
