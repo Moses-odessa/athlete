@@ -19,7 +19,9 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "global.aspira.athlete_index"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    // Явно фиксируем NDK: нативные плагины (sqlite3/drift) требуют новее,
+    // чем берётся по умолчанию (иначе APK-сборка падает на несовпадении NDK).
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -52,7 +54,10 @@ android {
             } else {
                 signingConfigs.getByName("debug")
             }
+            // Минификация и удаление ресурсов должны быть согласованы: включаем/
+            // выключаем вместе. Пока выключены — надёжная сборка без R8-сюрпризов.
             isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }
