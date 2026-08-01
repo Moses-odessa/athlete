@@ -931,6 +931,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Estimated from a statistical cohort model until real data is available.'**
   String get peerModelNote;
+
+  /// No description provided for @batteriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Test batteries'**
+  String get batteriesTitle;
+
+  /// No description provided for @batteryRecord.
+  ///
+  /// In en, this message translates to:
+  /// **'Record'**
+  String get batteryRecord;
+
+  /// No description provided for @batteryDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get batteryDone;
+
+  /// No description provided for @batterySessionTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Session time'**
+  String get batterySessionTime;
+
+  /// No description provided for @batteryProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get batteryProgress;
 }
 
 class _AppLocalizationsDelegate

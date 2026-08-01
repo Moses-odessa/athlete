@@ -431,4 +431,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get peerModelNote =>
       'Estimated from a statistical cohort model until real data is available.';
+
+  @override
+  String get batteriesTitle => 'Test batteries';
+
+  @override
+  String get batteryRecord => 'Record';
+
+  @override
+  String get batteryDone => 'Done';
+
+  @override
+  String get batterySessionTime => 'Session time';
+
+  @override
+  String get batteryProgress => 'Completed';
 }

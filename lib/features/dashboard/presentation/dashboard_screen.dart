@@ -81,6 +81,12 @@ class DashboardScreen extends ConsumerWidget {
               ),
             ],
           ),
+          const SizedBox(height: 12),
+          FilledButton.tonalIcon(
+            icon: const Icon(Icons.fitness_center),
+            label: Text(l10n.batteriesTitle),
+            onPressed: () => context.push('/batteries'),
+          ),
         ],
       ),
     );

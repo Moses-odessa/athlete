@@ -144,5 +144,10 @@
   "peerHigherThan": "Higher than",
   "peerCohort": "of your cohort",
   "peerLocked": "Complete a full test cycle (all 8 categories) to compare with your cohort.",
-  "peerModelNote": "Estimated from a statistical cohort model until real data is available."
+  "peerModelNote": "Estimated from a statistical cohort model until real data is available.",
+  "batteriesTitle": "Test batteries",
+  "batteryRecord": "Record",
+  "batteryDone": "Done",
+  "batterySessionTime": "Session time",
+  "batteryProgress": "Completed"
 }

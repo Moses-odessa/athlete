@@ -434,4 +434,19 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get peerModelNote =>
       'Оценка по статистической модели когорты — до появления реальных данных.';
+
+  @override
+  String get batteriesTitle => 'Тест-баттереи';
+
+  @override
+  String get batteryRecord => 'Записать';
+
+  @override
+  String get batteryDone => 'Готово';
+
+  @override
+  String get batterySessionTime => 'Время сессии';
+
+  @override
+  String get batteryProgress => 'Выполнено';
 }

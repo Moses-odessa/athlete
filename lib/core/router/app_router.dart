@@ -10,6 +10,8 @@ import '../../features/history/presentation/history_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/peers/presentation/peers_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
+import '../../features/tests/presentation/batteries_screen.dart';
+import '../../features/tests/presentation/battery_runner_screen.dart';
 import '../../features/tests/presentation/catalog_screen.dart';
 import '../../features/tests/presentation/entry_screen.dart';
 import '../../features/tests/presentation/reaction_screen.dart';
@@ -45,6 +47,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           path: '/achievements',
           builder: (_, _) => const AchievementsScreen()),
       GoRoute(path: '/peers', builder: (_, _) => const PeersScreen()),
+      GoRoute(path: '/batteries', builder: (_, _) => const BatteriesScreen()),
+      GoRoute(
+        path: '/battery/:id',
+        builder: (_, state) =>
+            BatteryRunnerScreen(batteryId: state.pathParameters['id']!),
+      ),
       GoRoute(
         path: '/entry/:id',
         builder: (_, state) =>
