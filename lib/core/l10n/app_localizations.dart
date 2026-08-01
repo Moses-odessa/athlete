@@ -991,6 +991,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not read the data'**
   String get importError;
+
+  /// No description provided for @currentWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Current weight, kg'**
+  String get currentWeight;
+
+  /// No description provided for @currentHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Current height, cm'**
+  String get currentHeight;
+
+  /// No description provided for @bodyMetricsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm or update your weight and height for this test'**
+  String get bodyMetricsHint;
+
+  /// No description provided for @updateWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Update weight'**
+  String get updateWeight;
+
+  /// No description provided for @updateHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Update height'**
+  String get updateHeight;
+
+  /// No description provided for @saveShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get saveShort;
 }
 
 class _AppLocalizationsDelegate

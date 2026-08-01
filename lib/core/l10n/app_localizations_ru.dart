@@ -464,4 +464,23 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get importError => 'Не удалось прочитать данные';
+
+  @override
+  String get currentWeight => 'Текущий вес, кг';
+
+  @override
+  String get currentHeight => 'Текущий рост, см';
+
+  @override
+  String get bodyMetricsHint =>
+      'Подтвердите или обновите вес и рост для этого теста';
+
+  @override
+  String get updateWeight => 'Обновить вес';
+
+  @override
+  String get updateHeight => 'Обновить рост';
+
+  @override
+  String get saveShort => 'Сохранить';
 }

@@ -148,5 +148,11 @@
   "importHint": "Вставьте сюда экспортированный JSON",
   "importApply": "Импорт",
   "importSuccess": "Данные импортированы",
-  "importError": "Не удалось прочитать данные"
+  "importError": "Не удалось прочитать данные",
+  "currentWeight": "Текущий вес, кг",
+  "currentHeight": "Текущий рост, см",
+  "bodyMetricsHint": "Подтвердите или обновите вес и рост для этого теста",
+  "updateWeight": "Обновить вес",
+  "updateHeight": "Обновить рост",
+  "saveShort": "Сохранить"
 }

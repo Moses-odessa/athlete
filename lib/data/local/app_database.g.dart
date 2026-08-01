@@ -676,6 +676,28 @@ class $ResultsTable extends Results with TableInfo<$ResultsTable, Result> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _bodyweightKgMeta = const VerificationMeta(
+    'bodyweightKg',
+  );
+  @override
+  late final GeneratedColumn<double> bodyweightKg = GeneratedColumn<double>(
+    'bodyweight_kg',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _heightCmMeta = const VerificationMeta(
+    'heightCm',
+  );
+  @override
+  late final GeneratedColumn<double> heightCm = GeneratedColumn<double>(
+    'height_cm',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -684,6 +706,8 @@ class $ResultsTable extends Results with TableInfo<$ResultsTable, Result> {
     date,
     note,
     videoPath,
+    bodyweightKg,
+    heightCm,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -738,6 +762,21 @@ class $ResultsTable extends Results with TableInfo<$ResultsTable, Result> {
         videoPath.isAcceptableOrUnknown(data['video_path']!, _videoPathMeta),
       );
     }
+    if (data.containsKey('bodyweight_kg')) {
+      context.handle(
+        _bodyweightKgMeta,
+        bodyweightKg.isAcceptableOrUnknown(
+          data['bodyweight_kg']!,
+          _bodyweightKgMeta,
+        ),
+      );
+    }
+    if (data.containsKey('height_cm')) {
+      context.handle(
+        _heightCmMeta,
+        heightCm.isAcceptableOrUnknown(data['height_cm']!, _heightCmMeta),
+      );
+    }
     return context;
   }
 
@@ -771,6 +810,14 @@ class $ResultsTable extends Results with TableInfo<$ResultsTable, Result> {
         DriftSqlType.string,
         data['${effectivePrefix}video_path'],
       ),
+      bodyweightKg: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}bodyweight_kg'],
+      ),
+      heightCm: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}height_cm'],
+      ),
     );
   }
 
@@ -787,6 +834,8 @@ class Result extends DataClass implements Insertable<Result> {
   final DateTime date;
   final String? note;
   final String? videoPath;
+  final double? bodyweightKg;
+  final double? heightCm;
   const Result({
     required this.id,
     required this.exerciseId,
@@ -794,6 +843,8 @@ class Result extends DataClass implements Insertable<Result> {
     required this.date,
     this.note,
     this.videoPath,
+    this.bodyweightKg,
+    this.heightCm,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -808,6 +859,12 @@ class Result extends DataClass implements Insertable<Result> {
     if (!nullToAbsent || videoPath != null) {
       map['video_path'] = Variable<String>(videoPath);
     }
+    if (!nullToAbsent || bodyweightKg != null) {
+      map['bodyweight_kg'] = Variable<double>(bodyweightKg);
+    }
+    if (!nullToAbsent || heightCm != null) {
+      map['height_cm'] = Variable<double>(heightCm);
+    }
     return map;
   }
 
@@ -821,6 +878,12 @@ class Result extends DataClass implements Insertable<Result> {
       videoPath: videoPath == null && nullToAbsent
           ? const Value.absent()
           : Value(videoPath),
+      bodyweightKg: bodyweightKg == null && nullToAbsent
+          ? const Value.absent()
+          : Value(bodyweightKg),
+      heightCm: heightCm == null && nullToAbsent
+          ? const Value.absent()
+          : Value(heightCm),
     );
   }
 
@@ -836,6 +899,8 @@ class Result extends DataClass implements Insertable<Result> {
       date: serializer.fromJson<DateTime>(json['date']),
       note: serializer.fromJson<String?>(json['note']),
       videoPath: serializer.fromJson<String?>(json['videoPath']),
+      bodyweightKg: serializer.fromJson<double?>(json['bodyweightKg']),
+      heightCm: serializer.fromJson<double?>(json['heightCm']),
     );
   }
   @override
@@ -848,6 +913,8 @@ class Result extends DataClass implements Insertable<Result> {
       'date': serializer.toJson<DateTime>(date),
       'note': serializer.toJson<String?>(note),
       'videoPath': serializer.toJson<String?>(videoPath),
+      'bodyweightKg': serializer.toJson<double?>(bodyweightKg),
+      'heightCm': serializer.toJson<double?>(heightCm),
     };
   }
 
@@ -858,6 +925,8 @@ class Result extends DataClass implements Insertable<Result> {
     DateTime? date,
     Value<String?> note = const Value.absent(),
     Value<String?> videoPath = const Value.absent(),
+    Value<double?> bodyweightKg = const Value.absent(),
+    Value<double?> heightCm = const Value.absent(),
   }) => Result(
     id: id ?? this.id,
     exerciseId: exerciseId ?? this.exerciseId,
@@ -865,6 +934,8 @@ class Result extends DataClass implements Insertable<Result> {
     date: date ?? this.date,
     note: note.present ? note.value : this.note,
     videoPath: videoPath.present ? videoPath.value : this.videoPath,
+    bodyweightKg: bodyweightKg.present ? bodyweightKg.value : this.bodyweightKg,
+    heightCm: heightCm.present ? heightCm.value : this.heightCm,
   );
   Result copyWithCompanion(ResultsCompanion data) {
     return Result(
@@ -876,6 +947,10 @@ class Result extends DataClass implements Insertable<Result> {
       date: data.date.present ? data.date.value : this.date,
       note: data.note.present ? data.note.value : this.note,
       videoPath: data.videoPath.present ? data.videoPath.value : this.videoPath,
+      bodyweightKg: data.bodyweightKg.present
+          ? data.bodyweightKg.value
+          : this.bodyweightKg,
+      heightCm: data.heightCm.present ? data.heightCm.value : this.heightCm,
     );
   }
 
@@ -887,13 +962,24 @@ class Result extends DataClass implements Insertable<Result> {
           ..write('value: $value, ')
           ..write('date: $date, ')
           ..write('note: $note, ')
-          ..write('videoPath: $videoPath')
+          ..write('videoPath: $videoPath, ')
+          ..write('bodyweightKg: $bodyweightKg, ')
+          ..write('heightCm: $heightCm')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, exerciseId, value, date, note, videoPath);
+  int get hashCode => Object.hash(
+    id,
+    exerciseId,
+    value,
+    date,
+    note,
+    videoPath,
+    bodyweightKg,
+    heightCm,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -903,7 +989,9 @@ class Result extends DataClass implements Insertable<Result> {
           other.value == this.value &&
           other.date == this.date &&
           other.note == this.note &&
-          other.videoPath == this.videoPath);
+          other.videoPath == this.videoPath &&
+          other.bodyweightKg == this.bodyweightKg &&
+          other.heightCm == this.heightCm);
 }
 
 class ResultsCompanion extends UpdateCompanion<Result> {
@@ -913,6 +1001,8 @@ class ResultsCompanion extends UpdateCompanion<Result> {
   final Value<DateTime> date;
   final Value<String?> note;
   final Value<String?> videoPath;
+  final Value<double?> bodyweightKg;
+  final Value<double?> heightCm;
   final Value<int> rowid;
   const ResultsCompanion({
     this.id = const Value.absent(),
@@ -921,6 +1011,8 @@ class ResultsCompanion extends UpdateCompanion<Result> {
     this.date = const Value.absent(),
     this.note = const Value.absent(),
     this.videoPath = const Value.absent(),
+    this.bodyweightKg = const Value.absent(),
+    this.heightCm = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ResultsCompanion.insert({
@@ -930,6 +1022,8 @@ class ResultsCompanion extends UpdateCompanion<Result> {
     required DateTime date,
     this.note = const Value.absent(),
     this.videoPath = const Value.absent(),
+    this.bodyweightKg = const Value.absent(),
+    this.heightCm = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        exerciseId = Value(exerciseId),
@@ -942,6 +1036,8 @@ class ResultsCompanion extends UpdateCompanion<Result> {
     Expression<DateTime>? date,
     Expression<String>? note,
     Expression<String>? videoPath,
+    Expression<double>? bodyweightKg,
+    Expression<double>? heightCm,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -951,6 +1047,8 @@ class ResultsCompanion extends UpdateCompanion<Result> {
       if (date != null) 'date': date,
       if (note != null) 'note': note,
       if (videoPath != null) 'video_path': videoPath,
+      if (bodyweightKg != null) 'bodyweight_kg': bodyweightKg,
+      if (heightCm != null) 'height_cm': heightCm,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -962,6 +1060,8 @@ class ResultsCompanion extends UpdateCompanion<Result> {
     Value<DateTime>? date,
     Value<String?>? note,
     Value<String?>? videoPath,
+    Value<double?>? bodyweightKg,
+    Value<double?>? heightCm,
     Value<int>? rowid,
   }) {
     return ResultsCompanion(
@@ -971,6 +1071,8 @@ class ResultsCompanion extends UpdateCompanion<Result> {
       date: date ?? this.date,
       note: note ?? this.note,
       videoPath: videoPath ?? this.videoPath,
+      bodyweightKg: bodyweightKg ?? this.bodyweightKg,
+      heightCm: heightCm ?? this.heightCm,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -996,6 +1098,12 @@ class ResultsCompanion extends UpdateCompanion<Result> {
     if (videoPath.present) {
       map['video_path'] = Variable<String>(videoPath.value);
     }
+    if (bodyweightKg.present) {
+      map['bodyweight_kg'] = Variable<double>(bodyweightKg.value);
+    }
+    if (heightCm.present) {
+      map['height_cm'] = Variable<double>(heightCm.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1011,6 +1119,8 @@ class ResultsCompanion extends UpdateCompanion<Result> {
           ..write('date: $date, ')
           ..write('note: $note, ')
           ..write('videoPath: $videoPath, ')
+          ..write('bodyweightKg: $bodyweightKg, ')
+          ..write('heightCm: $heightCm, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -1750,6 +1860,8 @@ typedef $$ResultsTableCreateCompanionBuilder =
       required DateTime date,
       Value<String?> note,
       Value<String?> videoPath,
+      Value<double?> bodyweightKg,
+      Value<double?> heightCm,
       Value<int> rowid,
     });
 typedef $$ResultsTableUpdateCompanionBuilder =
@@ -1760,6 +1872,8 @@ typedef $$ResultsTableUpdateCompanionBuilder =
       Value<DateTime> date,
       Value<String?> note,
       Value<String?> videoPath,
+      Value<double?> bodyweightKg,
+      Value<double?> heightCm,
       Value<int> rowid,
     });
 
@@ -1799,6 +1913,16 @@ class $$ResultsTableFilterComposer
 
   ColumnFilters<String> get videoPath => $composableBuilder(
     column: $table.videoPath,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get bodyweightKg => $composableBuilder(
+    column: $table.bodyweightKg,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get heightCm => $composableBuilder(
+    column: $table.heightCm,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -1841,6 +1965,16 @@ class $$ResultsTableOrderingComposer
     column: $table.videoPath,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<double> get bodyweightKg => $composableBuilder(
+    column: $table.bodyweightKg,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get heightCm => $composableBuilder(
+    column: $table.heightCm,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ResultsTableAnnotationComposer
@@ -1871,6 +2005,14 @@ class $$ResultsTableAnnotationComposer
 
   GeneratedColumn<String> get videoPath =>
       $composableBuilder(column: $table.videoPath, builder: (column) => column);
+
+  GeneratedColumn<double> get bodyweightKg => $composableBuilder(
+    column: $table.bodyweightKg,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get heightCm =>
+      $composableBuilder(column: $table.heightCm, builder: (column) => column);
 }
 
 class $$ResultsTableTableManager
@@ -1907,6 +2049,8 @@ class $$ResultsTableTableManager
                 Value<DateTime> date = const Value.absent(),
                 Value<String?> note = const Value.absent(),
                 Value<String?> videoPath = const Value.absent(),
+                Value<double?> bodyweightKg = const Value.absent(),
+                Value<double?> heightCm = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ResultsCompanion(
                 id: id,
@@ -1915,6 +2059,8 @@ class $$ResultsTableTableManager
                 date: date,
                 note: note,
                 videoPath: videoPath,
+                bodyweightKg: bodyweightKg,
+                heightCm: heightCm,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -1925,6 +2071,8 @@ class $$ResultsTableTableManager
                 required DateTime date,
                 Value<String?> note = const Value.absent(),
                 Value<String?> videoPath = const Value.absent(),
+                Value<double?> bodyweightKg = const Value.absent(),
+                Value<double?> heightCm = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ResultsCompanion.insert(
                 id: id,
@@ -1933,6 +2081,8 @@ class $$ResultsTableTableManager
                 date: date,
                 note: note,
                 videoPath: videoPath,
+                bodyweightKg: bodyweightKg,
+                heightCm: heightCm,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

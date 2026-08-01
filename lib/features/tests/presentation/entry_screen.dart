@@ -37,13 +37,23 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
   final _minController = TextEditingController();
   final _secController = TextEditingController();
   final _noteController = TextEditingController();
+  final _bodyweightController = TextEditingController();
+  final _heightController = TextEditingController();
   int _rating = 3;
   late DateTime _date;
+
+  static String _fmt(double v) =>
+      v == v.roundToDouble() ? v.toInt().toString() : v.toString();
 
   @override
   void initState() {
     super.initState();
     _date = DateTime.now();
+    final profile = ref.read(profileControllerProvider);
+    if (profile != null) {
+      _bodyweightController.text = _fmt(profile.weightKg);
+      _heightController.text = _fmt(profile.heightCm);
+    }
     ref.read(analyticsProvider).log(
       AnalyticsEvents.testOpened,
       {'exerciseId': widget.exerciseId},
@@ -56,8 +66,13 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
     _minController.dispose();
     _secController.dispose();
     _noteController.dispose();
+    _bodyweightController.dispose();
+    _heightController.dispose();
     super.dispose();
   }
+
+  double? _parse(TextEditingController c) =>
+      double.tryParse(c.text.replaceAll(',', '.'));
 
   Exercise? get _exercise => Catalog.exerciseById(widget.exerciseId);
 
@@ -105,6 +120,20 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
     AthleteSummary before,
     AthleteSummary after,
   ) {
+    final profile = ref.read(profileControllerProvider);
+    final bodyweight = _parse(_bodyweightController) ?? profile?.weightKg;
+    final height = _parse(_heightController) ?? profile?.heightCm;
+
+    // Подтверждённые вес/рост становятся текущими в профиле…
+    final profileCtrl = ref.read(profileControllerProvider.notifier);
+    if (bodyweight != null && bodyweight != profile?.weightKg) {
+      profileCtrl.updateWeight(bodyweight);
+    }
+    if (height != null && height != profile?.heightCm) {
+      profileCtrl.updateHeight(height);
+    }
+
+    // …и фиксируются в результате (балл считается по весу «на момент»).
     ref.read(resultsControllerProvider.notifier).add(
           TestResult(
             id: DateTime.now().microsecondsSinceEpoch.toString(),
@@ -112,6 +141,8 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
             value: value,
             date: _date,
             note: _noteController.text.isEmpty ? null : _noteController.text,
+            bodyweightKg: bodyweight,
+            heightCm: height,
           ),
         );
     final analytics = ref.read(analyticsProvider);
@@ -150,10 +181,14 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
     final factor = toMetricFactor(exercise.unit, settings.units);
     final value = entered == null ? null : entered * factor;
 
+    // Вес тела для этого теста (по умолчанию — текущий из профиля, редактируемо).
+    final bodyweight = _parse(_bodyweightController) ?? profile.weightKg;
+    final height = _parse(_heightController) ?? profile.heightCm;
+
     final score = value == null
         ? null
         : scoreTest(exercise, value, cohort,
-                bodyweightKg: profile.weightKg, scaleOverride: scale)
+                bodyweightKg: bodyweight, scaleOverride: scale)
             .normalizedScore;
 
     final currentSummary = summarizeResults(
@@ -175,6 +210,8 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
                 exerciseId: exercise.id,
                 value: value,
                 date: now,
+                bodyweightKg: bodyweight,
+                heightCm: height,
               ),
             ],
           );
@@ -201,6 +238,12 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
           Text(
             context.tr(exercise.shortDescription),
             style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          const SizedBox(height: 16),
+          _BodyMetricsCard(
+            bodyweightController: _bodyweightController,
+            heightController: _heightController,
+            onChanged: () => setState(() {}),
           ),
           const SizedBox(height: 20),
           _InputArea(
@@ -267,7 +310,67 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
       ),
     );
   }
+}
 
+class _BodyMetricsCard extends StatelessWidget {
+  const _BodyMetricsCard({
+    required this.bodyweightController,
+    required this.heightController,
+    required this.onChanged,
+  });
+
+  final TextEditingController bodyweightController;
+  final TextEditingController heightController;
+  final VoidCallback onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.bodyMetricsHint,
+                style: Theme.of(context).textTheme.bodySmall),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: bodyweightController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                      labelText: l10n.currentWeight,
+                      border: const OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                    onChanged: (_) => onChanged(),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: TextField(
+                    controller: heightController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                      labelText: l10n.currentHeight,
+                      border: const OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                    onChanged: (_) => onChanged(),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _InputArea extends StatelessWidget {

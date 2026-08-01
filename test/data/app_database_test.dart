@@ -46,6 +46,8 @@ void main() {
         value: 12,
         date: DateTime(2026, 6, 1),
         note: 'strict',
+        bodyweightKg: 78.5,
+        heightCm: 180,
       ),
       TestResult(
         id: 'r2',
@@ -62,6 +64,8 @@ void main() {
     expect(loaded.first.value, 90);
     expect(loaded.last.exerciseId, 'pull_ups');
     expect(loaded.last.note, 'strict');
+    expect(loaded.last.bodyweightKg, 78.5);
+    expect(loaded.last.heightCm, 180);
 
     // Полная замена.
     await db.replaceResults([]);

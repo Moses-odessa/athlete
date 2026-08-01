@@ -154,5 +154,11 @@
   "importHint": "Paste the exported JSON here",
   "importApply": "Import",
   "importSuccess": "Data imported",
-  "importError": "Could not read the data"
+  "importError": "Could not read the data",
+  "currentWeight": "Current weight, kg",
+  "currentHeight": "Current height, cm",
+  "bodyMetricsHint": "Confirm or update your weight and height for this test",
+  "updateWeight": "Update weight",
+  "updateHeight": "Update height",
+  "saveShort": "Save"
 }

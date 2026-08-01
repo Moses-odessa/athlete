@@ -6,6 +6,7 @@ import '../../../core/analytics/analytics.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/l10n/localized_text_ext.dart';
 import '../../../data/models/catalog_seed.dart';
+import '../../../data/repositories/profile_repository.dart';
 import '../application/catalog_controller.dart';
 import 'exercise_info_sheet.dart';
 
@@ -20,10 +21,29 @@ class CatalogScreen extends ConsumerWidget {
     final categories = [...Catalog.categories]
       ..sort((a, b) => a.radarOrder.compareTo(b.radarOrder));
 
+    final profile = ref.watch(profileControllerProvider);
+
     return Scaffold(
       appBar: AppBar(title: Text(l10n.catalogTitle)),
       body: ListView(
         children: [
+          ListTile(
+            leading: const Icon(Icons.monitor_weight),
+            title: Text(l10n.updateWeight),
+            subtitle: profile == null
+                ? null
+                : Text('${profile.weightKg} ${l10n.unitKilograms}'),
+            onTap: () => _editMetric(context, ref, isWeight: true),
+          ),
+          ListTile(
+            leading: const Icon(Icons.height),
+            title: Text(l10n.updateHeight),
+            subtitle: profile == null
+                ? null
+                : Text('${profile.heightCm} ${l10n.unitCentimeters}'),
+            onTap: () => _editMetric(context, ref, isWeight: false),
+          ),
+          const Divider(),
           for (final category in categories)
             _CategorySection(
               categorySlug: category.slug,
@@ -34,6 +54,52 @@ class CatalogScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _editMetric(
+    BuildContext context,
+    WidgetRef ref, {
+    required bool isWeight,
+  }) async {
+    final l10n = AppLocalizations.of(context);
+    final profile = ref.read(profileControllerProvider);
+    if (profile == null) return;
+    final controller = TextEditingController(
+      text: (isWeight ? profile.weightKg : profile.heightCm).toString(),
+    );
+    final value = await showDialog<double>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(isWeight ? l10n.updateWeight : l10n.updateHeight),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          decoration: InputDecoration(
+            labelText: isWeight ? l10n.currentWeight : l10n.currentHeight,
+            border: const OutlineInputBorder(),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(
+              double.tryParse(controller.text.replaceAll(',', '.')),
+            ),
+            child: Text(l10n.saveShort),
+          ),
+        ],
+      ),
+    );
+    if (value == null || value <= 0) return;
+    if (isWeight) {
+      ref.read(profileControllerProvider.notifier).updateWeight(value);
+    } else {
+      ref.read(profileControllerProvider.notifier).updateHeight(value);
+    }
   }
 }
 

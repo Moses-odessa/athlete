@@ -44,6 +44,33 @@ void main() {
     expect(s.weakLinkSlug, isNotNull);
   });
 
+  test('силовой балл считается по весу тела из результата, а не по fallback', () {
+    final withSnapshot = summarizeResults(
+      cohort: cohort,
+      weightKg: 100, // fallback тяжелее
+      results: [
+        TestResult(
+          id: 'a',
+          exerciseId: 'bench_press',
+          value: 100,
+          date: DateTime(2026, 6, 1),
+          bodyweightKg: 80, // снимок: легче → выше относительный балл
+        ),
+        r('b', 'pull_ups', 10, DateTime(2026, 6, 1)),
+      ],
+    );
+    final withoutSnapshot = summarizeResults(
+      cohort: cohort,
+      weightKg: 100,
+      results: [
+        r('a', 'bench_press', 100, DateTime(2026, 6, 1)),
+        r('b', 'pull_ups', 10, DateTime(2026, 6, 1)),
+      ],
+    );
+    expect(withSnapshot.categoryScores['strength']!.score,
+        greaterThan(withoutSnapshot.categoryScores['strength']!.score));
+  });
+
   test('добавление результата не понижает индекс, если балл выше текущего', () {
     final base = [
       r('a', 'bench_press', 60, DateTime(2026, 6, 1)),

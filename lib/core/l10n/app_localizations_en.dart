@@ -461,4 +461,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get importError => 'Could not read the data';
+
+  @override
+  String get currentWeight => 'Current weight, kg';
+
+  @override
+  String get currentHeight => 'Current height, cm';
+
+  @override
+  String get bodyMetricsHint =>
+      'Confirm or update your weight and height for this test';
+
+  @override
+  String get updateWeight => 'Update weight';
+
+  @override
+  String get updateHeight => 'Update height';
+
+  @override
+  String get saveShort => 'Save';
 }

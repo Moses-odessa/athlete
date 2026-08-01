@@ -47,8 +47,8 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(EntryScreen), findsOneWidget);
 
-    // Вводим значение (повторения) в первое поле.
-    await tester.enterText(find.byType(TextField).first, '20');
+    // Вводим значение (повторения) в поле результата.
+    await tester.enterText(find.widgetWithText(TextField, 'Result'), '20');
     await tester.pumpAndSettle();
 
     // Сохраняем.

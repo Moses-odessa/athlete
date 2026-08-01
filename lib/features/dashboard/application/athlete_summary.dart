@@ -41,6 +41,9 @@ class AthleteSummary {
 /// результат (ретесты не задваиваются в среднем категории, ТЗ разд. 4.7),
 /// затем баллы группируются по категориям и усредняются, из категорий —
 /// индекс (ТЗ разд. 4.8).
+///
+/// Силовые тесты (×BW) считаются по весу тела **на момент выполнения**
+/// (`result.bodyweightKg`); [weightKg] — откат для записей без снимка веса.
 AthleteSummary summarizeResults({
   required Cohort cohort,
   required double weightKg,
@@ -65,7 +68,7 @@ AthleteSummary summarizeResults({
       exercise,
       result.value,
       cohort,
-      bodyweightKg: weightKg,
+      bodyweightKg: result.bodyweightKg ?? weightKg,
       scaleOverride: scale,
     );
     byCategory.putIfAbsent(exercise.categorySlug, () => []).add(score);

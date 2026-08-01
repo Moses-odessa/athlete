@@ -38,4 +38,17 @@ class UserProfile {
   /// Когорта пользователя на указанный момент (для нормировки баллов).
   Cohort cohortAsOf(DateTime asOf) =>
       Cohort.forUser(gender: gender, dateOfBirth: dateOfBirth, asOf: asOf);
+
+  UserProfile copyWith({double? weightKg, double? heightCm}) => UserProfile(
+        id: id,
+        gender: gender,
+        dateOfBirth: dateOfBirth,
+        weightKg: weightKg ?? this.weightKg,
+        heightCm: heightCm ?? this.heightCm,
+        experience: experience,
+        equipment: equipment,
+        goal: goal,
+        parqPassed: parqPassed,
+        acceptedTerms: acceptedTerms,
+      );
 }

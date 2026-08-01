@@ -45,6 +45,8 @@ Map<String, Object?> encodeUserData({
           'value': r.value,
           'date': r.date.toIso8601String(),
           'note': r.note,
+          'bodyweightKg': r.bodyweightKg,
+          'heightCm': r.heightCm,
         },
     ],
   };
@@ -99,6 +101,8 @@ UserData decodeUserDataJson(String source) {
         value: item['value'] as num,
         date: DateTime.parse(item['date'] as String),
         note: item['note'] as String?,
+        bodyweightKg: (item['bodyweightKg'] as num?)?.toDouble(),
+        heightCm: (item['heightCm'] as num?)?.toDouble(),
       ));
     }
   }

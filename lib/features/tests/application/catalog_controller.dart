@@ -32,7 +32,7 @@ final exerciseScoresProvider = Provider<Map<String, double>>((ref) {
         exercise,
         result.value,
         cohort,
-        bodyweightKg: profile.weightKg,
+        bodyweightKg: result.bodyweightKg ?? profile.weightKg,
         scaleOverride: scale,
       ).normalizedScore;
     }

@@ -10,6 +10,12 @@ class ProfileController extends Notifier<UserProfile?> {
 
   void save(UserProfile profile) => state = profile;
 
+  void updateWeight(double weightKg) =>
+      state = state?.copyWith(weightKg: weightKg);
+
+  void updateHeight(double heightCm) =>
+      state = state?.copyWith(heightCm: heightCm);
+
   void clear() => state = null;
 }
 

@@ -38,6 +38,8 @@ class Results extends Table {
   DateTimeColumn get date => dateTime()();
   TextColumn get note => text().nullable()();
   TextColumn get videoPath => text().nullable()();
+  RealColumn get bodyweightKg => real().nullable()();
+  RealColumn get heightCm => real().nullable()();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -64,13 +66,17 @@ class AppDatabase extends _$AppDatabase {
       : super(executor ?? driftDatabase(name: 'athlete_db'));
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
         onCreate: (m) => m.createAll(),
         onUpgrade: (m, from, to) async {
           if (from < 2) await m.createTable(settingsRows);
+          if (from < 3) {
+            await m.addColumn(results, results.bodyweightKg);
+            await m.addColumn(results, results.heightCm);
+          }
         },
       );
 
@@ -145,6 +151,8 @@ class AppDatabase extends _$AppDatabase {
         date: row.date,
         note: row.note,
         videoPath: row.videoPath,
+        bodyweightKg: row.bodyweightKg,
+        heightCm: row.heightCm,
       );
 
   ResultsCompanion _toResultRow(TestResult r) => ResultsCompanion.insert(
@@ -154,6 +162,8 @@ class AppDatabase extends _$AppDatabase {
         date: r.date,
         note: Value(r.note),
         videoPath: Value(r.videoPath),
+        bodyweightKg: Value(r.bodyweightKg),
+        heightCm: Value(r.heightCm),
       );
 
   AppSettings _toSettings(SettingsRow row) => AppSettings(

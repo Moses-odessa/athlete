@@ -57,7 +57,7 @@ void main() {
     container.read(routerProvider).push('/entry/pull_ups');
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byType(TextField).first, '20');
+    await tester.enterText(find.widgetWithText(TextField, 'Result'), '20');
     await tester.pumpAndSettle();
     await tester.tap(find.byIcon(Icons.save));
     await tester.pumpAndSettle();

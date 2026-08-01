@@ -78,7 +78,7 @@ final personalRecordsProvider = Provider<List<PersonalRecord>>((ref) {
       exercise,
       r.value,
       cohort,
-      bodyweightKg: profile.weightKg,
+      bodyweightKg: r.bodyweightKg ?? profile.weightKg,
       scaleOverride: scale,
     ).normalizedScore;
     final current = best[r.exerciseId];
