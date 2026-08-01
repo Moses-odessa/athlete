@@ -486,6 +486,31 @@ final Map<String, ExerciseInfo> kExerciseInfo = {
     radarImpact: _t('Балл идёт в «Скорость».', 'Contributes to Speed.'),
   ),
 
+  'reaction_test': ExerciseInfo(
+    whatMeasures: _t('Скорость простой зрительно-моторной реакции.',
+        'Simple visual-motor reaction speed.'),
+    whyNeeded: _t('Реакция важна для спорта и безопасности движений.',
+        'Reaction speed matters for sport and safe movement.'),
+    howToPerform: [
+      _t('Дождитесь смены цвета экрана на зелёный.',
+          'Wait for the screen to turn green.'),
+      _t('Коснитесь экрана как можно быстрее.',
+          'Tap the screen as fast as possible.'),
+      _t('Повторите 5 раз — берётся среднее.',
+          'Repeat 5 times — the average is taken.'),
+    ],
+    howToEnter: _t(
+        'Результат замеряется в приложении автоматически (миллисекунды).',
+        'The result is measured automatically in the app (milliseconds).'),
+    commonMistakes: [
+      _t('Касание до зелёного (фальстарт).', 'Tapping before green (false start).'),
+      _t('Отвлечение внимания.', 'Getting distracted.'),
+      _t('Задержка из-за тормозного экрана.', 'Lag from a slow screen.'),
+    ],
+    safety: _t('Особых противопоказаний нет.', 'No special contraindications.'),
+    radarImpact: _t('Балл идёт в «Скорость».', 'Contributes to Speed.'),
+  ),
+
   // ── Координация ───────────────────────────────────────────────────────
   'illinois_agility': ExerciseInfo(
     whatMeasures: _t('Ловкость и координацию при смене направлений.',

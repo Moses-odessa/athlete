@@ -84,7 +84,11 @@ class _CategorySection extends StatelessWidget {
                 const Icon(Icons.chevron_right),
               ],
             ),
-            onTap: () => context.push('/entry/${exercise.id}'),
+            onTap: () => context.push(
+              exercise.id == 'reaction_test'
+                  ? '/reaction'
+                  : '/entry/${exercise.id}',
+            ),
           ),
       ],
     );

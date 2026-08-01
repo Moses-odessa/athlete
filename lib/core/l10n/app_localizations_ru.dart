@@ -215,6 +215,30 @@ class AppLocalizationsRu extends AppLocalizations {
   String get unitReps => 'повт.';
 
   @override
+  String get unitMilliseconds => 'мс';
+
+  @override
+  String get reactionTapToStart => 'Коснитесь, чтобы начать';
+
+  @override
+  String get reactionWait => 'Ждите зелёного…';
+
+  @override
+  String get reactionTapNow => 'КАСАНИЕ!';
+
+  @override
+  String get reactionTooEarly => 'Слишком рано — дождитесь зелёного';
+
+  @override
+  String get reactionTrial => 'Попытка';
+
+  @override
+  String get reactionAverage => 'Среднее';
+
+  @override
+  String get reactionSaved => 'Результат реакции сохранён';
+
+  @override
   String get unitPounds => 'фунт';
 
   @override

@@ -237,6 +237,20 @@ const List<Exercise> kMvpExercises = [
     standards: CohortStandards(baseMin: 40, baseMax: 23, femaleFactor: 0.90),
   ),
 
+  Exercise(
+    id: 'reaction_test',
+    categorySlug: CategorySlugs.speed,
+    name: LocalizedText(ru: 'Тест реакции', en: 'Reaction test'),
+    shortDescription: LocalizedText(
+      ru: 'Среднее время визуальной реакции из 5 попыток. Меньше — лучше.',
+      en: 'Average visual reaction time over 5 trials. Lower is better.',
+    ),
+    unit: MeasurementUnit.milliseconds,
+    higherIsBetter: false,
+    usesBodyweight: false,
+    standards: CohortStandards(baseMin: 400, baseMax: 180, femaleFactor: 0.98),
+  ),
+
   // ── Координация ───────────────────────────────────────────────────────
   Exercise(
     id: 'illinois_agility',

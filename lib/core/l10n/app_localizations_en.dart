@@ -212,6 +212,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unitReps => 'reps';
 
   @override
+  String get unitMilliseconds => 'ms';
+
+  @override
+  String get reactionTapToStart => 'Tap to start';
+
+  @override
+  String get reactionWait => 'Wait for green…';
+
+  @override
+  String get reactionTapNow => 'TAP!';
+
+  @override
+  String get reactionTooEarly => 'Too early — wait for green';
+
+  @override
+  String get reactionTrial => 'Trial';
+
+  @override
+  String get reactionAverage => 'Average';
+
+  @override
+  String get reactionSaved => 'Reaction result saved';
+
+  @override
   String get unitPounds => 'lb';
 
   @override

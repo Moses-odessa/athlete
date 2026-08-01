@@ -500,6 +500,54 @@ abstract class AppLocalizations {
   /// **'reps'**
   String get unitReps;
 
+  /// No description provided for @unitMilliseconds.
+  ///
+  /// In en, this message translates to:
+  /// **'ms'**
+  String get unitMilliseconds;
+
+  /// No description provided for @reactionTapToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to start'**
+  String get reactionTapToStart;
+
+  /// No description provided for @reactionWait.
+  ///
+  /// In en, this message translates to:
+  /// **'Wait for green…'**
+  String get reactionWait;
+
+  /// No description provided for @reactionTapNow.
+  ///
+  /// In en, this message translates to:
+  /// **'TAP!'**
+  String get reactionTapNow;
+
+  /// No description provided for @reactionTooEarly.
+  ///
+  /// In en, this message translates to:
+  /// **'Too early — wait for green'**
+  String get reactionTooEarly;
+
+  /// No description provided for @reactionTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial'**
+  String get reactionTrial;
+
+  /// No description provided for @reactionAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Average'**
+  String get reactionAverage;
+
+  /// No description provided for @reactionSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Reaction result saved'**
+  String get reactionSaved;
+
   /// No description provided for @unitPounds.
   ///
   /// In en, this message translates to:

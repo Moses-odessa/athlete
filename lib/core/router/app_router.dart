@@ -10,6 +10,7 @@ import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/tests/presentation/catalog_screen.dart';
 import '../../features/tests/presentation/entry_screen.dart';
+import '../../features/tests/presentation/reaction_screen.dart';
 
 /// Роутер приложения. Пока профиль не заполнен — онбординг, иначе — дашборд
 /// (ТЗ разд. 3, 4.1).
@@ -37,6 +38,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/history', builder: (_, _) => const HistoryScreen()),
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
       GoRoute(path: '/science', builder: (_, _) => const ScienceScreen()),
+      GoRoute(path: '/reaction', builder: (_, _) => const ReactionScreen()),
       GoRoute(
         path: '/entry/:id',
         builder: (_, state) =>

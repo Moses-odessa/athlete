@@ -87,6 +87,8 @@ class _EntryScreenState extends ConsumerState<EntryScreen> {
         return l10n.unitReps;
       case MeasurementUnit.seconds:
         return l10n.unitSeconds;
+      case MeasurementUnit.milliseconds:
+        return l10n.unitMilliseconds;
       case MeasurementUnit.qualitative1to5:
         return '';
     }

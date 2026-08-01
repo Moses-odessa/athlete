@@ -16,6 +16,7 @@ double toMetricFactor(MeasurementUnit unit, UnitSystem system) {
       return 0.3048; // футы → м
     case MeasurementUnit.reps:
     case MeasurementUnit.seconds:
+    case MeasurementUnit.milliseconds:
     case MeasurementUnit.qualitative1to5:
       return 1;
   }
