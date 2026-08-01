@@ -131,5 +131,7 @@
   "scienceFormula": "Как считается балл",
   "scienceNorms": "Выбор нормативов",
   "scienceReferences": "Источники",
-  "scienceDisclaimerTitle": "Дисклеймер"
+  "scienceDisclaimerTitle": "Дисклеймер",
+  "achievementsTitle": "Достижения",
+  "achievementsUnlocked": "Получено"
 }

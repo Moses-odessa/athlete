@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../data/repositories/profile_repository.dart';
+import '../../features/achievements/presentation/achievements_screen.dart';
 import '../../features/dashboard/presentation/dashboard_screen.dart';
 import '../../features/education/presentation/science_screen.dart';
 import '../../features/history/presentation/history_screen.dart';
@@ -39,6 +40,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
       GoRoute(path: '/science', builder: (_, _) => const ScienceScreen()),
       GoRoute(path: '/reaction', builder: (_, _) => const ReactionScreen()),
+      GoRoute(
+          path: '/achievements',
+          builder: (_, _) => const AchievementsScreen()),
       GoRoute(
         path: '/entry/:id',
         builder: (_, state) =>

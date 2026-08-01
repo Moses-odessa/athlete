@@ -97,6 +97,13 @@ class SettingsScreen extends ConsumerWidget {
           const Divider(height: 32),
           ListTile(
             contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.emoji_events),
+            title: Text(l10n.achievementsTitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/achievements'),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.school),
             title: Text(l10n.scienceTitle),
             trailing: const Icon(Icons.chevron_right),

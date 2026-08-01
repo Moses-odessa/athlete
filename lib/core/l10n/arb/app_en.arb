@@ -137,5 +137,7 @@
   "scienceFormula": "How the score is calculated",
   "scienceNorms": "Choosing the norms",
   "scienceReferences": "Sources",
-  "scienceDisclaimerTitle": "Disclaimer"
+  "scienceDisclaimerTitle": "Disclaimer",
+  "achievementsTitle": "Achievements",
+  "achievementsUnlocked": "Unlocked"
 }

@@ -411,4 +411,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get scienceDisclaimerTitle => 'Дисклеймер';
+
+  @override
+  String get achievementsTitle => 'Достижения';
+
+  @override
+  String get achievementsUnlocked => 'Получено';
 }

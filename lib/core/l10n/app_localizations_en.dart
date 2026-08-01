@@ -408,4 +408,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scienceDisclaimerTitle => 'Disclaimer';
+
+  @override
+  String get achievementsTitle => 'Achievements';
+
+  @override
+  String get achievementsUnlocked => 'Unlocked';
 }
