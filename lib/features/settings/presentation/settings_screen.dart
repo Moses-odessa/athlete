@@ -9,6 +9,7 @@ import '../../../data/repositories/settings_repository.dart';
 import '../../../domain/entities/app_settings.dart';
 import '../../../domain/entities/scale_type.dart';
 import '../application/data_export.dart';
+import '../application/data_transfer.dart';
 
 /// Экран настроек (ТЗ разд. 4.17).
 class SettingsScreen extends ConsumerWidget {
@@ -124,6 +125,12 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           OutlinedButton.icon(
+            icon: const Icon(Icons.file_download),
+            label: Text(l10n.importData),
+            onPressed: () => _importData(context, ref),
+          ),
+          const SizedBox(height: 8),
+          OutlinedButton.icon(
             icon: Icon(Icons.delete_forever,
                 color: Theme.of(context).colorScheme.error),
             label: Text(l10n.deleteAccount,
@@ -158,6 +165,51 @@ class SettingsScreen extends ConsumerWidget {
     ref.read(resultsControllerProvider.notifier).clear();
     ref.read(profileControllerProvider.notifier).clear();
     context.go('/onboarding');
+  }
+
+  Future<void> _importData(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+    final controller = TextEditingController();
+    final source = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.importData),
+        content: TextField(
+          controller: controller,
+          maxLines: 8,
+          decoration: InputDecoration(
+            hintText: l10n.importHint,
+            border: const OutlineInputBorder(),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(controller.text),
+            child: Text(l10n.importApply),
+          ),
+        ],
+      ),
+    );
+    if (source == null || source.trim().isEmpty || !context.mounted) return;
+
+    try {
+      final data = decodeUserDataJson(source);
+      ref.read(resultsControllerProvider.notifier).setAll(data.results);
+      if (data.profile != null) {
+        ref.read(profileControllerProvider.notifier).save(data.profile!);
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.importSuccess)),
+      );
+    } catch (_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.importError)),
+      );
+    }
   }
 }
 

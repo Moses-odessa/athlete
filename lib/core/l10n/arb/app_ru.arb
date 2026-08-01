@@ -143,5 +143,10 @@
   "batteryRecord": "Записать",
   "batteryDone": "Готово",
   "batterySessionTime": "Время сессии",
-  "batteryProgress": "Выполнено"
+  "batteryProgress": "Выполнено",
+  "importData": "Импортировать мои данные",
+  "importHint": "Вставьте сюда экспортированный JSON",
+  "importApply": "Импорт",
+  "importSuccess": "Данные импортированы",
+  "importError": "Не удалось прочитать данные"
 }

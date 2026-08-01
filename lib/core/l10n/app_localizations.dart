@@ -961,6 +961,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Completed'**
   String get batteryProgress;
+
+  /// No description provided for @importData.
+  ///
+  /// In en, this message translates to:
+  /// **'Import my data'**
+  String get importData;
+
+  /// No description provided for @importHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste the exported JSON here'**
+  String get importHint;
+
+  /// No description provided for @importApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get importApply;
+
+  /// No description provided for @importSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Data imported'**
+  String get importSuccess;
+
+  /// No description provided for @importError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read the data'**
+  String get importError;
 }
 
 class _AppLocalizationsDelegate

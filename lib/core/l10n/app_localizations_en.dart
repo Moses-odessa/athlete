@@ -446,4 +446,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get batteryProgress => 'Completed';
+
+  @override
+  String get importData => 'Import my data';
+
+  @override
+  String get importHint => 'Paste the exported JSON here';
+
+  @override
+  String get importApply => 'Import';
+
+  @override
+  String get importSuccess => 'Data imported';
+
+  @override
+  String get importError => 'Could not read the data';
 }

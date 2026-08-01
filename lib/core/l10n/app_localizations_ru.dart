@@ -449,4 +449,19 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get batteryProgress => 'Выполнено';
+
+  @override
+  String get importData => 'Импортировать мои данные';
+
+  @override
+  String get importHint => 'Вставьте сюда экспортированный JSON';
+
+  @override
+  String get importApply => 'Импорт';
+
+  @override
+  String get importSuccess => 'Данные импортированы';
+
+  @override
+  String get importError => 'Не удалось прочитать данные';
 }

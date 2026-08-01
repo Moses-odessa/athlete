@@ -149,5 +149,10 @@
   "batteryRecord": "Record",
   "batteryDone": "Done",
   "batterySessionTime": "Session time",
-  "batteryProgress": "Completed"
+  "batteryProgress": "Completed",
+  "importData": "Import my data",
+  "importHint": "Paste the exported JSON here",
+  "importApply": "Import",
+  "importSuccess": "Data imported",
+  "importError": "Could not read the data"
 }
