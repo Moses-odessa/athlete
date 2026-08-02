@@ -564,4 +564,30 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cloudError => 'Une erreur s\'est produite';
+
+  @override
+  String get cloudAutoSync => 'Sauvegarde automatique dans le cloud';
+
+  @override
+  String get cloudSingleDeviceHint =>
+      'Un seul appareil actif à la fois — se connecter ailleurs déconnecte les autres.';
+
+  @override
+  String get cloudFoundTitle => 'Données trouvées dans le cloud';
+
+  @override
+  String get cloudFoundBody => 'Les télécharger sur cet appareil ?';
+
+  @override
+  String get cloudKeepLocal => 'Garder les locales';
+
+  @override
+  String get cloudOverwriteTitle => 'Écraser le cloud ?';
+
+  @override
+  String get cloudOverwriteBody =>
+      'Les données du cloud seront remplacées par celles de ce téléphone.';
+
+  @override
+  String get cloudReplace => 'Remplacer';
 }

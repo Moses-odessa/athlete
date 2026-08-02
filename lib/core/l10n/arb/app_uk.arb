@@ -179,5 +179,13 @@
   "cloudBackupDone": "Збережено у хмару",
   "cloudRestoreDone": "Відновлено з хмари",
   "cloudSignedIn": "Вхід виконано",
-  "cloudError": "Щось пішло не так"
+  "cloudError": "Щось пішло не так",
+  "cloudAutoSync": "Зберігати автоматично",
+  "cloudSingleDeviceHint": "Одночасно активний один пристрій — вхід на іншому виходить на решті.",
+  "cloudFoundTitle": "У хмарі є дані",
+  "cloudFoundBody": "Завантажити їх на цей пристрій?",
+  "cloudKeepLocal": "Залишити локальні",
+  "cloudOverwriteTitle": "Замінити хмару?",
+  "cloudOverwriteBody": "Дані у хмарі будуть замінені даними з цього телефону.",
+  "cloudReplace": "Замінити"
 }

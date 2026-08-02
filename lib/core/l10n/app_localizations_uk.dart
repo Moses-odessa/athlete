@@ -561,4 +561,30 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get cloudError => 'Щось пішло не так';
+
+  @override
+  String get cloudAutoSync => 'Зберігати автоматично';
+
+  @override
+  String get cloudSingleDeviceHint =>
+      'Одночасно активний один пристрій — вхід на іншому виходить на решті.';
+
+  @override
+  String get cloudFoundTitle => 'У хмарі є дані';
+
+  @override
+  String get cloudFoundBody => 'Завантажити їх на цей пристрій?';
+
+  @override
+  String get cloudKeepLocal => 'Залишити локальні';
+
+  @override
+  String get cloudOverwriteTitle => 'Замінити хмару?';
+
+  @override
+  String get cloudOverwriteBody =>
+      'Дані у хмарі будуть замінені даними з цього телефону.';
+
+  @override
+  String get cloudReplace => 'Замінити';
 }

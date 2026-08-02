@@ -19,12 +19,16 @@ class AppSettings {
 
   final bool notificationsEnabled;
 
+  /// Автоматически сохранять данные в облако при изменениях (ТЗ M2).
+  final bool autoCloudSync;
+
   const AppSettings({
     this.units = UnitSystem.metric,
     this.themeMode = AppThemeMode.dark,
     this.languageCode,
     this.scaleType = ScaleType.linear,
     this.notificationsEnabled = false,
+    this.autoCloudSync = true,
   });
 
   static const defaults = AppSettings();
@@ -36,6 +40,7 @@ class AppSettings {
     bool clearLanguage = false,
     ScaleType? scaleType,
     bool? notificationsEnabled,
+    bool? autoCloudSync,
   }) {
     return AppSettings(
       units: units ?? this.units,
@@ -43,6 +48,7 @@ class AppSettings {
       languageCode: clearLanguage ? null : (languageCode ?? this.languageCode),
       scaleType: scaleType ?? this.scaleType,
       notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
+      autoCloudSync: autoCloudSync ?? this.autoCloudSync,
     );
   }
 }

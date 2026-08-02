@@ -1198,6 +1198,21 @@ class $SettingsRowsTable extends SettingsRows
       'CHECK ("notifications_enabled" IN (0, 1))',
     ),
   );
+  static const VerificationMeta _autoCloudSyncMeta = const VerificationMeta(
+    'autoCloudSync',
+  );
+  @override
+  late final GeneratedColumn<bool> autoCloudSync = GeneratedColumn<bool>(
+    'auto_cloud_sync',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("auto_cloud_sync" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1206,6 +1221,7 @@ class $SettingsRowsTable extends SettingsRows
     languageCode,
     scaleType,
     notificationsEnabled,
+    autoCloudSync,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1266,6 +1282,15 @@ class $SettingsRowsTable extends SettingsRows
     } else if (isInserting) {
       context.missing(_notificationsEnabledMeta);
     }
+    if (data.containsKey('auto_cloud_sync')) {
+      context.handle(
+        _autoCloudSyncMeta,
+        autoCloudSync.isAcceptableOrUnknown(
+          data['auto_cloud_sync']!,
+          _autoCloudSyncMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -1299,6 +1324,10 @@ class $SettingsRowsTable extends SettingsRows
         DriftSqlType.bool,
         data['${effectivePrefix}notifications_enabled'],
       )!,
+      autoCloudSync: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}auto_cloud_sync'],
+      )!,
     );
   }
 
@@ -1315,6 +1344,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   final String? languageCode;
   final String scaleType;
   final bool notificationsEnabled;
+  final bool autoCloudSync;
   const SettingsRow({
     required this.id,
     required this.units,
@@ -1322,6 +1352,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     this.languageCode,
     required this.scaleType,
     required this.notificationsEnabled,
+    required this.autoCloudSync,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1334,6 +1365,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     }
     map['scale_type'] = Variable<String>(scaleType);
     map['notifications_enabled'] = Variable<bool>(notificationsEnabled);
+    map['auto_cloud_sync'] = Variable<bool>(autoCloudSync);
     return map;
   }
 
@@ -1347,6 +1379,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           : Value(languageCode),
       scaleType: Value(scaleType),
       notificationsEnabled: Value(notificationsEnabled),
+      autoCloudSync: Value(autoCloudSync),
     );
   }
 
@@ -1364,6 +1397,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       notificationsEnabled: serializer.fromJson<bool>(
         json['notificationsEnabled'],
       ),
+      autoCloudSync: serializer.fromJson<bool>(json['autoCloudSync']),
     );
   }
   @override
@@ -1376,6 +1410,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       'languageCode': serializer.toJson<String?>(languageCode),
       'scaleType': serializer.toJson<String>(scaleType),
       'notificationsEnabled': serializer.toJson<bool>(notificationsEnabled),
+      'autoCloudSync': serializer.toJson<bool>(autoCloudSync),
     };
   }
 
@@ -1386,6 +1421,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     Value<String?> languageCode = const Value.absent(),
     String? scaleType,
     bool? notificationsEnabled,
+    bool? autoCloudSync,
   }) => SettingsRow(
     id: id ?? this.id,
     units: units ?? this.units,
@@ -1393,6 +1429,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     languageCode: languageCode.present ? languageCode.value : this.languageCode,
     scaleType: scaleType ?? this.scaleType,
     notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
+    autoCloudSync: autoCloudSync ?? this.autoCloudSync,
   );
   SettingsRow copyWithCompanion(SettingsRowsCompanion data) {
     return SettingsRow(
@@ -1406,6 +1443,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       notificationsEnabled: data.notificationsEnabled.present
           ? data.notificationsEnabled.value
           : this.notificationsEnabled,
+      autoCloudSync: data.autoCloudSync.present
+          ? data.autoCloudSync.value
+          : this.autoCloudSync,
     );
   }
 
@@ -1417,7 +1457,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ..write('themeMode: $themeMode, ')
           ..write('languageCode: $languageCode, ')
           ..write('scaleType: $scaleType, ')
-          ..write('notificationsEnabled: $notificationsEnabled')
+          ..write('notificationsEnabled: $notificationsEnabled, ')
+          ..write('autoCloudSync: $autoCloudSync')
           ..write(')'))
         .toString();
   }
@@ -1430,6 +1471,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     languageCode,
     scaleType,
     notificationsEnabled,
+    autoCloudSync,
   );
   @override
   bool operator ==(Object other) =>
@@ -1440,7 +1482,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           other.themeMode == this.themeMode &&
           other.languageCode == this.languageCode &&
           other.scaleType == this.scaleType &&
-          other.notificationsEnabled == this.notificationsEnabled);
+          other.notificationsEnabled == this.notificationsEnabled &&
+          other.autoCloudSync == this.autoCloudSync);
 }
 
 class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
@@ -1450,6 +1493,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<String?> languageCode;
   final Value<String> scaleType;
   final Value<bool> notificationsEnabled;
+  final Value<bool> autoCloudSync;
   const SettingsRowsCompanion({
     this.id = const Value.absent(),
     this.units = const Value.absent(),
@@ -1457,6 +1501,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     this.languageCode = const Value.absent(),
     this.scaleType = const Value.absent(),
     this.notificationsEnabled = const Value.absent(),
+    this.autoCloudSync = const Value.absent(),
   });
   SettingsRowsCompanion.insert({
     this.id = const Value.absent(),
@@ -1465,6 +1510,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     this.languageCode = const Value.absent(),
     required String scaleType,
     required bool notificationsEnabled,
+    this.autoCloudSync = const Value.absent(),
   }) : units = Value(units),
        themeMode = Value(themeMode),
        scaleType = Value(scaleType),
@@ -1476,6 +1522,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     Expression<String>? languageCode,
     Expression<String>? scaleType,
     Expression<bool>? notificationsEnabled,
+    Expression<bool>? autoCloudSync,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1485,6 +1532,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
       if (scaleType != null) 'scale_type': scaleType,
       if (notificationsEnabled != null)
         'notifications_enabled': notificationsEnabled,
+      if (autoCloudSync != null) 'auto_cloud_sync': autoCloudSync,
     });
   }
 
@@ -1495,6 +1543,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     Value<String?>? languageCode,
     Value<String>? scaleType,
     Value<bool>? notificationsEnabled,
+    Value<bool>? autoCloudSync,
   }) {
     return SettingsRowsCompanion(
       id: id ?? this.id,
@@ -1503,6 +1552,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
       languageCode: languageCode ?? this.languageCode,
       scaleType: scaleType ?? this.scaleType,
       notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
+      autoCloudSync: autoCloudSync ?? this.autoCloudSync,
     );
   }
 
@@ -1527,6 +1577,9 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     if (notificationsEnabled.present) {
       map['notifications_enabled'] = Variable<bool>(notificationsEnabled.value);
     }
+    if (autoCloudSync.present) {
+      map['auto_cloud_sync'] = Variable<bool>(autoCloudSync.value);
+    }
     return map;
   }
 
@@ -1538,7 +1591,8 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
           ..write('themeMode: $themeMode, ')
           ..write('languageCode: $languageCode, ')
           ..write('scaleType: $scaleType, ')
-          ..write('notificationsEnabled: $notificationsEnabled')
+          ..write('notificationsEnabled: $notificationsEnabled, ')
+          ..write('autoCloudSync: $autoCloudSync')
           ..write(')'))
         .toString();
   }
@@ -2115,6 +2169,7 @@ typedef $$SettingsRowsTableCreateCompanionBuilder =
       Value<String?> languageCode,
       required String scaleType,
       required bool notificationsEnabled,
+      Value<bool> autoCloudSync,
     });
 typedef $$SettingsRowsTableUpdateCompanionBuilder =
     SettingsRowsCompanion Function({
@@ -2124,6 +2179,7 @@ typedef $$SettingsRowsTableUpdateCompanionBuilder =
       Value<String?> languageCode,
       Value<String> scaleType,
       Value<bool> notificationsEnabled,
+      Value<bool> autoCloudSync,
     });
 
 class $$SettingsRowsTableFilterComposer
@@ -2162,6 +2218,11 @@ class $$SettingsRowsTableFilterComposer
 
   ColumnFilters<bool> get notificationsEnabled => $composableBuilder(
     column: $table.notificationsEnabled,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get autoCloudSync => $composableBuilder(
+    column: $table.autoCloudSync,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -2204,6 +2265,11 @@ class $$SettingsRowsTableOrderingComposer
     column: $table.notificationsEnabled,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get autoCloudSync => $composableBuilder(
+    column: $table.autoCloudSync,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SettingsRowsTableAnnotationComposer
@@ -2234,6 +2300,11 @@ class $$SettingsRowsTableAnnotationComposer
 
   GeneratedColumn<bool> get notificationsEnabled => $composableBuilder(
     column: $table.notificationsEnabled,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get autoCloudSync => $composableBuilder(
+    column: $table.autoCloudSync,
     builder: (column) => column,
   );
 }
@@ -2275,6 +2346,7 @@ class $$SettingsRowsTableTableManager
                 Value<String?> languageCode = const Value.absent(),
                 Value<String> scaleType = const Value.absent(),
                 Value<bool> notificationsEnabled = const Value.absent(),
+                Value<bool> autoCloudSync = const Value.absent(),
               }) => SettingsRowsCompanion(
                 id: id,
                 units: units,
@@ -2282,6 +2354,7 @@ class $$SettingsRowsTableTableManager
                 languageCode: languageCode,
                 scaleType: scaleType,
                 notificationsEnabled: notificationsEnabled,
+                autoCloudSync: autoCloudSync,
               ),
           createCompanionCallback:
               ({
@@ -2291,6 +2364,7 @@ class $$SettingsRowsTableTableManager
                 Value<String?> languageCode = const Value.absent(),
                 required String scaleType,
                 required bool notificationsEnabled,
+                Value<bool> autoCloudSync = const Value.absent(),
               }) => SettingsRowsCompanion.insert(
                 id: id,
                 units: units,
@@ -2298,6 +2372,7 @@ class $$SettingsRowsTableTableManager
                 languageCode: languageCode,
                 scaleType: scaleType,
                 notificationsEnabled: notificationsEnabled,
+                autoCloudSync: autoCloudSync,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

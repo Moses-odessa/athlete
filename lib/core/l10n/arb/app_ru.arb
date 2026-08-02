@@ -179,5 +179,13 @@
   "cloudBackupDone": "Сохранено в облако",
   "cloudRestoreDone": "Восстановлено из облака",
   "cloudSignedIn": "Вход выполнен",
-  "cloudError": "Что-то пошло не так"
+  "cloudError": "Что-то пошло не так",
+  "cloudAutoSync": "Сохранять автоматически",
+  "cloudSingleDeviceHint": "Одновременно активно одно устройство — вход на другом выходит на остальных.",
+  "cloudFoundTitle": "В облаке есть данные",
+  "cloudFoundBody": "Загрузить их на это устройство?",
+  "cloudKeepLocal": "Оставить локальные",
+  "cloudOverwriteTitle": "Заменить облако?",
+  "cloudOverwriteBody": "Данные в облаке будут заменены данными с этого телефона.",
+  "cloudReplace": "Заменить"
 }

@@ -562,4 +562,30 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get cloudError => 'Что-то пошло не так';
+
+  @override
+  String get cloudAutoSync => 'Сохранять автоматически';
+
+  @override
+  String get cloudSingleDeviceHint =>
+      'Одновременно активно одно устройство — вход на другом выходит на остальных.';
+
+  @override
+  String get cloudFoundTitle => 'В облаке есть данные';
+
+  @override
+  String get cloudFoundBody => 'Загрузить их на это устройство?';
+
+  @override
+  String get cloudKeepLocal => 'Оставить локальные';
+
+  @override
+  String get cloudOverwriteTitle => 'Заменить облако?';
+
+  @override
+  String get cloudOverwriteBody =>
+      'Данные в облаке будут заменены данными с этого телефона.';
+
+  @override
+  String get cloudReplace => 'Заменить';
 }

@@ -179,5 +179,13 @@
   "cloudBackupDone": "Sauvegardé dans le cloud",
   "cloudRestoreDone": "Restauré depuis le cloud",
   "cloudSignedIn": "Connecté",
-  "cloudError": "Une erreur s'est produite"
+  "cloudError": "Une erreur s'est produite",
+  "cloudAutoSync": "Sauvegarde automatique dans le cloud",
+  "cloudSingleDeviceHint": "Un seul appareil actif à la fois — se connecter ailleurs déconnecte les autres.",
+  "cloudFoundTitle": "Données trouvées dans le cloud",
+  "cloudFoundBody": "Les télécharger sur cet appareil ?",
+  "cloudKeepLocal": "Garder les locales",
+  "cloudOverwriteTitle": "Écraser le cloud ?",
+  "cloudOverwriteBody": "Les données du cloud seront remplacées par celles de ce téléphone.",
+  "cloudReplace": "Remplacer"
 }

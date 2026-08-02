@@ -24,6 +24,9 @@ class SettingsController extends Notifier<AppSettings> {
 
   void setNotifications(bool enabled) =>
       state = state.copyWith(notificationsEnabled: enabled);
+
+  void setAutoCloudSync(bool enabled) =>
+      state = state.copyWith(autoCloudSync: enabled);
 }
 
 final settingsControllerProvider =

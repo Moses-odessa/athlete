@@ -559,4 +559,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cloudError => 'Something went wrong';
+
+  @override
+  String get cloudAutoSync => 'Auto-save to cloud';
+
+  @override
+  String get cloudSingleDeviceHint =>
+      'One active device at a time — signing in elsewhere signs the others out.';
+
+  @override
+  String get cloudFoundTitle => 'Cloud data found';
+
+  @override
+  String get cloudFoundBody => 'Download it to this device?';
+
+  @override
+  String get cloudKeepLocal => 'Keep local';
+
+  @override
+  String get cloudOverwriteTitle => 'Overwrite cloud?';
+
+  @override
+  String get cloudOverwriteBody =>
+      'Cloud data will be replaced with the data on this phone.';
+
+  @override
+  String get cloudReplace => 'Replace';
 }

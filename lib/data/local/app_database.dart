@@ -53,6 +53,8 @@ class SettingsRows extends Table {
   TextColumn get languageCode => text().nullable()();
   TextColumn get scaleType => text()();
   BoolColumn get notificationsEnabled => boolean()();
+  BoolColumn get autoCloudSync =>
+      boolean().withDefault(const Constant(true))();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -66,7 +68,7 @@ class AppDatabase extends _$AppDatabase {
       : super(executor ?? driftDatabase(name: 'athlete_db'));
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -76,6 +78,9 @@ class AppDatabase extends _$AppDatabase {
           if (from < 3) {
             await m.addColumn(results, results.bodyweightKg);
             await m.addColumn(results, results.heightCm);
+          }
+          if (from < 4) {
+            await m.addColumn(settingsRows, settingsRows.autoCloudSync);
           }
         },
       );
@@ -172,6 +177,7 @@ class AppDatabase extends _$AppDatabase {
         languageCode: row.languageCode,
         scaleType: ScaleType.values.byName(row.scaleType),
         notificationsEnabled: row.notificationsEnabled,
+        autoCloudSync: row.autoCloudSync,
       );
 
   SettingsRowsCompanion _toSettingsRow(AppSettings s) => SettingsRowsCompanion(
@@ -181,5 +187,6 @@ class AppDatabase extends _$AppDatabase {
         languageCode: Value(s.languageCode),
         scaleType: Value(s.scaleType.name),
         notificationsEnabled: Value(s.notificationsEnabled),
+        autoCloudSync: Value(s.autoCloudSync),
       );
 }

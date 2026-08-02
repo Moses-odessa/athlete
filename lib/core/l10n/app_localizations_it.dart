@@ -563,4 +563,30 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get cloudError => 'Qualcosa è andato storto';
+
+  @override
+  String get cloudAutoSync => 'Salva automaticamente nel cloud';
+
+  @override
+  String get cloudSingleDeviceHint =>
+      'Un solo dispositivo attivo alla volta — l\'accesso altrove disconnette gli altri.';
+
+  @override
+  String get cloudFoundTitle => 'Dati trovati nel cloud';
+
+  @override
+  String get cloudFoundBody => 'Scaricarli su questo dispositivo?';
+
+  @override
+  String get cloudKeepLocal => 'Mantieni locali';
+
+  @override
+  String get cloudOverwriteTitle => 'Sovrascrivere il cloud?';
+
+  @override
+  String get cloudOverwriteBody =>
+      'I dati nel cloud saranno sostituiti con quelli di questo telefono.';
+
+  @override
+  String get cloudReplace => 'Sostituisci';
 }

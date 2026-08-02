@@ -179,5 +179,13 @@
   "cloudBackupDone": "In der Cloud gesichert",
   "cloudRestoreDone": "Aus der Cloud wiederhergestellt",
   "cloudSignedIn": "Angemeldet",
-  "cloudError": "Etwas ist schiefgelaufen"
+  "cloudError": "Etwas ist schiefgelaufen",
+  "cloudAutoSync": "Automatisch in die Cloud speichern",
+  "cloudSingleDeviceHint": "Nur ein aktives Gerät gleichzeitig — eine Anmeldung anderswo meldet die anderen ab.",
+  "cloudFoundTitle": "Cloud-Daten gefunden",
+  "cloudFoundBody": "Auf dieses Gerät herunterladen?",
+  "cloudKeepLocal": "Lokale behalten",
+  "cloudOverwriteTitle": "Cloud überschreiben?",
+  "cloudOverwriteBody": "Die Cloud-Daten werden durch die Daten auf diesem Telefon ersetzt.",
+  "cloudReplace": "Ersetzen"
 }

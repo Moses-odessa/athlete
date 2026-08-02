@@ -1185,6 +1185,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong'**
   String get cloudError;
+
+  /// No description provided for @cloudAutoSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-save to cloud'**
+  String get cloudAutoSync;
+
+  /// No description provided for @cloudSingleDeviceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'One active device at a time — signing in elsewhere signs the others out.'**
+  String get cloudSingleDeviceHint;
+
+  /// No description provided for @cloudFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud data found'**
+  String get cloudFoundTitle;
+
+  /// No description provided for @cloudFoundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Download it to this device?'**
+  String get cloudFoundBody;
+
+  /// No description provided for @cloudKeepLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep local'**
+  String get cloudKeepLocal;
+
+  /// No description provided for @cloudOverwriteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overwrite cloud?'**
+  String get cloudOverwriteTitle;
+
+  /// No description provided for @cloudOverwriteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud data will be replaced with the data on this phone.'**
+  String get cloudOverwriteBody;
+
+  /// No description provided for @cloudReplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace'**
+  String get cloudReplace;
 }
 
 class _AppLocalizationsDelegate

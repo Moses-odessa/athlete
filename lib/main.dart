@@ -8,6 +8,7 @@ import 'core/supabase/supabase_config.dart';
 import 'data/repositories/persistence.dart';
 import 'data/repositories/settings_repository.dart';
 import 'domain/entities/app_settings.dart';
+import 'features/cloud/application/cloud_autosync.dart';
 
 /// DSN Sentry передаётся при сборке: `--dart-define=SENTRY_DSN=...`.
 /// Пусто → мониторинг ошибок выключен (dev/тесты работают как обычно).
@@ -19,6 +20,7 @@ Future<void> main() async {
   final container = ProviderContainer();
   // Загрузка сохранённых данных до первого кадра (без мигания онбординга).
   await bootstrapPersistence(container);
+  setupAutoCloudSync(container);
 
   final app = UncontrolledProviderScope(
     container: container,
