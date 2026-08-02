@@ -22,8 +22,10 @@ subprojects {
 // Обход несовместимости: некоторые плагины (sentry_flutter) задают Kotlin
 // language version 1.6, который тулчейн Flutter 3.44 (Kotlin 2.x) уже не
 // поддерживает. Принудительно поднимаем до 2.0 для всех подпроектов.
-subprojects {
-    afterEvaluate {
+// projectsEvaluated — после оценки всех проектов (afterEvaluate нельзя:
+// evaluationDependsOn(":app") уже оценил подпроекты).
+gradle.projectsEvaluated {
+    subprojects {
         tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
             compilerOptions {
                 languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
