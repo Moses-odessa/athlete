@@ -10,7 +10,9 @@ Flutter-приложение «Тренируйся как атлет»: оце�
 Реализован весь функционал ТЗ (MVP + M2 + часть M3).
 
 ## Среда разработки (Windows)
-- **Flutter SDK: `C:\src\flutter`** (3.44.8 / Dart 3.12.2), добавлен в PATH.
+- **Flutter SDK: `C:\src\flutter`**, канал **beta** (3.47.x / Dart 3.13.x),
+  добавлен в PATH. На beta перешли ради `sentry_flutter 9.26` (на stable 3.44
+  он не собирался). CI тоже на beta (env FLUTTER_VERSION/FLUTTER_CHANNEL).
   В PowerShell перед командами: `$env:PATH="$env:PATH;C:\src\flutter\bin"`.
 - **git через schannel** (`git config --global http.sslBackend schannel`) — иначе
   SSL-ошибки за TLS-инспектирующим прокси.
@@ -79,10 +81,9 @@ Feature-first + clean layering (ТЗ разд. 10): `lib/core`, `lib/data`,
   только в debug/profile).
 - `ndkVersion = "28.2.13676358"` (плагины требуют; см. app/build.gradle.kts).
 - Подпись релиза — из `android/key.properties` (не в git), иначе debug-ключ.
-- **Sentry vs Kotlin**: sentry_flutter 9.0.0 (макс. под Dart 3.12) задаёт Kotlin
-  languageVersion 1.6, который тулчейн Flutter 3.44 отвергает. Обход — форс
-  Kotlin 2.0 для подпроектов в `android/build.gradle.kts`. Чистое решение —
-  апгрейд Flutter SDK (тогда sentry_flutter 9.26 и без обхода).
+- **Sentry**: на beta (`sentry_flutter 9.26`) собирается без хаков —
+  `android/build.gradle.kts` и `app/build.gradle.kts` чистые (дефолтные
+  compileSdk/ndk из Flutter). На stable 3.44 не собирался (Kotlin 1.6).
 
 ## Что вне репозитория / на будущее
 - Полный перевод доменного контента на uk/de/it/fr.

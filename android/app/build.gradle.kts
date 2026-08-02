@@ -18,11 +18,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "global.aspira.athlete_index"
-    // Требование транзитивного package_info_plus (через sentry_flutter): ≥ 36.
-    compileSdk = 36
-    // Явно фиксируем NDK: нативные плагины требуют новее, чем берётся по
-    // умолчанию (берём максимальную из требуемых — они обратно совместимы).
-    ndkVersion = "28.2.13676358"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

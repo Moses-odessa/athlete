@@ -10,7 +10,8 @@ on:
   workflow_dispatch:
 
 env:
-  FLUTTER_VERSION: '3.44.8'
+  FLUTTER_VERSION: '3.47.0-0.3.pre'
+  FLUTTER_CHANNEL: 'beta'
 
 jobs:
   build-apk:
@@ -27,7 +28,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: stable
+          channel: ${{ env.FLUTTER_CHANNEL }}
           cache: true
 
       - run: flutter pub get
