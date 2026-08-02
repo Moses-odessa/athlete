@@ -26,6 +26,10 @@ subprojects {
 // evaluationDependsOn(":app") уже оценил подпроекты).
 gradle.projectsEvaluated {
     subprojects {
+        // Плагины-модули (sentry_flutter и др.) собираются против compileSdk 34
+        // по дефолту Flutter; package_info_plus требует ≥ 36. Форсим для всех.
+        extensions.findByType(com.android.build.gradle.BaseExtension::class.java)
+            ?.compileSdkVersion(36)
         tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
             compilerOptions {
                 languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
