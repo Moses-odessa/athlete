@@ -23,3 +23,8 @@ create policy "own backup - update" on public.backups
 
 create policy "own backup - delete" on public.backups
   for delete using (auth.uid() = user_id);
+
+-- Табличные привилегии для роли авторизованных пользователей. Нужны, когда
+-- «Automatically expose new tables» выключено. Доступ к строкам всё равно
+-- ограничивают RLS-политики выше (каждый видит только свою строку).
+grant select, insert, update, delete on public.backups to authenticated;
