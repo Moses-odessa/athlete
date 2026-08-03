@@ -1,10 +1,12 @@
 import 'package:athlete_index/data/repositories/profile_repository.dart';
 import 'package:athlete_index/data/repositories/results_repository.dart';
+import 'package:athlete_index/data/repositories/settings_repository.dart';
 import 'package:athlete_index/domain/entities/entities.dart';
 import 'package:athlete_index/features/dashboard/application/demo_results.dart';
 import 'package:athlete_index/core/widgets/radar_chart_view.dart';
 import 'package:athlete_index/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:athlete_index/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:athlete_index/features/onboarding/presentation/welcome_screen.dart';
 import 'package:athlete_index/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,8 +25,23 @@ UserProfile _profile() => UserProfile(
     );
 
 void main() {
-  testWidgets('без профиля открывается онбординг', (tester) async {
+  testWidgets('новый пользователь видит welcome-гейт', (tester) async {
     await tester.pumpWidget(const ProviderScope(child: AthleteApp()));
+    await tester.pumpAndSettle();
+    expect(find.byType(WelcomeScreen), findsOneWidget);
+  });
+
+  testWidgets('после гейта без профиля открывается онбординг', (tester) async {
+    final container = ProviderContainer();
+    addTearDown(container.dispose);
+    container.read(settingsControllerProvider.notifier).setAuthGatePassed(true);
+
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: const AthleteApp(),
+      ),
+    );
     await tester.pumpAndSettle();
     expect(find.byType(OnboardingScreen), findsOneWidget);
   });

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart'
-    show AuthException, SignOutScope, Supabase, SupabaseClient;
+    show AuthException, Supabase, SupabaseClient;
 
 import '../../../core/supabase/supabase_config.dart';
 import '../../../data/remote/cloud_sync.dart';
@@ -86,10 +86,8 @@ class CloudController extends Notifier<CloudState> {
         state = state.copyWith(busy: false);
         return const AuthOutcome(ok: false);
       }
-      // Одно активное устройство: отзываем сессии остальных (ТЗ M2).
-      try {
-        await _client.auth.signOut(scope: SignOutScope.others);
-      } catch (_) {}
+      // Мультидевайс: сессии других устройств НЕ отзываем — данные сходятся
+      // через realtime-объединение (ТЗ M2, #4).
       state = state.copyWith(busy: false, email: _client.auth.currentUser?.email);
       final hasCloud = await _cloudHasData();
       return AuthOutcome(ok: true, cloudHasData: hasCloud);
@@ -140,7 +138,7 @@ class CloudController extends Notifier<CloudState> {
     }
   }
 
-  /// Восстановить данные из облака в локальные контроллеры.
+  /// Восстановить данные из облака в локальные контроллеры (облако → локально).
   Future<bool> restore() async {
     state = state.copyWith(busy: true, errorText: null);
     try {
@@ -151,6 +149,31 @@ class CloudController extends Notifier<CloudState> {
           ref.read(profileControllerProvider.notifier).save(data.profile!);
         }
       }
+      state = state.copyWith(busy: false);
+      return true;
+    } catch (e) {
+      state = state.copyWith(busy: false, errorText: e.toString());
+      return false;
+    }
+  }
+
+  /// Объединить локальные и облачные данные (все результаты вместе), сохранить
+  /// текущий локальный профиль, затем выгрузить объединённый набор в облако (#2).
+  Future<bool> merge() async {
+    state = state.copyWith(busy: true, errorText: null);
+    try {
+      final remote = await ref.read(cloudSyncProvider).pull();
+      final local = UserData(
+        ref.read(profileControllerProvider),
+        ref.read(resultsControllerProvider),
+      );
+      final merged =
+          remote == null ? local : mergeUserData(local, remote);
+      ref.read(resultsControllerProvider.notifier).setAll(merged.results);
+      if (merged.profile != null) {
+        ref.read(profileControllerProvider.notifier).save(merged.profile!);
+      }
+      await ref.read(cloudSyncProvider).push(merged);
       state = state.copyWith(busy: false);
       return true;
     } catch (e) {

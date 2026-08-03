@@ -1207,7 +1207,7 @@ abstract class AppLocalizations {
   /// No description provided for @cloudFoundBody.
   ///
   /// In en, this message translates to:
-  /// **'Download it to this device?'**
+  /// **'This account already has data in the cloud. Keep the cloud data (local is discarded), keep the local data (cloud is overwritten), or merge to combine all results.'**
   String get cloudFoundBody;
 
   /// No description provided for @cloudKeepLocal.
@@ -1233,6 +1233,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Replace'**
   String get cloudReplace;
+
+  /// No description provided for @welcomeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Test your all-round fitness and track your progress. Sign in to sync across devices, or start right away.'**
+  String get welcomeBody;
+
+  /// No description provided for @welcomeAuth.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in or sign up'**
+  String get welcomeAuth;
+
+  /// No description provided for @welcomeContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue without an account'**
+  String get welcomeContinue;
+
+  /// No description provided for @cloudMerge.
+  ///
+  /// In en, this message translates to:
+  /// **'Merge'**
+  String get cloudMerge;
+
+  /// No description provided for @cloudMergeDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Data merged'**
+  String get cloudMergeDone;
+
+  /// No description provided for @cloudAutoSyncStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data syncs automatically across all your devices.'**
+  String get cloudAutoSyncStatus;
 }
 
 class _AppLocalizationsDelegate

@@ -571,7 +571,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cloudFoundTitle => 'Cloud data found';
 
   @override
-  String get cloudFoundBody => 'Download it to this device?';
+  String get cloudFoundBody =>
+      'This account already has data in the cloud. Keep the cloud data (local is discarded), keep the local data (cloud is overwritten), or merge to combine all results.';
 
   @override
   String get cloudKeepLocal => 'Keep local';
@@ -585,4 +586,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cloudReplace => 'Replace';
+
+  @override
+  String get welcomeBody =>
+      'Test your all-round fitness and track your progress. Sign in to sync across devices, or start right away.';
+
+  @override
+  String get welcomeAuth => 'Sign in or sign up';
+
+  @override
+  String get welcomeContinue => 'Continue without an account';
+
+  @override
+  String get cloudMerge => 'Merge';
+
+  @override
+  String get cloudMergeDone => 'Data merged';
+
+  @override
+  String get cloudAutoSyncStatus =>
+      'Your data syncs automatically across all your devices.';
 }

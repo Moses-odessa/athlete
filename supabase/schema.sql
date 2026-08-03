@@ -28,3 +28,9 @@ create policy "own backup - delete" on public.backups
 -- «Automatically expose new tables» выключено. Доступ к строкам всё равно
 -- ограничивают RLS-политики выше (каждый видит только свою строку).
 grant select, insert, update, delete on public.backups to authenticated;
+
+-- Realtime для мультидевайс-синхронизации (ТЗ M2, #4): правки с одного
+-- устройства подтягиваются на другое. Публикуем таблицу в supabase_realtime и
+-- включаем полную реплику строки, чтобы работал фильтр по user_id.
+alter table public.backups replica identity full;
+alter publication supabase_realtime add table public.backups;

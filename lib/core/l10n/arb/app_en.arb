@@ -189,9 +189,15 @@
   "cloudAutoSync": "Auto-save to cloud",
   "cloudSingleDeviceHint": "One active device at a time — signing in elsewhere signs the others out.",
   "cloudFoundTitle": "Cloud data found",
-  "cloudFoundBody": "Download it to this device?",
+  "cloudFoundBody": "This account already has data in the cloud. Keep the cloud data (local is discarded), keep the local data (cloud is overwritten), or merge to combine all results.",
   "cloudKeepLocal": "Keep local",
   "cloudOverwriteTitle": "Overwrite cloud?",
   "cloudOverwriteBody": "Cloud data will be replaced with the data on this phone.",
-  "cloudReplace": "Replace"
+  "cloudReplace": "Replace",
+  "welcomeBody": "Test your all-round fitness and track your progress. Sign in to sync across devices, or start right away.",
+  "welcomeAuth": "Sign in or sign up",
+  "welcomeContinue": "Continue without an account",
+  "cloudMerge": "Merge",
+  "cloudMergeDone": "Data merged",
+  "cloudAutoSyncStatus": "Your data syncs automatically across all your devices."
 }

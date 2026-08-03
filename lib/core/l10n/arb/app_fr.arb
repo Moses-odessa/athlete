@@ -183,9 +183,15 @@
   "cloudAutoSync": "Sauvegarde automatique dans le cloud",
   "cloudSingleDeviceHint": "Un seul appareil actif à la fois — se connecter ailleurs déconnecte les autres.",
   "cloudFoundTitle": "Données trouvées dans le cloud",
-  "cloudFoundBody": "Les télécharger sur cet appareil ?",
+  "cloudFoundBody": "Ce compte contient déjà des données dans le cloud. Conserver les données du cloud (les locales sont supprimées), conserver les données locales (le cloud est écrasé), ou fusionner pour combiner tous les résultats.",
   "cloudKeepLocal": "Garder les locales",
   "cloudOverwriteTitle": "Écraser le cloud ?",
   "cloudOverwriteBody": "Les données du cloud seront remplacées par celles de ce téléphone.",
-  "cloudReplace": "Remplacer"
+  "cloudReplace": "Remplacer",
+  "welcomeBody": "Évaluez votre condition physique complète et suivez vos progrès. Connectez-vous pour synchroniser entre appareils, ou commencez tout de suite.",
+  "welcomeAuth": "Se connecter ou s'inscrire",
+  "welcomeContinue": "Continuer sans compte",
+  "cloudMerge": "Fusionner",
+  "cloudMergeDone": "Données fusionnées",
+  "cloudAutoSyncStatus": "Vos données se synchronisent automatiquement sur tous vos appareils."
 }

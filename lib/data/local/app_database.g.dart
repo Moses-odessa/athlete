@@ -1213,6 +1213,21 @@ class $SettingsRowsTable extends SettingsRows
     ),
     defaultValue: const Constant(true),
   );
+  static const VerificationMeta _authGatePassedMeta = const VerificationMeta(
+    'authGatePassed',
+  );
+  @override
+  late final GeneratedColumn<bool> authGatePassed = GeneratedColumn<bool>(
+    'auth_gate_passed',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("auth_gate_passed" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1222,6 +1237,7 @@ class $SettingsRowsTable extends SettingsRows
     scaleType,
     notificationsEnabled,
     autoCloudSync,
+    authGatePassed,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1291,6 +1307,15 @@ class $SettingsRowsTable extends SettingsRows
         ),
       );
     }
+    if (data.containsKey('auth_gate_passed')) {
+      context.handle(
+        _authGatePassedMeta,
+        authGatePassed.isAcceptableOrUnknown(
+          data['auth_gate_passed']!,
+          _authGatePassedMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -1328,6 +1353,10 @@ class $SettingsRowsTable extends SettingsRows
         DriftSqlType.bool,
         data['${effectivePrefix}auto_cloud_sync'],
       )!,
+      authGatePassed: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}auth_gate_passed'],
+      )!,
     );
   }
 
@@ -1345,6 +1374,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   final String scaleType;
   final bool notificationsEnabled;
   final bool autoCloudSync;
+  final bool authGatePassed;
   const SettingsRow({
     required this.id,
     required this.units,
@@ -1353,6 +1383,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     required this.scaleType,
     required this.notificationsEnabled,
     required this.autoCloudSync,
+    required this.authGatePassed,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1366,6 +1397,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     map['scale_type'] = Variable<String>(scaleType);
     map['notifications_enabled'] = Variable<bool>(notificationsEnabled);
     map['auto_cloud_sync'] = Variable<bool>(autoCloudSync);
+    map['auth_gate_passed'] = Variable<bool>(authGatePassed);
     return map;
   }
 
@@ -1380,6 +1412,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       scaleType: Value(scaleType),
       notificationsEnabled: Value(notificationsEnabled),
       autoCloudSync: Value(autoCloudSync),
+      authGatePassed: Value(authGatePassed),
     );
   }
 
@@ -1398,6 +1431,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
         json['notificationsEnabled'],
       ),
       autoCloudSync: serializer.fromJson<bool>(json['autoCloudSync']),
+      authGatePassed: serializer.fromJson<bool>(json['authGatePassed']),
     );
   }
   @override
@@ -1411,6 +1445,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       'scaleType': serializer.toJson<String>(scaleType),
       'notificationsEnabled': serializer.toJson<bool>(notificationsEnabled),
       'autoCloudSync': serializer.toJson<bool>(autoCloudSync),
+      'authGatePassed': serializer.toJson<bool>(authGatePassed),
     };
   }
 
@@ -1422,6 +1457,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     String? scaleType,
     bool? notificationsEnabled,
     bool? autoCloudSync,
+    bool? authGatePassed,
   }) => SettingsRow(
     id: id ?? this.id,
     units: units ?? this.units,
@@ -1430,6 +1466,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     scaleType: scaleType ?? this.scaleType,
     notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
     autoCloudSync: autoCloudSync ?? this.autoCloudSync,
+    authGatePassed: authGatePassed ?? this.authGatePassed,
   );
   SettingsRow copyWithCompanion(SettingsRowsCompanion data) {
     return SettingsRow(
@@ -1446,6 +1483,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       autoCloudSync: data.autoCloudSync.present
           ? data.autoCloudSync.value
           : this.autoCloudSync,
+      authGatePassed: data.authGatePassed.present
+          ? data.authGatePassed.value
+          : this.authGatePassed,
     );
   }
 
@@ -1458,7 +1498,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ..write('languageCode: $languageCode, ')
           ..write('scaleType: $scaleType, ')
           ..write('notificationsEnabled: $notificationsEnabled, ')
-          ..write('autoCloudSync: $autoCloudSync')
+          ..write('autoCloudSync: $autoCloudSync, ')
+          ..write('authGatePassed: $authGatePassed')
           ..write(')'))
         .toString();
   }
@@ -1472,6 +1513,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     scaleType,
     notificationsEnabled,
     autoCloudSync,
+    authGatePassed,
   );
   @override
   bool operator ==(Object other) =>
@@ -1483,7 +1525,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           other.languageCode == this.languageCode &&
           other.scaleType == this.scaleType &&
           other.notificationsEnabled == this.notificationsEnabled &&
-          other.autoCloudSync == this.autoCloudSync);
+          other.autoCloudSync == this.autoCloudSync &&
+          other.authGatePassed == this.authGatePassed);
 }
 
 class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
@@ -1494,6 +1537,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<String> scaleType;
   final Value<bool> notificationsEnabled;
   final Value<bool> autoCloudSync;
+  final Value<bool> authGatePassed;
   const SettingsRowsCompanion({
     this.id = const Value.absent(),
     this.units = const Value.absent(),
@@ -1502,6 +1546,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     this.scaleType = const Value.absent(),
     this.notificationsEnabled = const Value.absent(),
     this.autoCloudSync = const Value.absent(),
+    this.authGatePassed = const Value.absent(),
   });
   SettingsRowsCompanion.insert({
     this.id = const Value.absent(),
@@ -1511,6 +1556,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     required String scaleType,
     required bool notificationsEnabled,
     this.autoCloudSync = const Value.absent(),
+    this.authGatePassed = const Value.absent(),
   }) : units = Value(units),
        themeMode = Value(themeMode),
        scaleType = Value(scaleType),
@@ -1523,6 +1569,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     Expression<String>? scaleType,
     Expression<bool>? notificationsEnabled,
     Expression<bool>? autoCloudSync,
+    Expression<bool>? authGatePassed,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1533,6 +1580,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
       if (notificationsEnabled != null)
         'notifications_enabled': notificationsEnabled,
       if (autoCloudSync != null) 'auto_cloud_sync': autoCloudSync,
+      if (authGatePassed != null) 'auth_gate_passed': authGatePassed,
     });
   }
 
@@ -1544,6 +1592,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     Value<String>? scaleType,
     Value<bool>? notificationsEnabled,
     Value<bool>? autoCloudSync,
+    Value<bool>? authGatePassed,
   }) {
     return SettingsRowsCompanion(
       id: id ?? this.id,
@@ -1553,6 +1602,7 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
       scaleType: scaleType ?? this.scaleType,
       notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
       autoCloudSync: autoCloudSync ?? this.autoCloudSync,
+      authGatePassed: authGatePassed ?? this.authGatePassed,
     );
   }
 
@@ -1580,6 +1630,9 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
     if (autoCloudSync.present) {
       map['auto_cloud_sync'] = Variable<bool>(autoCloudSync.value);
     }
+    if (authGatePassed.present) {
+      map['auth_gate_passed'] = Variable<bool>(authGatePassed.value);
+    }
     return map;
   }
 
@@ -1592,7 +1645,8 @@ class SettingsRowsCompanion extends UpdateCompanion<SettingsRow> {
           ..write('languageCode: $languageCode, ')
           ..write('scaleType: $scaleType, ')
           ..write('notificationsEnabled: $notificationsEnabled, ')
-          ..write('autoCloudSync: $autoCloudSync')
+          ..write('autoCloudSync: $autoCloudSync, ')
+          ..write('authGatePassed: $authGatePassed')
           ..write(')'))
         .toString();
   }
@@ -2170,6 +2224,7 @@ typedef $$SettingsRowsTableCreateCompanionBuilder =
       required String scaleType,
       required bool notificationsEnabled,
       Value<bool> autoCloudSync,
+      Value<bool> authGatePassed,
     });
 typedef $$SettingsRowsTableUpdateCompanionBuilder =
     SettingsRowsCompanion Function({
@@ -2180,6 +2235,7 @@ typedef $$SettingsRowsTableUpdateCompanionBuilder =
       Value<String> scaleType,
       Value<bool> notificationsEnabled,
       Value<bool> autoCloudSync,
+      Value<bool> authGatePassed,
     });
 
 class $$SettingsRowsTableFilterComposer
@@ -2223,6 +2279,11 @@ class $$SettingsRowsTableFilterComposer
 
   ColumnFilters<bool> get autoCloudSync => $composableBuilder(
     column: $table.autoCloudSync,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get authGatePassed => $composableBuilder(
+    column: $table.authGatePassed,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -2270,6 +2331,11 @@ class $$SettingsRowsTableOrderingComposer
     column: $table.autoCloudSync,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get authGatePassed => $composableBuilder(
+    column: $table.authGatePassed,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SettingsRowsTableAnnotationComposer
@@ -2305,6 +2371,11 @@ class $$SettingsRowsTableAnnotationComposer
 
   GeneratedColumn<bool> get autoCloudSync => $composableBuilder(
     column: $table.autoCloudSync,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get authGatePassed => $composableBuilder(
+    column: $table.authGatePassed,
     builder: (column) => column,
   );
 }
@@ -2347,6 +2418,7 @@ class $$SettingsRowsTableTableManager
                 Value<String> scaleType = const Value.absent(),
                 Value<bool> notificationsEnabled = const Value.absent(),
                 Value<bool> autoCloudSync = const Value.absent(),
+                Value<bool> authGatePassed = const Value.absent(),
               }) => SettingsRowsCompanion(
                 id: id,
                 units: units,
@@ -2355,6 +2427,7 @@ class $$SettingsRowsTableTableManager
                 scaleType: scaleType,
                 notificationsEnabled: notificationsEnabled,
                 autoCloudSync: autoCloudSync,
+                authGatePassed: authGatePassed,
               ),
           createCompanionCallback:
               ({
@@ -2365,6 +2438,7 @@ class $$SettingsRowsTableTableManager
                 required String scaleType,
                 required bool notificationsEnabled,
                 Value<bool> autoCloudSync = const Value.absent(),
+                Value<bool> authGatePassed = const Value.absent(),
               }) => SettingsRowsCompanion.insert(
                 id: id,
                 units: units,
@@ -2373,6 +2447,7 @@ class $$SettingsRowsTableTableManager
                 scaleType: scaleType,
                 notificationsEnabled: notificationsEnabled,
                 autoCloudSync: autoCloudSync,
+                authGatePassed: authGatePassed,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

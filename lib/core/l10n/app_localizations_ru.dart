@@ -574,7 +574,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cloudFoundTitle => 'В облаке есть данные';
 
   @override
-  String get cloudFoundBody => 'Загрузить их на это устройство?';
+  String get cloudFoundBody =>
+      'В этом аккаунте уже есть данные в облаке. Оставить облачные (локальные удалятся), оставить локальные (облачные перезапишутся) или объединить, чтобы собрать все результаты вместе.';
 
   @override
   String get cloudKeepLocal => 'Оставить локальные';
@@ -588,4 +589,24 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get cloudReplace => 'Заменить';
+
+  @override
+  String get welcomeBody =>
+      'Оцените разностороннюю физподготовку и отслеживайте прогресс. Войдите, чтобы синхронизировать данные между устройствами, или начните сразу.';
+
+  @override
+  String get welcomeAuth => 'Войти или зарегистрироваться';
+
+  @override
+  String get welcomeContinue => 'Продолжить без аккаунта';
+
+  @override
+  String get cloudMerge => 'Объединить';
+
+  @override
+  String get cloudMergeDone => 'Данные объединены';
+
+  @override
+  String get cloudAutoSyncStatus =>
+      'Данные синхронизируются автоматически на всех ваших устройствах.';
 }

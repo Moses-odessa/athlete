@@ -575,7 +575,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get cloudFoundTitle => 'Dati trovati nel cloud';
 
   @override
-  String get cloudFoundBody => 'Scaricarli su questo dispositivo?';
+  String get cloudFoundBody =>
+      'Questo account ha già dati nel cloud. Mantieni i dati del cloud (i locali vengono eliminati), mantieni i dati locali (il cloud viene sovrascritto) oppure unisci per combinare tutti i risultati.';
 
   @override
   String get cloudKeepLocal => 'Mantieni locali';
@@ -589,4 +590,24 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get cloudReplace => 'Sostituisci';
+
+  @override
+  String get welcomeBody =>
+      'Valuta la tua forma fisica a tutto tondo e monitora i progressi. Accedi per sincronizzare tra i dispositivi o inizia subito.';
+
+  @override
+  String get welcomeAuth => 'Accedi o registrati';
+
+  @override
+  String get welcomeContinue => 'Continua senza account';
+
+  @override
+  String get cloudMerge => 'Unisci';
+
+  @override
+  String get cloudMergeDone => 'Dati uniti';
+
+  @override
+  String get cloudAutoSyncStatus =>
+      'I tuoi dati si sincronizzano automaticamente su tutti i tuoi dispositivi.';
 }

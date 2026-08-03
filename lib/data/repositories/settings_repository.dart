@@ -27,6 +27,9 @@ class SettingsController extends Notifier<AppSettings> {
 
   void setAutoCloudSync(bool enabled) =>
       state = state.copyWith(autoCloudSync: enabled);
+
+  void setAuthGatePassed(bool passed) =>
+      state = state.copyWith(authGatePassed: passed);
 }
 
 final settingsControllerProvider =

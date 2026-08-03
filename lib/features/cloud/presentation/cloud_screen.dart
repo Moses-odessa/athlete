@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/app_localizations.dart';
 import '../../../data/repositories/settings_repository.dart';
 import '../application/cloud_controller.dart';
 
-/// Экран облачной синхронизации: аккаунт, автосинк, реконсиляция (ТЗ 4.17, M2).
+/// Что делать при входе, если в облаке уже есть данные (#2).
+enum _MergeChoice { keepCloud, keepLocal, merge }
+
+/// Экран облачного аккаунта: вход/регистрация, автоматический мультидевайс-синк,
+/// объединение данных при входе (ТЗ 4.17, M2). Ручной синхронизации нет.
 class CloudScreen extends ConsumerStatefulWidget {
   const CloudScreen({super.key});
 
@@ -42,64 +47,59 @@ class _CloudScreenState extends ConsumerState<CloudScreen> {
       _snack(outcome.error ?? _l10n.cloudError);
       return;
     }
+    // Аутентификация пройдена → welcome-гейт больше не показываем.
+    ref.read(settingsControllerProvider.notifier).setAuthGatePassed(true);
     // Предложить менеджеру паролей ОС сохранить учётные данные (#3).
     TextInput.finishAutofillContext();
     if (outcome.cloudHasData) {
       await _reconcile();
     } else {
+      // Новый аккаунт: выгружаем локальные данные в облако (#2).
       final ok = await _controller.backup();
       _snack(ok ? _l10n.cloudBackupDone : _error);
     }
+    if (mounted) context.go('/');
   }
 
-  /// Первый вход: в облаке есть данные — загрузить или заменить локальными (#2).
+  /// Вход в существующий аккаунт с данными: выбрать, какие данные оставить (#2).
   Future<void> _reconcile() async {
-    final download = await showDialog<bool>(
+    final l10n = _l10n;
+    final choice = await showDialog<_MergeChoice>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(_l10n.cloudFoundTitle),
-        content: Text(_l10n.cloudFoundBody),
+        title: Text(l10n.cloudFoundTitle),
+        content: Text(l10n.cloudFoundBody),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(_l10n.cloudKeepLocal),
+            onPressed: () =>
+                Navigator.of(context).pop(_MergeChoice.keepCloud),
+            child: Text(l10n.cloudRestore),
+          ),
+          TextButton(
+            onPressed: () =>
+                Navigator.of(context).pop(_MergeChoice.keepLocal),
+            child: Text(l10n.cloudKeepLocal),
           ),
           FilledButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text(_l10n.cloudRestore),
+            onPressed: () => Navigator.of(context).pop(_MergeChoice.merge),
+            child: Text(l10n.cloudMerge),
           ),
         ],
       ),
     );
-    if (download == null || !mounted) return;
-
-    if (download) {
-      final ok = await _controller.restore();
-      _snack(ok ? _l10n.cloudRestoreDone : _error);
-      return;
-    }
-    // Оставить локальные → предупредить, что облако будет заменено.
-    final confirm = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(_l10n.cloudOverwriteTitle),
-        content: Text(_l10n.cloudOverwriteBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(_l10n.cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text(_l10n.cloudReplace),
-          ),
-        ],
-      ),
-    );
-    if (confirm == true && mounted) {
-      final ok = await _controller.backup();
-      _snack(ok ? _l10n.cloudBackupDone : _error);
-    }
+    if (choice == null || !mounted) return;
+    final (ok, msg) = switch (choice) {
+      _MergeChoice.keepCloud => (
+          await _controller.restore(),
+          l10n.cloudRestoreDone
+        ),
+      _MergeChoice.keepLocal => (
+          await _controller.backup(),
+          l10n.cloudBackupDone
+        ),
+      _MergeChoice.merge => (await _controller.merge(), l10n.cloudMergeDone),
+    };
+    _snack(ok ? msg : _error);
   }
 
   String get _error =>
@@ -126,7 +126,7 @@ class _CloudScreenState extends ConsumerState<CloudScreen> {
           else if (!state.signedIn)
             _signInForm(state)
           else
-            _signedInView(),
+            _signedInView(state),
           if (state.busy)
             const Padding(
               padding: EdgeInsets.only(top: 24),
@@ -189,18 +189,15 @@ class _CloudScreenState extends ConsumerState<CloudScreen> {
             ],
           ),
           const SizedBox(height: 16),
-          Text(l10n.cloudSingleDeviceHint,
+          Text(l10n.cloudAutoSyncStatus,
               style: Theme.of(context).textTheme.bodySmall),
         ],
       ),
     );
   }
 
-  Widget _signedInView() {
+  Widget _signedInView(CloudState state) {
     final l10n = _l10n;
-    final state = ref.watch(cloudControllerProvider);
-    final autoSync = ref.watch(settingsControllerProvider).autoCloudSync;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -214,41 +211,18 @@ class _CloudScreenState extends ConsumerState<CloudScreen> {
             child: Text(l10n.signOut),
           ),
         ),
-        SwitchListTile(
-          contentPadding: EdgeInsets.zero,
-          title: Text(l10n.cloudAutoSync),
-          value: autoSync,
-          onChanged: (v) =>
-              ref.read(settingsControllerProvider.notifier).setAutoCloudSync(v),
-        ),
         const Divider(),
-        Text(l10n.cloudBackupHint,
-            style: Theme.of(context).textTheme.bodySmall),
-        const SizedBox(height: 12),
-        FilledButton.icon(
-          icon: const Icon(Icons.cloud_upload),
-          label: Text(l10n.cloudBackup),
-          onPressed: state.busy
-              ? null
-              : () async {
-                  final ok = await _controller.backup();
-                  _snack(ok ? l10n.cloudBackupDone : _error);
-                },
+        Row(
+          children: [
+            Icon(Icons.cloud_done,
+                size: 20, color: Theme.of(context).colorScheme.primary),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(l10n.cloudAutoSyncStatus,
+                  style: Theme.of(context).textTheme.bodyMedium),
+            ),
+          ],
         ),
-        const SizedBox(height: 8),
-        OutlinedButton.icon(
-          icon: const Icon(Icons.cloud_download),
-          label: Text(l10n.cloudRestore),
-          onPressed: state.busy
-              ? null
-              : () async {
-                  final ok = await _controller.restore();
-                  _snack(ok ? l10n.cloudRestoreDone : _error);
-                },
-        ),
-        const SizedBox(height: 16),
-        Text(l10n.cloudSingleDeviceHint,
-            style: Theme.of(context).textTheme.bodySmall),
       ],
     );
   }

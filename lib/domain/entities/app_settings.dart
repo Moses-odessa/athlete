@@ -22,6 +22,10 @@ class AppSettings {
   /// Автоматически сохранять данные в облако при изменениях (ТЗ M2).
   final bool autoCloudSync;
 
+  /// Пройден ли стартовый экран выбора «вход / регистрация / без аккаунта».
+  /// false у нового пользователя → показываем welcome-гейт до онбординга (#2).
+  final bool authGatePassed;
+
   const AppSettings({
     this.units = UnitSystem.metric,
     this.themeMode = AppThemeMode.dark,
@@ -29,6 +33,7 @@ class AppSettings {
     this.scaleType = ScaleType.linear,
     this.notificationsEnabled = false,
     this.autoCloudSync = true,
+    this.authGatePassed = false,
   });
 
   static const defaults = AppSettings();
@@ -41,6 +46,7 @@ class AppSettings {
     ScaleType? scaleType,
     bool? notificationsEnabled,
     bool? autoCloudSync,
+    bool? authGatePassed,
   }) {
     return AppSettings(
       units: units ?? this.units,
@@ -49,6 +55,7 @@ class AppSettings {
       scaleType: scaleType ?? this.scaleType,
       notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
       autoCloudSync: autoCloudSync ?? this.autoCloudSync,
+      authGatePassed: authGatePassed ?? this.authGatePassed,
     );
   }
 }

@@ -47,52 +47,124 @@ List<Achievement> buildAchievements({
   final anyElite = categoryScores.values.any((c) => c.score >= 80);
   final fullCycle = hasData && !index.isForecast;
 
-  Achievement level(String id, int threshold, String name) => Achievement(
+  Achievement level(
+    String id,
+    int threshold,
+    String name, {
+    String? nameUk,
+    String? nameDe,
+    String? nameIt,
+    String? nameFr,
+  }) =>
+      Achievement(
         id: id,
-        title: LocalizedText(ru: name, en: name),
+        title: LocalizedText(
+            ru: name,
+            en: name,
+            uk: nameUk,
+            de: nameDe,
+            it: nameIt,
+            fr: nameFr),
         description: LocalizedText(
-            ru: 'Индекс ≥ $threshold', en: 'Index ≥ $threshold'),
+            ru: 'Индекс ≥ $threshold',
+            en: 'Index ≥ $threshold',
+            uk: 'Індекс ≥ $threshold',
+            de: 'Index ≥ $threshold',
+            it: 'Indice ≥ $threshold',
+            fr: 'Indice ≥ $threshold'),
         unlocked: hasData && index.value >= threshold,
       );
 
   Achievement gain(String id, int n) => Achievement(
         id: id,
-        title: LocalizedText(ru: 'Рост +$n', en: '+$n gain'),
+        title: LocalizedText(
+            ru: 'Рост +$n',
+            en: '+$n gain',
+            uk: 'Приріст +$n',
+            de: '+$n Zuwachs',
+            it: '+$n guadagno',
+            fr: '+$n gain'),
         description: LocalizedText(
-            ru: 'Индекс вырос на $n', en: 'Index improved by $n'),
+            ru: 'Индекс вырос на $n',
+            en: 'Index improved by $n',
+            uk: 'Індекс зріс на $n',
+            de: 'Index um $n verbessert',
+            it: 'Indice migliorato di $n',
+            fr: 'Indice amélioré de $n'),
         unlocked: improvement >= n,
       );
 
   Achievement streak(String id, int days) => Achievement(
         id: id,
-        title: LocalizedText(ru: '$days дней тестов', en: '$days test days'),
+        title: LocalizedText(
+            ru: '$days дней тестов',
+            en: '$days test days',
+            uk: '$days днів тестів',
+            de: '$days Testtage',
+            it: '$days giorni di test',
+            fr: '$days jours de tests'),
         description: LocalizedText(
             ru: 'Тестирование в $days разных дней',
-            en: 'Testing on $days different days'),
+            en: 'Testing on $days different days',
+            uk: 'Тестування в $days різних днів',
+            de: 'Testen an $days verschiedenen Tagen',
+            it: 'Test in $days giorni diversi',
+            fr: 'Tests sur $days jours différents'),
         unlocked: distinctDays >= days,
       );
 
   return [
     Achievement(
       id: 'full_cycle',
-      title: const LocalizedText(ru: 'Полный цикл', en: 'Full cycle'),
+      title: const LocalizedText(
+          ru: 'Полный цикл',
+          en: 'Full cycle',
+          uk: 'Повний цикл',
+          de: 'Voller Zyklus',
+          it: 'Ciclo completo',
+          fr: 'Cycle complet'),
       description: const LocalizedText(
-          ru: 'Оценены все 8 категорий', en: 'All 8 categories assessed'),
+          ru: 'Оценены все 8 категорий',
+          en: 'All 8 categories assessed',
+          uk: 'Оцінені всі 8 категорій',
+          de: 'Alle 8 Kategorien bewertet',
+          it: 'Tutte le 8 categorie valutate',
+          fr: 'Les 8 catégories évaluées'),
       unlocked: fullCycle,
     ),
-    level('idx_intermediate', 40, 'Intermediate'),
-    level('idx_advanced', 60, 'Advanced'),
-    level('idx_elite', 80, 'Elite'),
-    level('idx_athlete', 95, 'Athlete'),
+    level('idx_intermediate', 40, 'Intermediate',
+        nameUk: 'Середній',
+        nameDe: 'Mittelstufe',
+        nameIt: 'Intermedio',
+        nameFr: 'Intermédiaire'),
+    level('idx_advanced', 60, 'Advanced',
+        nameUk: 'Просунутий',
+        nameDe: 'Fortgeschritten',
+        nameIt: 'Avanzato',
+        nameFr: 'Avancé'),
+    level('idx_elite', 80, 'Elite',
+        nameUk: 'Еліта', nameDe: 'Elite', nameIt: 'Elite', nameFr: 'Élite'),
+    level('idx_athlete', 95, 'Athlete',
+        nameUk: 'Атлет', nameDe: 'Athlet', nameIt: 'Atleta', nameFr: 'Athlète'),
     gain('improve_5', 5),
     gain('improve_10', 10),
     gain('improve_20', 20),
     Achievement(
       id: 'category_elite',
-      title:
-          const LocalizedText(ru: 'Элитная категория', en: 'Elite category'),
+      title: const LocalizedText(
+          ru: 'Элитная категория',
+          en: 'Elite category',
+          uk: 'Елітна категорія',
+          de: 'Elite-Kategorie',
+          it: 'Categoria élite',
+          fr: 'Catégorie élite'),
       description: const LocalizedText(
-          ru: 'Любая категория ≥ 80', en: 'Any category ≥ 80'),
+          ru: 'Любая категория ≥ 80',
+          en: 'Any category ≥ 80',
+          uk: 'Будь-яка категорія ≥ 80',
+          de: 'Beliebige Kategorie ≥ 80',
+          it: 'Qualsiasi categoria ≥ 80',
+          fr: 'Toute catégorie ≥ 80'),
       unlocked: anyElite,
     ),
     streak('streak_3', 3),

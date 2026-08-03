@@ -14,6 +14,29 @@ class UserData {
   const UserData(this.profile, this.results);
 }
 
+/// Объединяет два набора данных для мультидевайс-синхронизации (ТЗ M2, #4).
+///
+/// Результаты сливаются объединением по `id` (записи иммутабельны, поэтому
+/// дубли по id идентичны). Профиль: по умолчанию сохраняется профиль [base]
+/// (текущий локальный), а из [incoming] берётся только если у base его нет;
+/// при [preferIncomingProfile] — наоборот.
+UserData mergeUserData(
+  UserData base,
+  UserData incoming, {
+  bool preferIncomingProfile = false,
+}) {
+  final byId = <String, TestResult>{for (final r in base.results) r.id: r};
+  for (final r in incoming.results) {
+    byId.putIfAbsent(r.id, () => r);
+  }
+  final merged = byId.values.toList()
+    ..sort((a, b) => a.date.compareTo(b.date));
+  final profile = preferIncomingProfile
+      ? (incoming.profile ?? base.profile)
+      : (base.profile ?? incoming.profile);
+  return UserData(profile, merged);
+}
+
 /// Сериализация профиля и результатов в переносимую структуру (JSON).
 Map<String, Object?> encodeUserData({
   required UserProfile? profile,

@@ -55,6 +55,8 @@ class SettingsRows extends Table {
   BoolColumn get notificationsEnabled => boolean()();
   BoolColumn get autoCloudSync =>
       boolean().withDefault(const Constant(true))();
+  BoolColumn get authGatePassed =>
+      boolean().withDefault(const Constant(false))();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -68,7 +70,7 @@ class AppDatabase extends _$AppDatabase {
       : super(executor ?? driftDatabase(name: 'athlete_db'));
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -81,6 +83,14 @@ class AppDatabase extends _$AppDatabase {
           }
           if (from < 4) {
             await m.addColumn(settingsRows, settingsRows.autoCloudSync);
+          }
+          if (from < 5) {
+            await m.addColumn(settingsRows, settingsRows.authGatePassed);
+            // Существующие пользователи уже работают — welcome-гейт не показываем.
+            await (update(settingsRows)
+                  ..where((t) => t.id.equals(1)))
+                .write(const SettingsRowsCompanion(
+                    authGatePassed: Value(true)));
           }
         },
       );
@@ -178,6 +188,7 @@ class AppDatabase extends _$AppDatabase {
         scaleType: ScaleType.values.byName(row.scaleType),
         notificationsEnabled: row.notificationsEnabled,
         autoCloudSync: row.autoCloudSync,
+        authGatePassed: row.authGatePassed,
       );
 
   SettingsRowsCompanion _toSettingsRow(AppSettings s) => SettingsRowsCompanion(
@@ -188,5 +199,6 @@ class AppDatabase extends _$AppDatabase {
         scaleType: Value(s.scaleType.name),
         notificationsEnabled: Value(s.notificationsEnabled),
         autoCloudSync: Value(s.autoCloudSync),
+        authGatePassed: Value(s.authGatePassed),
       );
 }
