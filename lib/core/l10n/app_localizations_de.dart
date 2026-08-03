@@ -325,6 +325,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsTitle => 'Einstellungen';
 
   @override
+  String get settingsProfile => 'Profildaten';
+
+  @override
   String get settingsUnits => 'Einheiten';
 
   @override

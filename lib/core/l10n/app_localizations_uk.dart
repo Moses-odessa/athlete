@@ -323,6 +323,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get settingsTitle => 'Налаштування';
 
   @override
+  String get settingsProfile => 'Дані профілю';
+
+  @override
   String get settingsUnits => 'Одиниці вимірювання';
 
   @override

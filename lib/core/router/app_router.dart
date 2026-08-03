@@ -16,6 +16,7 @@ import '../../features/onboarding/presentation/welcome_screen.dart';
 import '../../features/peers/presentation/peers_screen.dart';
 import '../../features/recommendations/presentation/recommendations_screen.dart';
 import '../../features/recommendations/presentation/weekly_plan_screen.dart';
+import '../../features/settings/presentation/profile_edit_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/tests/presentation/batteries_screen.dart';
 import '../../features/tests/presentation/battery_runner_screen.dart';
@@ -63,6 +64,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/catalog', builder: (_, _) => const CatalogScreen()),
       GoRoute(path: '/history', builder: (_, _) => const HistoryScreen()),
       GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
+      GoRoute(
+          path: '/profile-edit',
+          builder: (_, _) => const ProfileEditScreen()),
       GoRoute(path: '/cloud', builder: (_, _) => const CloudScreen()),
       GoRoute(path: '/science', builder: (_, _) => const ScienceScreen()),
       GoRoute(path: '/reaction', builder: (_, _) => const ReactionScreen()),

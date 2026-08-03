@@ -103,6 +103,13 @@ class SettingsScreen extends ConsumerWidget {
           const Divider(height: 32),
           ListTile(
             contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.person),
+            title: Text(l10n.settingsProfile),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/profile-edit'),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.cloud_sync),
             title: Text(l10n.cloudTitle),
             trailing: const Icon(Icons.chevron_right),

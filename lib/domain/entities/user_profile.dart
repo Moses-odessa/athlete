@@ -39,16 +39,27 @@ class UserProfile {
   Cohort cohortAsOf(DateTime asOf) =>
       Cohort.forUser(gender: gender, dateOfBirth: dateOfBirth, asOf: asOf);
 
-  UserProfile copyWith({double? weightKg, double? heightCm}) => UserProfile(
+  UserProfile copyWith({
+    Gender? gender,
+    DateTime? dateOfBirth,
+    double? weightKg,
+    double? heightCm,
+    TrainingExperience? experience,
+    Set<Equipment>? equipment,
+    TrainingGoal? goal,
+    bool? parqPassed,
+    bool? acceptedTerms,
+  }) =>
+      UserProfile(
         id: id,
-        gender: gender,
-        dateOfBirth: dateOfBirth,
+        gender: gender ?? this.gender,
+        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         weightKg: weightKg ?? this.weightKg,
         heightCm: heightCm ?? this.heightCm,
-        experience: experience,
-        equipment: equipment,
-        goal: goal,
-        parqPassed: parqPassed,
-        acceptedTerms: acceptedTerms,
+        experience: experience ?? this.experience,
+        equipment: equipment ?? this.equipment,
+        goal: goal ?? this.goal,
+        parqPassed: parqPassed ?? this.parqPassed,
+        acceptedTerms: acceptedTerms ?? this.acceptedTerms,
       );
 }

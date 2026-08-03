@@ -19,6 +19,8 @@ class WelcomeScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
 
+    final settings = ref.watch(settingsControllerProvider);
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -26,6 +28,30 @@ class WelcomeScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // Выбор языка до онбординга (#2).
+              Align(
+                alignment: Alignment.centerRight,
+                child: DropdownButton<String?>(
+                  value: settings.languageCode,
+                  icon: const Icon(Icons.language),
+                  underline: const SizedBox.shrink(),
+                  hint: const Icon(Icons.language),
+                  items: [
+                    DropdownMenuItem(
+                        value: null, child: Text(l10n.languageSystem)),
+                    const DropdownMenuItem(value: 'ru', child: Text('Русский')),
+                    const DropdownMenuItem(value: 'en', child: Text('English')),
+                    const DropdownMenuItem(
+                        value: 'uk', child: Text('Українська')),
+                    const DropdownMenuItem(value: 'de', child: Text('Deutsch')),
+                    const DropdownMenuItem(value: 'it', child: Text('Italiano')),
+                    const DropdownMenuItem(value: 'fr', child: Text('Français')),
+                  ],
+                  onChanged: (v) => ref
+                      .read(settingsControllerProvider.notifier)
+                      .setLanguage(v),
+                ),
+              ),
               const Spacer(),
               Icon(Icons.radar, size: 96, color: scheme.primary),
               const SizedBox(height: 24),

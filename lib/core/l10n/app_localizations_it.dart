@@ -324,6 +324,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settingsTitle => 'Impostazioni';
 
   @override
+  String get settingsProfile => 'Dati del profilo';
+
+  @override
   String get settingsUnits => 'Unità di misura';
 
   @override

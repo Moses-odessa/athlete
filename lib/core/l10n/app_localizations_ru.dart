@@ -324,6 +324,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsTitle => 'Настройки';
 
   @override
+  String get settingsProfile => 'Данные профиля';
+
+  @override
   String get settingsUnits => 'Единицы измерения';
 
   @override
